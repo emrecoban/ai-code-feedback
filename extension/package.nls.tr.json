@@ -1,0 +1,15 @@
+{
+  "aiFeedback.command.signIn.title": "Giriş Yap / Hesap Oluştur",
+  "aiFeedback.command.signOut.title": "Çıkış Yap",
+  "aiFeedback.command.switchAccount.title": "Hesap Değiştir",
+  "aiFeedback.command.explainSelection.title": "Seçimimi Açıkla",
+  "aiFeedback.command.changeFeedbackLanguage.title": "Dili Değiştir",
+  "aiFeedback.command.changeTextSize.title": "Metin Boyutunu Değiştir",
+  "aiFeedback.config.title": "AI Code Feedback",
+  "aiFeedback.config.feedbackLanguage": "Yapay zekâ tarafından oluşturulan açıklamalarda kullanılacak dil.",
+  "aiFeedback.config.uiLanguage": "Eklenti arayüz dili. Yalnızca VS Code'un kendi görüntü diliyle eşleştiğinde etkili olur.",
+  "aiFeedback.config.verboseAffordances": "Yardım simgelerinde, ilk birkaç kullanımdan sonra yalnızca simgeye geçmek yerine her zaman tam etiketleri göster.",
+  "aiFeedback.color.helpAccent": "AI Code Feedback'in yardım göstergeleri için vurgu rengi (kenar boşluğu simgesi, satır içi ipuçları).",
+  "aiFeedback.viewsContainer.title": "AI Code Feedback",
+  "aiFeedback.view.sidebar.name": "Oturum"
+}

@@ -1,0 +1,15 @@
+{
+  "aiFeedback.command.signIn.title": "Iniciar Sesión / Crear Cuenta",
+  "aiFeedback.command.signOut.title": "Cerrar Sesión",
+  "aiFeedback.command.switchAccount.title": "Cambiar de Cuenta",
+  "aiFeedback.command.explainSelection.title": "Explicar Mi Selección",
+  "aiFeedback.command.changeFeedbackLanguage.title": "Cambiar Idioma",
+  "aiFeedback.command.changeTextSize.title": "Cambiar Tamaño del Texto",
+  "aiFeedback.config.title": "AI Code Feedback",
+  "aiFeedback.config.feedbackLanguage": "Idioma utilizado para las explicaciones generadas por IA.",
+  "aiFeedback.config.uiLanguage": "Idioma de la interfaz de la extensión. Solo tiene efecto si coincide con el idioma de visualización de VS Code.",
+  "aiFeedback.config.verboseAffordances": "Mostrar siempre etiquetas completas en los íconos de ayuda en lugar de pasar a solo ícono tras los primeros usos.",
+  "aiFeedback.color.helpAccent": "Color de acento para los indicadores de ayuda de AI Code Feedback (ícono de margen, sugerencias en línea).",
+  "aiFeedback.viewsContainer.title": "AI Code Feedback",
+  "aiFeedback.view.sidebar.name": "Sesión"
+}

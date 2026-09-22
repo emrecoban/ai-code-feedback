@@ -1,0 +1,15 @@
+{
+  "aiFeedback.command.signIn.title": "Sign In / Create Account",
+  "aiFeedback.command.signOut.title": "Sign Out",
+  "aiFeedback.command.switchAccount.title": "Switch Account",
+  "aiFeedback.command.explainSelection.title": "Explain My Selection",
+  "aiFeedback.command.changeFeedbackLanguage.title": "Change Language",
+  "aiFeedback.command.changeTextSize.title": "Change Text Size",
+  "aiFeedback.config.title": "AI Code Feedback",
+  "aiFeedback.config.feedbackLanguage": "Language used for AI-generated explanations.",
+  "aiFeedback.config.uiLanguage": "Language for extension UI text. Only takes effect if it matches VS Code's own display language.",
+  "aiFeedback.config.verboseAffordances": "Always show full labels on help icons instead of switching to icon-only after the first few uses.",
+  "aiFeedback.color.helpAccent": "Accent color for AI Code Feedback's help affordances (gutter icon, inline hints).",
+  "aiFeedback.viewsContainer.title": "AI Code Feedback",
+  "aiFeedback.view.sidebar.name": "Session"
+}

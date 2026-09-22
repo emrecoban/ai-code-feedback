@@ -1,0 +1,155 @@
+{
+  "name": "ai-code-feedback",
+  "displayName": "AI Code Feedback",
+  "description": "AI-powered feedback for your code, when you ask for it.",
+  "version": "0.2.0",
+  "publisher": "EmreCOBAN",
+  "icon": "media/feedback-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emrecoban/ai-code-feedback.git"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Education", "Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiFeedback.signIn",
+        "title": "%aiFeedback.command.signIn.title%",
+        "category": "AI Code Feedback"
+      },
+      {
+        "command": "aiFeedback.signOut",
+        "title": "%aiFeedback.command.signOut.title%",
+        "category": "AI Code Feedback",
+        "icon": "$(sign-out)"
+      },
+      {
+        "command": "aiFeedback.switchAccount",
+        "title": "%aiFeedback.command.switchAccount.title%",
+        "category": "AI Code Feedback"
+      },
+      {
+        "command": "aiFeedback.explainSelection",
+        "title": "%aiFeedback.command.explainSelection.title%",
+        "category": "AI Code Feedback"
+      },
+      {
+        "command": "aiFeedback.changeFeedbackLanguage",
+        "title": "%aiFeedback.command.changeFeedbackLanguage.title%",
+        "category": "AI Code Feedback",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "aiFeedback.changeTextSize",
+        "title": "%aiFeedback.command.changeTextSize.title%",
+        "category": "AI Code Feedback",
+        "icon": "$(text-size)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "aiFeedback.changeFeedbackLanguage",
+          "when": "view == aiFeedback.sidebar && aiFeedback.signedIn",
+          "group": "navigation@1"
+        },
+        {
+          "command": "aiFeedback.changeTextSize",
+          "when": "view == aiFeedback.sidebar && aiFeedback.signedIn",
+          "group": "navigation@2"
+        },
+        {
+          "command": "aiFeedback.signOut",
+          "when": "view == aiFeedback.sidebar && aiFeedback.signedIn",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "%aiFeedback.config.title%",
+      "properties": {
+        "aiFeedback.feedbackLanguage": {
+          "type": "string",
+          "enum": ["en", "tr", "es"],
+          "enumDescriptions": ["English", "Türkçe", "Español"],
+          "default": "en",
+          "scope": "application",
+          "description": "%aiFeedback.config.feedbackLanguage%"
+        },
+        "aiFeedback.uiLanguage": {
+          "type": "string",
+          "enum": ["auto", "en", "tr", "es"],
+          "default": "auto",
+          "description": "%aiFeedback.config.uiLanguage%"
+        },
+        "aiFeedback.verboseAffordances": {
+          "type": "boolean",
+          "default": false,
+          "description": "%aiFeedback.config.verboseAffordances%"
+        }
+      }
+    },
+    "colors": [
+      {
+        "id": "aiFeedback.helpAccent",
+        "description": "%aiFeedback.color.helpAccent%",
+        "defaults": {
+          "dark": "#4EC9B0",
+          "light": "#0F766E",
+          "highContrast": "#4EC9B0",
+          "highContrastLight": "#0F766E"
+        }
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiFeedback.pickQuestionPreset",
+        "key": "ctrl+alt+space",
+        "mac": "cmd+alt+space",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": "selection_keybinding"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "aiFeedback",
+          "title": "%aiFeedback.viewsContainer.title%",
+          "icon": "media/feedback-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "aiFeedback": [
+        {
+          "type": "webview",
+          "id": "aiFeedback.sidebar",
+          "name": "%aiFeedback.view.sidebar.name%"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "typecheck": "tsc --noEmit -p ./",
+    "package": "node esbuild.js --production"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}
