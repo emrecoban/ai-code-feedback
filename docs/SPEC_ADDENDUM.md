@@ -838,3 +838,26 @@ No schema/migration changes: `courses`/`course_weeks`/`enrollments` and
 live possibility, not something this fix forecloses — it only stopped the
 model from being told a curriculum exists when this product doesn't
 currently track one.
+
+---
+
+## 17. Course tables removed (supersedes the "remains a live possibility" note in §16)
+
+`courses`, `course_weeks` and `enrollments` were dropped in
+`supabase/migrations/0018_drop_course_tables.sql`, together with
+`supabase/scripts/import-course.ts` and the sample course files it read.
+None of the three tables had ever held a row, and no deployed Edge Function
+queried them: `/explain` has always sent `courseId: null` (§16).
+
+What deliberately stays:
+- The nullable `course_id` columns on `coding_sessions`, `interactions`,
+  `explanations` and `learner_profiles`, now plain columns without foreign
+  keys. The deployed functions still write `null` to them, and dropping them
+  would need a coordinated redeploy for no benefit.
+- `explanation_read`, rewritten as `course_id is null`: exactly the rows it
+  already allowed, minus the enrollment branch that could no longer match.
+- The `course-materials` storage bucket (0003): separate from the tables,
+  and nothing reads it either, but removing it was out of scope.
+
+A course/group feature, if it is ever wanted, starts from scratch rather
+than from this scaffolding.
