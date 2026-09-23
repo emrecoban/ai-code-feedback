@@ -40,18 +40,33 @@ async function sha256(input: string): Promise<string> {
     .join('');
 }
 
+// Supabase's Edge Runtime global: keeps the worker alive until a promise
+// settles, even after the response has been sent. Read off globalThis so
+// the code still runs (without the guarantee) wherever it isn't defined.
+function runAfterResponse(work: PromiseLike<unknown>): void {
+  const settled = Promise.resolve(work).catch((e) => console.error('Background task failed:', e));
+  (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime?.waitUntil(settled);
+}
+
 export async function lookupCache(cacheKey: string): Promise<{ payload: unknown; modelUsed: string } | null> {
   const client = getAdminClient();
   const { data } = await client
     .from('explanations')
-    .select('id, payload, model_used, reuse_count')
+    .select('id, payload, model_used')
     .eq('cache_key', cacheKey)
     .maybeSingle();
   if (!data) return null;
 
-  // Best-effort counter -- a lost increment under a concurrent cache hit
-  // is an acceptable tradeoff for not needing a dedicated RPC here.
-  void client.from('explanations').update({ reuse_count: (data.reuse_count ?? 0) + 1 }).eq('id', data.id);
+  // Best-effort counter, finished after the response goes out so a cache
+  // hit is no slower for it. A supabase-js builder only sends its request
+  // once it is awaited or .then()'d -- the old `void builder` here never
+  // sent anything. Atomic on the SQL side (migrations/0022), so concurrent
+  // hits all count.
+  runAfterResponse(
+    client.rpc('increment_explanation_reuse', { p_id: data.id }).then(({ error }) => {
+      if (error) console.error('Cache reuse counter failed:', error);
+    }),
+  );
 
   return { payload: data.payload, modelUsed: data.model_used };
 }
