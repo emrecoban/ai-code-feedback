@@ -861,3 +861,25 @@ What deliberately stays:
 
 A course/group feature, if it is ever wanted, starts from scratch rather
 than from this scaffolding.
+
+---
+
+## 18. Request limits and student passwords from the dashboard
+
+Base spec §6.5 reads the per-student limits from the `RATE_LIMIT_HOURLY` and
+`RATE_LIMIT_DAILY` secrets only. Since `supabase/migrations/0024`, an admin
+can set both in the research dashboard; they are stored in
+`public.rate_limits` (a single row, RLS on with no policies, no grants to
+`anon`/`authenticated`). `_shared/rateLimit.ts` reads that row on every
+check, in parallel with the usage queries, and falls back to the secrets
+when there is no row or the read fails. The secrets therefore remain the
+defaults. They are not rewritten by the dashboard, because that would need a
+Supabase management token with control over the whole project.
+
+Dashboard admins can also set a student's password
+(`dashboard_student_set_password`): 8–72 characters (bcrypt ignores
+anything past 72 bytes), hashed with pgcrypto in the `$2a$10$` form Supabase
+Auth already uses, and followed by deleting the student's `auth.sessions`
+and `auth.refresh_tokens`, so the extension signs the student out
+everywhere. Both actions are written to the dashboard's activity log, never
+with the password.

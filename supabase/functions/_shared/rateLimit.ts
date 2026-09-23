@@ -1,12 +1,42 @@
 import { getAdminClient } from './authClient.ts';
 
-// base spec §6.5
-const HOURLY_LIMIT = Number(Deno.env.get('RATE_LIMIT_HOURLY') ?? '40');
-const DAILY_LIMIT = Number(Deno.env.get('RATE_LIMIT_DAILY') ?? '200');
+// base spec §6.5. The secrets are the defaults; an admin can override both
+// from the dashboard (public.rate_limits, migrations/0024).
+export const DEFAULT_LIMITS = {
+  hourly: Number(Deno.env.get('RATE_LIMIT_HOURLY') ?? '40'),
+  daily: Number(Deno.env.get('RATE_LIMIT_DAILY') ?? '200'),
+};
+
+export interface RateLimits {
+  hourly: number;
+  daily: number;
+  source: 'dashboard' | 'secrets';
+  updatedAt: string | null;
+  updatedBy: string | null;
+}
 
 export interface RateLimitResult {
   allowed: boolean;
   retryAfterSeconds?: number;
+}
+
+/** Read on every check, so a change made in the dashboard applies to the
+ * very next request. A failed read falls back to the secrets rather than
+ * blocking every student. */
+export async function getRateLimits(): Promise<RateLimits> {
+  const { data, error } = await getAdminClient()
+    .from('rate_limits')
+    .select('hourly, daily, updated_at, updated_by')
+    .maybeSingle();
+  if (error) console.error('Reading rate_limits failed; using the secrets:', error);
+  if (error || !data) return { ...DEFAULT_LIMITS, source: 'secrets', updatedAt: null, updatedBy: null };
+  return {
+    hourly: data.hourly,
+    daily: data.daily,
+    source: 'dashboard',
+    updatedAt: data.updated_at,
+    updatedBy: data.updated_by,
+  };
 }
 
 function hourBucket(date: Date): string {
@@ -22,23 +52,27 @@ export async function checkRateLimit(userId: string): Promise<RateLimitResult> {
   const dayStart = new Date(now);
   dayStart.setUTCHours(0, 0, 0, 0);
 
-  const { data: hourRow } = await client
-    .from('usage_counters')
-    .select('requests')
-    .eq('user_id', userId)
-    .eq('window_start', currentHour)
-    .maybeSingle();
-  if ((hourRow?.requests ?? 0) >= HOURLY_LIMIT) {
+  // All three at once: reading the limits adds no wait of its own.
+  const [limits, { data: hourRow }, { data: dayRows }] = await Promise.all([
+    getRateLimits(),
+    client
+      .from('usage_counters')
+      .select('requests')
+      .eq('user_id', userId)
+      .eq('window_start', currentHour)
+      .maybeSingle(),
+    client
+      .from('usage_counters')
+      .select('requests')
+      .eq('user_id', userId)
+      .gte('window_start', dayStart.toISOString()),
+  ]);
+  if ((hourRow?.requests ?? 0) >= limits.hourly) {
     return { allowed: false, retryAfterSeconds: secondsUntilNextHour(now) };
   }
 
-  const { data: dayRows } = await client
-    .from('usage_counters')
-    .select('requests')
-    .eq('user_id', userId)
-    .gte('window_start', dayStart.toISOString());
   const dailyTotal = (dayRows ?? []).reduce((sum, r) => sum + (r.requests ?? 0), 0);
-  if (dailyTotal >= DAILY_LIMIT) {
+  if (dailyTotal >= limits.daily) {
     return { allowed: false, retryAfterSeconds: secondsUntilNextDay(now) };
   }
 
