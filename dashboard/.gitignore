@@ -1,0 +1,2 @@
+# The root .gitignore ignores .env.*; the example file carries no secrets.
+!.env.example
