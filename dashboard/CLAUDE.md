@@ -6,11 +6,14 @@ library: charts are hand-rolled SVG in `components/charts/`, and all styling is 
 `README.md` covers features, roles and the security model; don't repeat it here.
 
 - **Commands:** `pnpm dev` (port 5173; also the "dashboard" entry in the root `.claude/launch.json`),
-  `pnpm build`, `pnpm typecheck`, `pnpm preview`.
+  `pnpm build`, `pnpm typecheck`, `pnpm preview` ("dashboard-dist" in `.claude/launch.json`).
 - **Hosting:** not configured in the repo. `dist/` is a static bundle marked `noindex`.
+- **Docs site:** `docs/` is the data documentation site (VitePress, npm, its own `CLAUDE.md`). `pnpm build`
+  ends with `build:docs`, which runs `npm ci` in `docs/` and builds it into `dist/docs/`, so one deploy
+  publishes both. The dashboard's `tsc` and Vite dev server leave `docs/` alone.
 - **Env:** optional, in `.env.local`: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`. Both default to the
   extension's project (`src/config.ts`). `VITE_DOCS_URL` is the docs site address for the top bar's Docs link:
-  hidden in a build without it, `http://localhost:5174/` in `pnpm dev`.
+  `/docs/` in a build without it, `http://localhost:5174/` in `pnpm dev`.
 
 ## Data access
 

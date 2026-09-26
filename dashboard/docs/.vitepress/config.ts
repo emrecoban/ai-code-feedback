@@ -90,10 +90,19 @@ function searchTranslations(l: Lang) {
   }
 }
 
+// On its own the site lives at the root. The dashboard build (dashboard/package.json,
+// "build:docs") publishes it with the dashboard: under DOCS_BASE (/docs/), written into
+// the dashboard's dist. There the links end in .html, so any static host serves the
+// pages without rewrite rules, also next to the dashboard's single-page fallback.
+const base = process.env.DOCS_BASE || '/'
+const embedded = base !== '/'
+
 export default defineConfig({
+  base,
+  outDir: process.env.DOCS_OUT_DIR || '.vitepress/dist',
   srcDir: 'src',
   srcExclude: excludeDrafts ? draftPages.flatMap((p) => [`${p}.md`, `tr/${p}.md`, `es/${p}.md`]) : [],
-  cleanUrls: true,
+  cleanUrls: !embedded,
   lastUpdated: false,
   appearance: true,
   head: [['meta', { name: 'theme-color', content: '#2a78d6' }]],

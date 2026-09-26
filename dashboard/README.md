@@ -32,12 +32,12 @@ The page updates live: the database announces changes on a Realtime channel and 
 ```bash
 pnpm install
 pnpm dev        # http://localhost:5173
-pnpm build      # type-check + production build into dist/
+pnpm build      # type-check + production build into dist/, with the docs site in dist/docs/
 ```
 
 It talks to the same Supabase project as the extension by default. To point it at another one, copy `.env.example` to `.env.local` and fill it in.
 
-The **Docs** link in the top bar opens the data documentation site (`docs/`) in the dashboard's language. Set its address with `VITE_DOCS_URL` at build time (for example in the hosting provider's build settings). Without it the link is hidden, except in `pnpm dev`, where it points at the docs dev server on port 5174.
+The **Docs** link in the top bar opens the data documentation site (`docs/`) in the dashboard's language. `pnpm build` builds that site into `dist/docs/` (it needs npm, and installs the site's own dependencies), so deploying `dist/` publishes the dashboard and the docs together, and the link points at `/docs/`. To link to docs hosted somewhere else, set `VITE_DOCS_URL` at build time. In `pnpm dev` the link points at the docs dev server on port 5174.
 
 ## Accounts and security
 

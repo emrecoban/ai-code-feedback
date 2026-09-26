@@ -27,7 +27,9 @@ import {
 } from './lib/catalog.mjs';
 
 const DOCS = dirname(dirname(fileURLToPath(import.meta.url)));
-const MIGRATIONS = join(DOCS, '..', 'supabase', 'migrations');
+// The site lives in dashboard/docs, two levels below the repository root.
+const REPO = join(DOCS, '..', '..');
+const MIGRATIONS = join(REPO, 'supabase', 'migrations');
 const OUT = join(DOCS, '.vitepress', 'data', 'sample');
 
 export const SEED = 20300304;
@@ -652,7 +654,7 @@ const question = tidy(await call('select public.dashboard_question($1, $2) as r'
 // The read-only SQL reports in supabase/analytics, run as they are.
 const analytics = {};
 for (const name of ['dependency_trend', 'question_type_resolution', 'session_rhythm', 'sessions_without_help']) {
-  const sql = readFileSync(join(DOCS, '..', 'supabase', 'analytics', `${name}.sql`), 'utf8');
+  const sql = readFileSync(join(REPO, 'supabase', 'analytics', `${name}.sql`), 'utf8');
   analytics[name] = tidy((await db.query(sql)).rows.map((r) => JSON.parse(JSON.stringify(r))));
 }
 // Proposed rule C5 (CONFIRM): leave empty sessions out of session measures.

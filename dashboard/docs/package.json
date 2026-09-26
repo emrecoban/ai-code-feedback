@@ -6,6 +6,7 @@
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
+    "docs:build:dashboard": "DOCS_BASE=/docs/ DOCS_OUT_DIR=../dist/docs vitepress build",
     "docs:preview": "vitepress preview",
     "docs:sample": "node scripts/sample.mjs && node scripts/codebook.mjs",
     "docs:check": "node scripts/check.mjs"

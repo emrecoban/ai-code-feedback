@@ -16,7 +16,7 @@ const TAB_LABELS: Record<Tab, MessageKey> = {
 };
 
 /** The docs home in the viewer's language: English at the site root, the
- * others under /tr/ and /es/ (docs/.vitepress/config.ts). */
+ * others under /tr/ and /es/ (dashboard/docs/.vitepress/config.ts). */
 function docsHome(lang: Lang): string {
   const base = DOCS_URL.endsWith('/') ? DOCS_URL : `${DOCS_URL}/`;
   return lang === 'en' ? base : `${base}${lang}/`;

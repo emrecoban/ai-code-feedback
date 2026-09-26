@@ -3,6 +3,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  // docs/ is a separate VitePress site with its own dependencies and build
+  // (see the "build:docs" script). Keep the dev server from scanning its HTML
+  // for dependencies or reloading on its files.
+  optimizeDeps: { entries: ['index.html'] },
+  server: { watch: { ignored: ['**/docs/**'] } },
   build: {
     rolldownOptions: {
       output: {
