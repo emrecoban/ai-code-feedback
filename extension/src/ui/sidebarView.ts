@@ -658,6 +658,25 @@ export class SidebarViewProvider implements vscode.WebviewViewProvider {
   .level { margin-bottom: 10px; padding: 8px 8px 8px 10px; border: 1px solid var(--vscode-widget-border, transparent);
            border-left-width: 3px; border-radius: 4px; }
   .level-label { font-weight: 600; font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  /* Prose inside a level keeps the line breaks the model actually wrote.
+     Without this the div defaults to white-space: normal and a multi-line
+     example collapses into one run-on line -- the whole reason L2/L3 were
+     hard to follow. .narrative-text already did this; the ladder didn't. */
+  .level-text { white-space: pre-wrap; }
+  /* Code is set apart from the prose around it rather than blending into
+     it: monospace, its own tinted panel, and horizontal scrolling instead
+     of wrapping, because a wrapped line of code reads as if it were a
+     second line of code. Sized in em, not the editor's px font size, so
+     [AUTH-TOOLBAR]'s text-size control still scales it. */
+  .code-block { margin: 6px 0; padding: 6px 8px; border-radius: 3px; overflow-x: auto;
+                background: var(--vscode-textCodeBlock-background, rgba(128, 128, 128, 0.14));
+                border: 1px solid var(--vscode-widget-border, rgba(128, 128, 128, 0.25)); }
+  .code-block:last-child { margin-bottom: 0; }
+  .code-block code { font-family: var(--vscode-editor-font-family, ui-monospace, monospace);
+                     font-size: 0.9em; line-height: 1.45; white-space: pre; }
+  .inline-code { font-family: var(--vscode-editor-font-family, ui-monospace, monospace);
+                 font-size: 0.9em; padding: 0 3px; border-radius: 2px;
+                 background: var(--vscode-textCodeBlock-background, rgba(128, 128, 128, 0.14)); }
   /* One fixed hue per hint-ladder level, applied everywhere a level
      appears -- L0 is always this blue, L3 always this amber, regardless
      of when each card renders. color-mix() blends a small amount of that
@@ -845,6 +864,58 @@ export class SidebarViewProvider implements vscode.WebviewViewProvider {
       authErrorEl.textContent = message || '';
     }
 
+    // The model writes prose with fenced code blocks, and occasionally
+    // single-backtick spans. Dropped straight into a div, those lose both
+    // their line breaks and any visual separation from the sentence around
+    // them -- a five-line example arrives as one unreadable run-on line.
+    // These three split prose from code instead. Everything goes through
+    // textContent / createTextNode, never innerHTML: this is model output.
+    const CODE_FENCE = '\`\`\`';
+
+    function renderRichText(container, text) {
+      const segments = String(text == null ? '' : text).split(CODE_FENCE);
+      for (let i = 0; i < segments.length; i++) {
+        // Odd segments sit between fences, even ones are prose. An
+        // unclosed fence therefore renders its remainder as code, which
+        // is the better guess when the model forgets the closing one.
+        if (i % 2 === 1) renderCodeBlock(container, segments[i]);
+        else renderProse(container, segments[i]);
+      }
+    }
+
+    function renderCodeBlock(container, raw) {
+      // Strip the model's language tag ("python\\n...") and the blank
+      // lines the fences leave behind.
+      const body = raw.replace(/^[A-Za-z0-9_+#-]*\\n/, '').replace(/^\\n+|\\s+$/g, '');
+      if (!body) return;
+      const pre = document.createElement('pre');
+      pre.className = 'code-block';
+      const codeEl = document.createElement('code');
+      codeEl.textContent = body;
+      pre.appendChild(codeEl);
+      container.appendChild(pre);
+    }
+
+    function renderProse(container, raw) {
+      const body = raw.replace(/^\\n+|\\n+$/g, '');
+      if (!body.trim()) return;
+      const block = document.createElement('div');
+      block.className = 'level-text';
+      const spans = body.split('\`');
+      for (let i = 0; i < spans.length; i++) {
+        if (!spans[i]) continue;
+        if (i % 2 === 1) {
+          const codeEl = document.createElement('code');
+          codeEl.className = 'inline-code';
+          codeEl.textContent = spans[i];
+          block.appendChild(codeEl);
+        } else {
+          block.appendChild(document.createTextNode(spans[i]));
+        }
+      }
+      container.appendChild(block);
+    }
+
     function renderLevel(container, code, label, text) {
       const wrap = document.createElement('div');
       wrap.className = 'level level-' + code.toLowerCase();
@@ -852,10 +923,8 @@ export class SidebarViewProvider implements vscode.WebviewViewProvider {
       const labelEl = document.createElement('div');
       labelEl.className = 'level-label';
       labelEl.textContent = code + ' · ' + label;
-      const textEl = document.createElement('div');
-      textEl.textContent = text;
       wrap.appendChild(labelEl);
-      wrap.appendChild(textEl);
+      renderRichText(wrap, text);
       container.appendChild(wrap);
     }
 
