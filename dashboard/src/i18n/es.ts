@@ -66,6 +66,8 @@ export const es: Dict = {
   'nav.insights': 'Análisis',
   'nav.log': 'Registro de actividad',
   'nav.account': 'Cuenta',
+  'nav.docs': 'Documentación',
+  'nav.newTab': 'se abre en una pestaña nueva',
   'live.live': 'En directo',
   'live.auto': 'Actualización automática',
   'live.paused': 'En pausa',

@@ -9,7 +9,8 @@ library: charts are hand-rolled SVG in `components/charts/`, and all styling is 
   `pnpm build`, `pnpm typecheck`, `pnpm preview`.
 - **Hosting:** not configured in the repo. `dist/` is a static bundle marked `noindex`.
 - **Env:** optional, in `.env.local`: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`. Both default to the
-  extension's project (`src/config.ts`).
+  extension's project (`src/config.ts`). `VITE_DOCS_URL` is the docs site address for the top bar's Docs link:
+  hidden in a build without it, `http://localhost:5174/` in `pnpm dev`.
 
 ## Data access
 
