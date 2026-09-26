@@ -1,0 +1,2331 @@
+{
+ "files": [
+  {
+   "file": "codebook.csv",
+   "bytes": 104710,
+   "kind": "codebook",
+   "rows": 397
+  },
+  {
+   "file": "codebook.xlsx",
+   "bytes": 544504,
+   "kind": "codebook",
+   "rows": 510
+  },
+  {
+   "file": "synthetic_events_long.csv",
+   "bytes": 465939,
+   "kind": "long",
+   "rows": 3961
+  },
+  {
+   "file": "synthetic_questions_long.csv",
+   "bytes": 205478,
+   "kind": "long",
+   "rows": 928
+  },
+  {
+   "file": "synthetic_students_wide.csv",
+   "bytes": 8672,
+   "kind": "wide",
+   "rows": 25
+  },
+  {
+   "file": "synthetic_labels_en.sps",
+   "bytes": 9208,
+   "kind": "spss",
+   "lang": "en"
+  },
+  {
+   "file": "synthetic_labels_tr.sps",
+   "bytes": 9645,
+   "kind": "spss",
+   "lang": "tr"
+  },
+  {
+   "file": "synthetic_labels_es.sps",
+   "bytes": 9718,
+   "kind": "spss",
+   "lang": "es"
+  },
+  {
+   "file": "README.txt",
+   "bytes": 998,
+   "kind": "readme"
+  }
+ ],
+ "wideVariables": [
+  {
+   "name": "student",
+   "src": [
+    "profiles.username"
+   ]
+  },
+  {
+   "name": "feedback_language",
+   "src": [
+    "profiles.feedback_language"
+   ]
+  },
+  {
+   "name": "n_sessions",
+   "src": [
+    "metric.sessions",
+    "coding_sessions.active_seconds"
+   ]
+  },
+  {
+   "name": "active_hours",
+   "src": [
+    "coding_sessions.active_seconds"
+   ]
+  },
+  {
+   "name": "active_days",
+   "src": [
+    "metric.active_days"
+   ]
+  },
+  {
+   "name": "questions",
+   "src": [
+    "metric.questions"
+   ]
+  },
+  {
+   "name": "questions_per_hour",
+   "src": [
+    "metric.questions",
+    "coding_sessions.active_seconds"
+   ]
+  },
+  {
+   "name": "error_question_pct",
+   "src": [
+    "interactions.trigger_source"
+   ]
+  },
+  {
+   "name": "hint_enough_pct",
+   "src": [
+    "metric.hint_enough_pct"
+   ]
+  },
+  {
+   "name": "fix_pct",
+   "src": [
+    "interactions.max_level_reached"
+   ]
+  },
+  {
+   "name": "mean_edits_before_ask",
+   "src": [
+    "interactions.edits_before_ask"
+   ]
+  },
+  {
+   "name": "median_help_latency_s",
+   "src": [
+    "interactions.help_latency_ms"
+   ]
+  },
+  {
+   "name": "offers_taken_pct",
+   "src": [
+    "metric.pct_offers_taken"
+   ]
+  },
+  {
+   "name": "fixed_unaided",
+   "src": [
+    "coding_sessions.errors_resolved_without_asking"
+   ]
+  },
+  {
+   "name": "fixed_unaided_per_hour",
+   "src": [
+    "coding_sessions.errors_resolved_without_asking",
+    "coding_sessions.active_seconds"
+   ]
+  },
+  {
+   "name": "no_help_session_pct",
+   "src": [
+    "metric.sessions_without_help_pct"
+   ]
+  },
+  {
+   "name": "error_gone_pct",
+   "src": [
+    "metric.error_gone_pct"
+   ]
+  },
+  {
+   "name": "median_visible_s",
+   "src": [
+    "event.explanation_visibility.visibleMs"
+   ]
+  },
+  {
+   "name": "median_return_s",
+   "src": [
+    "event.returned_to_code.msToReturn"
+   ]
+  },
+  {
+   "name": "abandon_pct",
+   "src": [
+    "metric.abandoned"
+   ]
+  },
+  {
+   "name": "copies",
+   "src": [
+    "event.explanation_copied"
+   ]
+  },
+  {
+   "name": "reopens",
+   "src": [
+    "event.explanation_reopened"
+   ]
+  },
+  {
+   "name": "helpful_pct",
+   "src": [
+    "interactions.helpful_rating"
+   ]
+  },
+  {
+   "name": "solved_pct",
+   "src": [
+    "interactions.self_reported_outcome"
+   ]
+  },
+  {
+   "name": "confident_pct",
+   "src": [
+    "interactions.post_confidence"
+   ]
+  },
+  {
+   "name": "large_pastes",
+   "src": [
+    "coding_sessions.large_paste_count"
+   ]
+  },
+  {
+   "name": "left_vscode_per_hour",
+   "src": [
+    "coding_sessions.focus_loss_count",
+    "coding_sessions.active_seconds"
+   ]
+  },
+  {
+   "name": "lines_added",
+   "src": [
+    "coding_sessions.lines_written"
+   ]
+  },
+  {
+   "name": "failed_requests",
+   "src": [
+    "event.request_failed"
+   ]
+  },
+  {
+   "name": "cache_pct",
+   "src": [
+    "interactions.cache_hit"
+   ]
+  },
+  {
+   "name": "pre_total",
+   "src": [
+    "external.pre_total"
+   ]
+  },
+  {
+   "name": "post_total",
+   "src": [
+    "external.post_total"
+   ]
+  },
+  {
+   "name": "gain",
+   "src": [
+    "external.gain"
+   ]
+  },
+  {
+   "name": "tam_pu",
+   "src": [
+    "external.tam_pu"
+   ]
+  },
+  {
+   "name": "tam_sn",
+   "src": [
+    "external.tam_sn"
+   ]
+  },
+  {
+   "name": "tam_bi",
+   "src": [
+    "external.tam_bi"
+   ]
+  },
+  {
+   "name": "tam_att",
+   "src": [
+    "external.tam_att"
+   ]
+  },
+  {
+   "name": "tam_au",
+   "src": [
+    "external.tam_au"
+   ]
+  },
+  {
+   "name": "PreQ1",
+   "src": [
+    "external.PreQ1"
+   ]
+  },
+  {
+   "name": "PreQ2",
+   "src": [
+    "external.PreQ2"
+   ]
+  },
+  {
+   "name": "PreQ3",
+   "src": [
+    "external.PreQ3"
+   ]
+  },
+  {
+   "name": "PreQ4",
+   "src": [
+    "external.PreQ4"
+   ]
+  },
+  {
+   "name": "PreQ5",
+   "src": [
+    "external.PreQ5"
+   ]
+  },
+  {
+   "name": "PreQ6",
+   "src": [
+    "external.PreQ6"
+   ]
+  },
+  {
+   "name": "PreQ7",
+   "src": [
+    "external.PreQ7"
+   ]
+  },
+  {
+   "name": "PreQ8",
+   "src": [
+    "external.PreQ8"
+   ]
+  },
+  {
+   "name": "PreQ9",
+   "src": [
+    "external.PreQ9"
+   ]
+  },
+  {
+   "name": "PreQ10",
+   "src": [
+    "external.PreQ10"
+   ]
+  },
+  {
+   "name": "PreQ11",
+   "src": [
+    "external.PreQ11"
+   ]
+  },
+  {
+   "name": "PreQ12",
+   "src": [
+    "external.PreQ12"
+   ]
+  },
+  {
+   "name": "PreQ13",
+   "src": [
+    "external.PreQ13"
+   ]
+  },
+  {
+   "name": "PreQ14",
+   "src": [
+    "external.PreQ14"
+   ]
+  },
+  {
+   "name": "PreQ15",
+   "src": [
+    "external.PreQ15"
+   ]
+  },
+  {
+   "name": "PreQ16",
+   "src": [
+    "external.PreQ16"
+   ]
+  },
+  {
+   "name": "PreQ17",
+   "src": [
+    "external.PreQ17"
+   ]
+  },
+  {
+   "name": "PreQ18",
+   "src": [
+    "external.PreQ18"
+   ]
+  },
+  {
+   "name": "PreQ19",
+   "src": [
+    "external.PreQ19"
+   ]
+  },
+  {
+   "name": "PreQ20",
+   "src": [
+    "external.PreQ20"
+   ]
+  },
+  {
+   "name": "PreQ21",
+   "src": [
+    "external.PreQ21"
+   ]
+  },
+  {
+   "name": "PreQ22",
+   "src": [
+    "external.PreQ22"
+   ]
+  },
+  {
+   "name": "PreQ23",
+   "src": [
+    "external.PreQ23"
+   ]
+  },
+  {
+   "name": "PreQ24",
+   "src": [
+    "external.PreQ24"
+   ]
+  },
+  {
+   "name": "PreQ25",
+   "src": [
+    "external.PreQ25"
+   ]
+  },
+  {
+   "name": "PreQ26",
+   "src": [
+    "external.PreQ26"
+   ]
+  },
+  {
+   "name": "PreQ27",
+   "src": [
+    "external.PreQ27"
+   ]
+  },
+  {
+   "name": "PreQ28",
+   "src": [
+    "external.PreQ28"
+   ]
+  },
+  {
+   "name": "PostQ1",
+   "src": [
+    "external.PostQ1"
+   ]
+  },
+  {
+   "name": "PostQ2",
+   "src": [
+    "external.PostQ2"
+   ]
+  },
+  {
+   "name": "PostQ3",
+   "src": [
+    "external.PostQ3"
+   ]
+  },
+  {
+   "name": "PostQ4",
+   "src": [
+    "external.PostQ4"
+   ]
+  },
+  {
+   "name": "PostQ5",
+   "src": [
+    "external.PostQ5"
+   ]
+  },
+  {
+   "name": "PostQ6",
+   "src": [
+    "external.PostQ6"
+   ]
+  },
+  {
+   "name": "PostQ7",
+   "src": [
+    "external.PostQ7"
+   ]
+  },
+  {
+   "name": "PostQ8",
+   "src": [
+    "external.PostQ8"
+   ]
+  },
+  {
+   "name": "PostQ9",
+   "src": [
+    "external.PostQ9"
+   ]
+  },
+  {
+   "name": "PostQ10",
+   "src": [
+    "external.PostQ10"
+   ]
+  },
+  {
+   "name": "PostQ11",
+   "src": [
+    "external.PostQ11"
+   ]
+  },
+  {
+   "name": "PostQ12",
+   "src": [
+    "external.PostQ12"
+   ]
+  },
+  {
+   "name": "PostQ13",
+   "src": [
+    "external.PostQ13"
+   ]
+  },
+  {
+   "name": "PostQ14",
+   "src": [
+    "external.PostQ14"
+   ]
+  },
+  {
+   "name": "PostQ15",
+   "src": [
+    "external.PostQ15"
+   ]
+  },
+  {
+   "name": "PostQ16",
+   "src": [
+    "external.PostQ16"
+   ]
+  },
+  {
+   "name": "PostQ17",
+   "src": [
+    "external.PostQ17"
+   ]
+  },
+  {
+   "name": "PostQ18",
+   "src": [
+    "external.PostQ18"
+   ]
+  },
+  {
+   "name": "PostQ19",
+   "src": [
+    "external.PostQ19"
+   ]
+  },
+  {
+   "name": "PostQ20",
+   "src": [
+    "external.PostQ20"
+   ]
+  },
+  {
+   "name": "PostQ21",
+   "src": [
+    "external.PostQ21"
+   ]
+  },
+  {
+   "name": "PostQ22",
+   "src": [
+    "external.PostQ22"
+   ]
+  },
+  {
+   "name": "PostQ23",
+   "src": [
+    "external.PostQ23"
+   ]
+  },
+  {
+   "name": "PostQ24",
+   "src": [
+    "external.PostQ24"
+   ]
+  },
+  {
+   "name": "PostQ25",
+   "src": [
+    "external.PostQ25"
+   ]
+  },
+  {
+   "name": "PostQ26",
+   "src": [
+    "external.PostQ26"
+   ]
+  },
+  {
+   "name": "PostQ27",
+   "src": [
+    "external.PostQ27"
+   ]
+  },
+  {
+   "name": "PostQ28",
+   "src": [
+    "external.PostQ28"
+   ]
+  },
+  {
+   "name": "Item1",
+   "src": [
+    "external.Item1"
+   ]
+  },
+  {
+   "name": "Item2",
+   "src": [
+    "external.Item2"
+   ]
+  },
+  {
+   "name": "Item3",
+   "src": [
+    "external.Item3"
+   ]
+  },
+  {
+   "name": "Item4",
+   "src": [
+    "external.Item4"
+   ]
+  },
+  {
+   "name": "Item5",
+   "src": [
+    "external.Item5"
+   ]
+  },
+  {
+   "name": "Item6",
+   "src": [
+    "external.Item6"
+   ]
+  },
+  {
+   "name": "Item7",
+   "src": [
+    "external.Item7"
+   ]
+  },
+  {
+   "name": "Item8",
+   "src": [
+    "external.Item8"
+   ]
+  },
+  {
+   "name": "Item9",
+   "src": [
+    "external.Item9"
+   ]
+  },
+  {
+   "name": "Item10",
+   "src": [
+    "external.Item10"
+   ]
+  },
+  {
+   "name": "Item11",
+   "src": [
+    "external.Item11"
+   ]
+  },
+  {
+   "name": "Item12",
+   "src": [
+    "external.Item12"
+   ]
+  },
+  {
+   "name": "Item13",
+   "src": [
+    "external.Item13"
+   ]
+  },
+  {
+   "name": "Item14",
+   "src": [
+    "external.Item14"
+   ]
+  },
+  {
+   "name": "Item15",
+   "src": [
+    "external.Item15"
+   ]
+  },
+  {
+   "name": "Item16",
+   "src": [
+    "external.Item16"
+   ]
+  },
+  {
+   "name": "Item17",
+   "src": [
+    "external.Item17"
+   ]
+  },
+  {
+   "name": "Item18",
+   "src": [
+    "external.Item18"
+   ]
+  },
+  {
+   "name": "Item19",
+   "src": [
+    "external.Item19"
+   ]
+  }
+ ],
+ "itemVariables": [
+  {
+   "variable": "profiles_id",
+   "item_id": "profiles.id"
+  },
+  {
+   "variable": "profiles_username",
+   "item_id": "profiles.username"
+  },
+  {
+   "variable": "profiles_display_name",
+   "item_id": "profiles.display_name"
+  },
+  {
+   "variable": "profiles_ui_language",
+   "item_id": "profiles.ui_language"
+  },
+  {
+   "variable": "profiles_feedback_language",
+   "item_id": "profiles.feedback_language"
+  },
+  {
+   "variable": "profiles_first_login_at",
+   "item_id": "profiles.first_login_at"
+  },
+  {
+   "variable": "profiles_consent_status",
+   "item_id": "profiles.consent_status"
+  },
+  {
+   "variable": "profiles_consent_at",
+   "item_id": "profiles.consent_at"
+  },
+  {
+   "variable": "profiles_created_at",
+   "item_id": "profiles.created_at"
+  },
+  {
+   "variable": "profiles_updated_at",
+   "item_id": "profiles.updated_at"
+  },
+  {
+   "variable": "consent_log_id",
+   "item_id": "consent_log.id"
+  },
+  {
+   "variable": "consent_log_user_id",
+   "item_id": "consent_log.user_id"
+  },
+  {
+   "variable": "consent_log_status",
+   "item_id": "consent_log.status"
+  },
+  {
+   "variable": "consent_log_version",
+   "item_id": "consent_log.version"
+  },
+  {
+   "variable": "consent_log_created_at",
+   "item_id": "consent_log.created_at"
+  },
+  {
+   "variable": "coding_sessions_id",
+   "item_id": "coding_sessions.id"
+  },
+  {
+   "variable": "coding_sessions_user_id",
+   "item_id": "coding_sessions.user_id"
+  },
+  {
+   "variable": "coding_sessions_course_id",
+   "item_id": "coding_sessions.course_id"
+  },
+  {
+   "variable": "coding_sessions_started_at",
+   "item_id": "coding_sessions.started_at"
+  },
+  {
+   "variable": "coding_sessions_last_seen_at",
+   "item_id": "coding_sessions.last_seen_at"
+  },
+  {
+   "variable": "coding_sessions_ended_at",
+   "item_id": "coding_sessions.ended_at"
+  },
+  {
+   "variable": "coding_sessions_extension_version",
+   "item_id": "coding_sessions.extension_version"
+  },
+  {
+   "variable": "coding_sessions_vscode_version",
+   "item_id": "coding_sessions.vscode_version"
+  },
+  {
+   "variable": "coding_sessions_os",
+   "item_id": "coding_sessions.os"
+  },
+  {
+   "variable": "coding_sessions_active_seconds",
+   "item_id": "coding_sessions.active_seconds"
+  },
+  {
+   "variable": "coding_sessions_lines_written",
+   "item_id": "coding_sessions.lines_written"
+  },
+  {
+   "variable": "coding_sessions_lines_deleted",
+   "item_id": "coding_sessions.lines_deleted"
+  },
+  {
+   "variable": "coding_sessions_files_created",
+   "item_id": "coding_sessions.files_created"
+  },
+  {
+   "variable": "coding_sessions_language_counts",
+   "item_id": "coding_sessions.language_counts"
+  },
+  {
+   "variable": "coding_sessions_errors_resolved_without_asking",
+   "item_id": "coding_sessions.errors_resolved_without_asking"
+  },
+  {
+   "variable": "coding_sessions_diagnostics_offered",
+   "item_id": "coding_sessions.diagnostics_offered"
+  },
+  {
+   "variable": "coding_sessions_large_paste_count",
+   "item_id": "coding_sessions.large_paste_count"
+  },
+  {
+   "variable": "coding_sessions_large_paste_lines",
+   "item_id": "coding_sessions.large_paste_lines"
+  },
+  {
+   "variable": "coding_sessions_focus_loss_count",
+   "item_id": "coding_sessions.focus_loss_count"
+  },
+  {
+   "variable": "coding_sessions_unfocused_seconds",
+   "item_id": "coding_sessions.unfocused_seconds"
+  },
+  {
+   "variable": "coding_sessions_save_count",
+   "item_id": "coding_sessions.save_count"
+  },
+  {
+   "variable": "coding_sessions_debug_session_count",
+   "item_id": "coding_sessions.debug_session_count"
+  },
+  {
+   "variable": "coding_sessions_task_run_count",
+   "item_id": "coding_sessions.task_run_count"
+  },
+  {
+   "variable": "coding_sessions_follow_on_error_count",
+   "item_id": "coding_sessions.follow_on_error_count"
+  },
+  {
+   "variable": "coding_sessions_silent_resolution_edits",
+   "item_id": "coding_sessions.silent_resolution_edits"
+  },
+  {
+   "variable": "coding_sessions_idle_gap_count",
+   "item_id": "coding_sessions.idle_gap_count"
+  },
+  {
+   "variable": "coding_sessions_editor_switch_count",
+   "item_id": "coding_sessions.editor_switch_count"
+  },
+  {
+   "variable": "coding_sessions_files_visited",
+   "item_id": "coding_sessions.files_visited"
+  },
+  {
+   "variable": "interactions_id",
+   "item_id": "interactions.id"
+  },
+  {
+   "variable": "interactions_session_id",
+   "item_id": "interactions.session_id"
+  },
+  {
+   "variable": "interactions_user_id",
+   "item_id": "interactions.user_id"
+  },
+  {
+   "variable": "interactions_course_id",
+   "item_id": "interactions.course_id"
+  },
+  {
+   "variable": "interactions_created_at",
+   "item_id": "interactions.created_at"
+  },
+  {
+   "variable": "interactions_trigger_source",
+   "item_id": "interactions.trigger_source"
+  },
+  {
+   "variable": "interactions_trigger_surface",
+   "item_id": "interactions.trigger_surface"
+  },
+  {
+   "variable": "interactions_question_type",
+   "item_id": "interactions.question_type"
+  },
+  {
+   "variable": "interactions_free_text",
+   "item_id": "interactions.free_text"
+  },
+  {
+   "variable": "interactions_selection_line_count",
+   "item_id": "interactions.selection_line_count"
+  },
+  {
+   "variable": "interactions_selection_char_count",
+   "item_id": "interactions.selection_char_count"
+  },
+  {
+   "variable": "interactions_error_signature",
+   "item_id": "interactions.error_signature"
+  },
+  {
+   "variable": "interactions_error_signature_normalized",
+   "item_id": "interactions.error_signature_normalized"
+  },
+  {
+   "variable": "interactions_error_source",
+   "item_id": "interactions.error_source"
+  },
+  {
+   "variable": "interactions_error_code",
+   "item_id": "interactions.error_code"
+  },
+  {
+   "variable": "interactions_error_severity",
+   "item_id": "interactions.error_severity"
+  },
+  {
+   "variable": "interactions_file_name",
+   "item_id": "interactions.file_name"
+  },
+  {
+   "variable": "interactions_help_latency_ms",
+   "item_id": "interactions.help_latency_ms"
+  },
+  {
+   "variable": "interactions_edits_before_ask",
+   "item_id": "interactions.edits_before_ask"
+  },
+  {
+   "variable": "interactions_recurring_error_count",
+   "item_id": "interactions.recurring_error_count"
+  },
+  {
+   "variable": "interactions_ms_since_previous_same_error",
+   "item_id": "interactions.ms_since_previous_same_error"
+  },
+  {
+   "variable": "interactions_concept",
+   "item_id": "interactions.concept"
+  },
+  {
+   "variable": "interactions_recurring_concept_count",
+   "item_id": "interactions.recurring_concept_count"
+  },
+  {
+   "variable": "interactions_title",
+   "item_id": "interactions.title"
+  },
+  {
+   "variable": "interactions_ladder_payload",
+   "item_id": "interactions.ladder_payload"
+  },
+  {
+   "variable": "interactions_max_level_reached",
+   "item_id": "interactions.max_level_reached"
+  },
+  {
+   "variable": "interactions_helpful_rating",
+   "item_id": "interactions.helpful_rating"
+  },
+  {
+   "variable": "interactions_self_reported_outcome",
+   "item_id": "interactions.self_reported_outcome"
+  },
+  {
+   "variable": "interactions_post_confidence",
+   "item_id": "interactions.post_confidence"
+  },
+  {
+   "variable": "interactions_cache_hit",
+   "item_id": "interactions.cache_hit"
+  },
+  {
+   "variable": "interactions_model_used",
+   "item_id": "interactions.model_used"
+  },
+  {
+   "variable": "interactions_prompt_tokens",
+   "item_id": "interactions.prompt_tokens"
+  },
+  {
+   "variable": "interactions_completion_tokens",
+   "item_id": "interactions.completion_tokens"
+  },
+  {
+   "variable": "interactions_latency_ms",
+   "item_id": "interactions.latency_ms"
+  },
+  {
+   "variable": "events_id",
+   "item_id": "events.id"
+  },
+  {
+   "variable": "events_session_id",
+   "item_id": "events.session_id"
+  },
+  {
+   "variable": "events_user_id",
+   "item_id": "events.user_id"
+  },
+  {
+   "variable": "events_interaction_id",
+   "item_id": "events.interaction_id"
+  },
+  {
+   "variable": "events_event_type",
+   "item_id": "events.event_type"
+  },
+  {
+   "variable": "events_client_event_id",
+   "item_id": "events.client_event_id"
+  },
+  {
+   "variable": "events_payload",
+   "item_id": "events.payload"
+  },
+  {
+   "variable": "events_client_ts",
+   "item_id": "events.client_ts"
+  },
+  {
+   "variable": "events_server_ts",
+   "item_id": "events.server_ts"
+  },
+  {
+   "variable": "event_level_reached",
+   "item_id": "event.level_reached"
+  },
+  {
+   "variable": "event_level_reached_level",
+   "item_id": "event.level_reached.level"
+  },
+  {
+   "variable": "event_level_reached_isEscalation",
+   "item_id": "event.level_reached.isEscalation"
+  },
+  {
+   "variable": "event_level_reached_msSinceCreated",
+   "item_id": "event.level_reached.msSinceCreated"
+  },
+  {
+   "variable": "event_explanation_visibility",
+   "item_id": "event.explanation_visibility"
+  },
+  {
+   "variable": "event_explanation_visibility_visibleMs",
+   "item_id": "event.explanation_visibility.visibleMs"
+  },
+  {
+   "variable": "event_explanation_visibility_visibleAtDelivery",
+   "item_id": "event.explanation_visibility.visibleAtDelivery"
+  },
+  {
+   "variable": "event_returned_to_code",
+   "item_id": "event.returned_to_code"
+  },
+  {
+   "variable": "event_returned_to_code_level",
+   "item_id": "event.returned_to_code.level"
+  },
+  {
+   "variable": "event_returned_to_code_msToReturn",
+   "item_id": "event.returned_to_code.msToReturn"
+  },
+  {
+   "variable": "event_feedback_abandoned",
+   "item_id": "event.feedback_abandoned"
+  },
+  {
+   "variable": "event_feedback_abandoned_level",
+   "item_id": "event.feedback_abandoned.level"
+  },
+  {
+   "variable": "event_feedback_abandoned_reason",
+   "item_id": "event.feedback_abandoned.reason"
+  },
+  {
+   "variable": "event_post_feedback_edit",
+   "item_id": "event.post_feedback_edit"
+  },
+  {
+   "variable": "event_post_feedback_edit_overlapRatio",
+   "item_id": "event.post_feedback_edit.overlapRatio"
+  },
+  {
+   "variable": "event_post_feedback_edit_editedLineDistance",
+   "item_id": "event.post_feedback_edit.editedLineDistance"
+  },
+  {
+   "variable": "event_fix_undone",
+   "item_id": "event.fix_undone"
+  },
+  {
+   "variable": "event_explanation_copied",
+   "item_id": "event.explanation_copied"
+  },
+  {
+   "variable": "event_explanation_copied_level",
+   "item_id": "event.explanation_copied.level"
+  },
+  {
+   "variable": "event_explanation_reopened",
+   "item_id": "event.explanation_reopened"
+  },
+  {
+   "variable": "event_diagnostic_resolved",
+   "item_id": "event.diagnostic_resolved"
+  },
+  {
+   "variable": "event_diagnostic_resolved_msToResolution",
+   "item_id": "event.diagnostic_resolved.msToResolution"
+  },
+  {
+   "variable": "event_diagnostic_resolved_msPresent",
+   "item_id": "event.diagnostic_resolved.msPresent"
+  },
+  {
+   "variable": "event_diagnostic_resolved_editsWhilePresent",
+   "item_id": "event.diagnostic_resolved.editsWhilePresent"
+  },
+  {
+   "variable": "event_file_cleared",
+   "item_id": "event.file_cleared"
+  },
+  {
+   "variable": "event_file_cleared_fileName",
+   "item_id": "event.file_cleared.fileName"
+  },
+  {
+   "variable": "event_file_cleared_msWithErrors",
+   "item_id": "event.file_cleared.msWithErrors"
+  },
+  {
+   "variable": "event_file_cleared_editsWhileErrors",
+   "item_id": "event.file_cleared.editsWhileErrors"
+  },
+  {
+   "variable": "event_file_cleared_diagnosticsSeen",
+   "item_id": "event.file_cleared.diagnosticsSeen"
+  },
+  {
+   "variable": "event_file_cleared_diagnosticsAsked",
+   "item_id": "event.file_cleared.diagnosticsAsked"
+  },
+  {
+   "variable": "event_run_finished",
+   "item_id": "event.run_finished"
+  },
+  {
+   "variable": "event_run_finished_exitCode",
+   "item_id": "event.run_finished.exitCode"
+  },
+  {
+   "variable": "event_run_finished_success",
+   "item_id": "event.run_finished.success"
+  },
+  {
+   "variable": "event_question_picker_abandoned",
+   "item_id": "event.question_picker_abandoned"
+  },
+  {
+   "variable": "event_question_picker_abandoned_stage",
+   "item_id": "event.question_picker_abandoned.stage"
+  },
+  {
+   "variable": "event_question_picker_abandoned_triggerSurface",
+   "item_id": "event.question_picker_abandoned.triggerSurface"
+  },
+  {
+   "variable": "event_question_picker_abandoned_selectionLineCount",
+   "item_id": "event.question_picker_abandoned.selectionLineCount"
+  },
+  {
+   "variable": "event_question_picker_abandoned_selectionCharCount",
+   "item_id": "event.question_picker_abandoned.selectionCharCount"
+  },
+  {
+   "variable": "event_request_failed",
+   "item_id": "event.request_failed"
+  },
+  {
+   "variable": "event_request_failed_kind",
+   "item_id": "event.request_failed.kind"
+  },
+  {
+   "variable": "event_request_failed_code",
+   "item_id": "event.request_failed.code"
+  },
+  {
+   "variable": "event_request_failed_retryAfterSeconds",
+   "item_id": "event.request_failed.retryAfterSeconds"
+  },
+  {
+   "variable": "event_feedback_language_changed",
+   "item_id": "event.feedback_language_changed"
+  },
+  {
+   "variable": "event_feedback_language_changed_from",
+   "item_id": "event.feedback_language_changed.from"
+  },
+  {
+   "variable": "event_feedback_language_changed_to",
+   "item_id": "event.feedback_language_changed.to"
+  },
+  {
+   "variable": "explanations_id",
+   "item_id": "explanations.id"
+  },
+  {
+   "variable": "explanations_cache_key",
+   "item_id": "explanations.cache_key"
+  },
+  {
+   "variable": "explanations_course_id",
+   "item_id": "explanations.course_id"
+  },
+  {
+   "variable": "explanations_week_no",
+   "item_id": "explanations.week_no"
+  },
+  {
+   "variable": "explanations_language",
+   "item_id": "explanations.language"
+  },
+  {
+   "variable": "explanations_error_signature",
+   "item_id": "explanations.error_signature"
+  },
+  {
+   "variable": "explanations_payload",
+   "item_id": "explanations.payload"
+  },
+  {
+   "variable": "explanations_model_used",
+   "item_id": "explanations.model_used"
+  },
+  {
+   "variable": "explanations_source",
+   "item_id": "explanations.source"
+  },
+  {
+   "variable": "explanations_reuse_count",
+   "item_id": "explanations.reuse_count"
+  },
+  {
+   "variable": "explanations_created_at",
+   "item_id": "explanations.created_at"
+  },
+  {
+   "variable": "learner_profiles_user_id",
+   "item_id": "learner_profiles.user_id"
+  },
+  {
+   "variable": "learner_profiles_course_id",
+   "item_id": "learner_profiles.course_id"
+  },
+  {
+   "variable": "learner_profiles_summary",
+   "item_id": "learner_profiles.summary"
+  },
+  {
+   "variable": "learner_profiles_student_summary",
+   "item_id": "learner_profiles.student_summary"
+  },
+  {
+   "variable": "learner_profiles_suggested_practice",
+   "item_id": "learner_profiles.suggested_practice"
+  },
+  {
+   "variable": "learner_profiles_summary_generated_at",
+   "item_id": "learner_profiles.summary_generated_at"
+  },
+  {
+   "variable": "learner_profiles_interactions_since_update",
+   "item_id": "learner_profiles.interactions_since_update"
+  },
+  {
+   "variable": "learner_profiles_updated_at",
+   "item_id": "learner_profiles.updated_at"
+  },
+  {
+   "variable": "usage_counters_user_id",
+   "item_id": "usage_counters.user_id"
+  },
+  {
+   "variable": "usage_counters_window_start",
+   "item_id": "usage_counters.window_start"
+  },
+  {
+   "variable": "usage_counters_requests",
+   "item_id": "usage_counters.requests"
+  },
+  {
+   "variable": "usage_counters_total_tokens",
+   "item_id": "usage_counters.total_tokens"
+  },
+  {
+   "variable": "rate_limits_id",
+   "item_id": "rate_limits.id"
+  },
+  {
+   "variable": "rate_limits_hourly",
+   "item_id": "rate_limits.hourly"
+  },
+  {
+   "variable": "rate_limits_daily",
+   "item_id": "rate_limits.daily"
+  },
+  {
+   "variable": "rate_limits_updated_at",
+   "item_id": "rate_limits.updated_at"
+  },
+  {
+   "variable": "rate_limits_updated_by",
+   "item_id": "rate_limits.updated_by"
+  },
+  {
+   "variable": "concept_vocabulary_id",
+   "item_id": "concept_vocabulary.id"
+  },
+  {
+   "variable": "concept_vocabulary_prog_language",
+   "item_id": "concept_vocabulary.prog_language"
+  },
+  {
+   "variable": "concept_vocabulary_label_en",
+   "item_id": "concept_vocabulary.label_en"
+  },
+  {
+   "variable": "concept_vocabulary_label_tr",
+   "item_id": "concept_vocabulary.label_tr"
+  },
+  {
+   "variable": "concept_vocabulary_label_es",
+   "item_id": "concept_vocabulary.label_es"
+  },
+  {
+   "variable": "dashboard_admins_id",
+   "item_id": "dashboard.admins.id"
+  },
+  {
+   "variable": "dashboard_admins_username",
+   "item_id": "dashboard.admins.username"
+  },
+  {
+   "variable": "dashboard_admins_password_hash",
+   "item_id": "dashboard.admins.password_hash"
+  },
+  {
+   "variable": "dashboard_admins_failed_attempts",
+   "item_id": "dashboard.admins.failed_attempts"
+  },
+  {
+   "variable": "dashboard_admins_locked_until",
+   "item_id": "dashboard.admins.locked_until"
+  },
+  {
+   "variable": "dashboard_admins_last_login_at",
+   "item_id": "dashboard.admins.last_login_at"
+  },
+  {
+   "variable": "dashboard_admins_created_at",
+   "item_id": "dashboard.admins.created_at"
+  },
+  {
+   "variable": "dashboard_admins_role",
+   "item_id": "dashboard.admins.role"
+  },
+  {
+   "variable": "dashboard_admins_must_change_password",
+   "item_id": "dashboard.admins.must_change_password"
+  },
+  {
+   "variable": "dashboard_admins_totp_secret",
+   "item_id": "dashboard.admins.totp_secret"
+  },
+  {
+   "variable": "dashboard_admins_totp_pending_secret",
+   "item_id": "dashboard.admins.totp_pending_secret"
+  },
+  {
+   "variable": "dashboard_admins_totp_last_step",
+   "item_id": "dashboard.admins.totp_last_step"
+  },
+  {
+   "variable": "dashboard_admins_created_by",
+   "item_id": "dashboard.admins.created_by"
+  },
+  {
+   "variable": "dashboard_admins_updated_at",
+   "item_id": "dashboard.admins.updated_at"
+  },
+  {
+   "variable": "dashboard_sessions_token_hash",
+   "item_id": "dashboard.sessions.token_hash"
+  },
+  {
+   "variable": "dashboard_sessions_admin_id",
+   "item_id": "dashboard.sessions.admin_id"
+  },
+  {
+   "variable": "dashboard_sessions_created_at",
+   "item_id": "dashboard.sessions.created_at"
+  },
+  {
+   "variable": "dashboard_sessions_expires_at",
+   "item_id": "dashboard.sessions.expires_at"
+  },
+  {
+   "variable": "dashboard_audit_log_id",
+   "item_id": "dashboard.audit_log.id"
+  },
+  {
+   "variable": "dashboard_audit_log_admin_id",
+   "item_id": "dashboard.audit_log.admin_id"
+  },
+  {
+   "variable": "dashboard_audit_log_admin_username",
+   "item_id": "dashboard.audit_log.admin_username"
+  },
+  {
+   "variable": "dashboard_audit_log_action",
+   "item_id": "dashboard.audit_log.action"
+  },
+  {
+   "variable": "dashboard_audit_log_target_type",
+   "item_id": "dashboard.audit_log.target_type"
+  },
+  {
+   "variable": "dashboard_audit_log_target_id",
+   "item_id": "dashboard.audit_log.target_id"
+  },
+  {
+   "variable": "dashboard_audit_log_target_label",
+   "item_id": "dashboard.audit_log.target_label"
+  },
+  {
+   "variable": "dashboard_audit_log_details",
+   "item_id": "dashboard.audit_log.details"
+  },
+  {
+   "variable": "dashboard_audit_log_created_at",
+   "item_id": "dashboard.audit_log.created_at"
+  },
+  {
+   "variable": "storage_course_materials",
+   "item_id": "storage.course-materials"
+  },
+  {
+   "variable": "metric_online_now",
+   "item_id": "metric.online_now"
+  },
+  {
+   "variable": "metric_active_students",
+   "item_id": "metric.active_students"
+  },
+  {
+   "variable": "metric_new_students",
+   "item_id": "metric.new_students"
+  },
+  {
+   "variable": "metric_questions",
+   "item_id": "metric.questions"
+  },
+  {
+   "variable": "metric_questions_total",
+   "item_id": "metric.questions_total"
+  },
+  {
+   "variable": "metric_active_coding_time",
+   "item_id": "metric.active_coding_time"
+  },
+  {
+   "variable": "metric_sessions",
+   "item_id": "metric.sessions"
+  },
+  {
+   "variable": "metric_session_length_avg",
+   "item_id": "metric.session_length_avg"
+  },
+  {
+   "variable": "metric_breaks_avg",
+   "item_id": "metric.breaks_avg"
+  },
+  {
+   "variable": "metric_active_days",
+   "item_id": "metric.active_days"
+  },
+  {
+   "variable": "metric_last_active",
+   "item_id": "metric.last_active"
+  },
+  {
+   "variable": "metric_sessions_without_help_pct",
+   "item_id": "metric.sessions_without_help_pct"
+  },
+  {
+   "variable": "metric_hint_enough_pct",
+   "item_id": "metric.hint_enough_pct"
+  },
+  {
+   "variable": "metric_hint_depth_distribution",
+   "item_id": "metric.hint_depth_distribution"
+  },
+  {
+   "variable": "metric_error_gone_pct",
+   "item_id": "metric.error_gone_pct"
+  },
+  {
+   "variable": "metric_error_gone_by_level",
+   "item_id": "metric.error_gone_by_level"
+  },
+  {
+   "variable": "metric_fixed_unaided",
+   "item_id": "metric.fixed_unaided"
+  },
+  {
+   "variable": "metric_edits_per_unaided_fix",
+   "item_id": "metric.edits_per_unaided_fix"
+  },
+  {
+   "variable": "metric_rated_helpful_pct",
+   "item_id": "metric.rated_helpful_pct"
+  },
+  {
+   "variable": "metric_ai_response_time_avg",
+   "item_id": "metric.ai_response_time_avg"
+  },
+  {
+   "variable": "metric_response_time_median",
+   "item_id": "metric.response_time_median"
+  },
+  {
+   "variable": "metric_failed_requests",
+   "item_id": "metric.failed_requests"
+  },
+  {
+   "variable": "metric_failure_rate",
+   "item_id": "metric.failure_rate"
+  },
+  {
+   "variable": "metric_cache_rate",
+   "item_id": "metric.cache_rate"
+  },
+  {
+   "variable": "metric_tokens_used",
+   "item_id": "metric.tokens_used"
+  },
+  {
+   "variable": "metric_quota_today",
+   "item_id": "metric.quota_today"
+  },
+  {
+   "variable": "metric_needs_attention",
+   "item_id": "metric.needs_attention"
+  },
+  {
+   "variable": "metric_pct_offers_taken",
+   "item_id": "metric.pct_offers_taken"
+  },
+  {
+   "variable": "metric_pct_hint_enough_weekly",
+   "item_id": "metric.pct_hint_enough_weekly"
+  },
+  {
+   "variable": "metric_pct_sessions_without_help_weekly",
+   "item_id": "metric.pct_sessions_without_help_weekly"
+  },
+  {
+   "variable": "metric_repeat_errors",
+   "item_id": "metric.repeat_errors"
+  },
+  {
+   "variable": "metric_quick_repeats",
+   "item_id": "metric.quick_repeats"
+  },
+  {
+   "variable": "metric_avg_edits_before_ask",
+   "item_id": "metric.avg_edits_before_ask"
+  },
+  {
+   "variable": "metric_median_help_latency",
+   "item_id": "metric.median_help_latency"
+  },
+  {
+   "variable": "metric_reading_on_screen_pct",
+   "item_id": "metric.reading_on_screen_pct"
+  },
+  {
+   "variable": "metric_reading_visible_median",
+   "item_id": "metric.reading_visible_median"
+  },
+  {
+   "variable": "metric_reading_back_median",
+   "item_id": "metric.reading_back_median"
+  },
+  {
+   "variable": "metric_reading_to_rule_median",
+   "item_id": "metric.reading_to_rule_median"
+  },
+  {
+   "variable": "metric_reading_to_fix_median",
+   "item_id": "metric.reading_to_fix_median"
+  },
+  {
+   "variable": "metric_abandoned",
+   "item_id": "metric.abandoned"
+  },
+  {
+   "variable": "metric_reopened",
+   "item_id": "metric.reopened"
+  },
+  {
+   "variable": "metric_copied",
+   "item_id": "metric.copied"
+  },
+  {
+   "variable": "metric_after_edited",
+   "item_id": "metric.after_edited"
+  },
+  {
+   "variable": "metric_after_on_line_pct",
+   "item_id": "metric.after_on_line_pct"
+  },
+  {
+   "variable": "metric_after_overlap_avg",
+   "item_id": "metric.after_overlap_avg"
+  },
+  {
+   "variable": "metric_after_undone",
+   "item_id": "metric.after_undone"
+  },
+  {
+   "variable": "metric_picker_abandoned",
+   "item_id": "metric.picker_abandoned"
+  },
+  {
+   "variable": "metric_surfaces",
+   "item_id": "metric.surfaces"
+  },
+  {
+   "variable": "metric_runs",
+   "item_id": "metric.runs"
+  },
+  {
+   "variable": "metric_severity_mix",
+   "item_id": "metric.severity_mix"
+  },
+  {
+   "variable": "metric_languages_top",
+   "item_id": "metric.languages_top"
+  },
+  {
+   "variable": "metric_concepts_top_student",
+   "item_id": "metric.concepts_top_student"
+  },
+  {
+   "variable": "metric_concepts_top_class",
+   "item_id": "metric.concepts_top_class"
+  },
+  {
+   "variable": "metric_errors_top_class",
+   "item_id": "metric.errors_top_class"
+  },
+  {
+   "variable": "metric_work_rhythm",
+   "item_id": "metric.work_rhythm"
+  },
+  {
+   "variable": "metric_calibration",
+   "item_id": "metric.calibration"
+  },
+  {
+   "variable": "metric_files_cleared_list",
+   "item_id": "metric.files_cleared_list"
+  },
+  {
+   "variable": "metric_habits_totals",
+   "item_id": "metric.habits_totals"
+  },
+  {
+   "variable": "metric_ext_explanations_asked",
+   "item_id": "metric.ext_explanations_asked"
+  },
+  {
+   "variable": "metric_ext_errors_worked_out",
+   "item_id": "metric.ext_errors_worked_out"
+  },
+  {
+   "variable": "metric_ext_days_using",
+   "item_id": "metric.ext_days_using"
+  },
+  {
+   "variable": "metric_ext_activity_totals",
+   "item_id": "metric.ext_activity_totals"
+  },
+  {
+   "variable": "metric_ext_summary_progress",
+   "item_id": "metric.ext_summary_progress"
+  },
+  {
+   "variable": "metric_analytics_dependency_trend",
+   "item_id": "metric.analytics_dependency_trend"
+  },
+  {
+   "variable": "metric_analytics_question_type_resolution",
+   "item_id": "metric.analytics_question_type_resolution"
+  },
+  {
+   "variable": "metric_analytics_session_rhythm",
+   "item_id": "metric.analytics_session_rhythm"
+  },
+  {
+   "variable": "metric_analytics_sessions_without_help",
+   "item_id": "metric.analytics_sessions_without_help"
+  },
+  {
+   "variable": "metric_summary_cadence",
+   "item_id": "metric.summary_cadence"
+  },
+  {
+   "variable": "function_public_handle_new_user",
+   "item_id": "function.public.handle_new_user"
+  },
+  {
+   "variable": "function_public_prevent_username_change",
+   "item_id": "function.public.prevent_username_change"
+  },
+  {
+   "variable": "function_public_increment_explanation_reuse",
+   "item_id": "function.public.increment_explanation_reuse"
+  },
+  {
+   "variable": "function_public_dashboard_login",
+   "item_id": "function.public.dashboard_login"
+  },
+  {
+   "variable": "function_public_dashboard_session",
+   "item_id": "function.public.dashboard_session"
+  },
+  {
+   "variable": "function_public_dashboard_logout",
+   "item_id": "function.public.dashboard_logout"
+  },
+  {
+   "variable": "function_public_dashboard_change_password",
+   "item_id": "function.public.dashboard_change_password"
+  },
+  {
+   "variable": "function_public_dashboard_totp_begin",
+   "item_id": "function.public.dashboard_totp_begin"
+  },
+  {
+   "variable": "function_public_dashboard_totp_enable",
+   "item_id": "function.public.dashboard_totp_enable"
+  },
+  {
+   "variable": "function_public_dashboard_totp_disable",
+   "item_id": "function.public.dashboard_totp_disable"
+  },
+  {
+   "variable": "function_public_dashboard_accounts",
+   "item_id": "function.public.dashboard_accounts"
+  },
+  {
+   "variable": "function_public_dashboard_account_create",
+   "item_id": "function.public.dashboard_account_create"
+  },
+  {
+   "variable": "function_public_dashboard_account_set_role",
+   "item_id": "function.public.dashboard_account_set_role"
+  },
+  {
+   "variable": "function_public_dashboard_account_reset_password",
+   "item_id": "function.public.dashboard_account_reset_password"
+  },
+  {
+   "variable": "function_public_dashboard_account_reset_totp",
+   "item_id": "function.public.dashboard_account_reset_totp"
+  },
+  {
+   "variable": "function_public_dashboard_account_delete",
+   "item_id": "function.public.dashboard_account_delete"
+  },
+  {
+   "variable": "function_public_dashboard_audit_log",
+   "item_id": "function.public.dashboard_audit_log"
+  },
+  {
+   "variable": "function_public_dashboard_reset_student",
+   "item_id": "function.public.dashboard_reset_student"
+  },
+  {
+   "variable": "function_public_dashboard_delete_student",
+   "item_id": "function.public.dashboard_delete_student"
+  },
+  {
+   "variable": "function_public_dashboard_overview",
+   "item_id": "function.public.dashboard_overview"
+  },
+  {
+   "variable": "function_public_dashboard_students",
+   "item_id": "function.public.dashboard_students"
+  },
+  {
+   "variable": "function_public_dashboard_student_detail",
+   "item_id": "function.public.dashboard_student_detail"
+  },
+  {
+   "variable": "function_public_dashboard_question",
+   "item_id": "function.public.dashboard_question"
+  },
+  {
+   "variable": "function_public_dashboard_insights",
+   "item_id": "function.public.dashboard_insights"
+  },
+  {
+   "variable": "function_public_dashboard_export",
+   "item_id": "function.public.dashboard_export"
+  },
+  {
+   "variable": "function_public_dashboard_engagement",
+   "item_id": "function.public.dashboard_engagement"
+  },
+  {
+   "variable": "function_public_dashboard_set_rate_limits",
+   "item_id": "function.public.dashboard_set_rate_limits"
+  },
+  {
+   "variable": "function_public_dashboard_student_set_password",
+   "item_id": "function.public.dashboard_student_set_password"
+  },
+  {
+   "variable": "function_dashboard_hash_token",
+   "item_id": "function.dashboard.hash_token"
+  },
+  {
+   "variable": "function_dashboard_safe_tz",
+   "item_id": "function.dashboard.safe_tz"
+  },
+  {
+   "variable": "function_dashboard_session_admin",
+   "item_id": "function.dashboard.session_admin"
+  },
+  {
+   "variable": "function_dashboard_require_session",
+   "item_id": "function.dashboard.require_session"
+  },
+  {
+   "variable": "function_dashboard_require_admin",
+   "item_id": "function.dashboard.require_admin"
+  },
+  {
+   "variable": "function_dashboard_account_json",
+   "item_id": "function.dashboard.account_json"
+  },
+  {
+   "variable": "function_dashboard_base32_encode",
+   "item_id": "function.dashboard.base32_encode"
+  },
+  {
+   "variable": "function_dashboard_base32_decode",
+   "item_id": "function.dashboard.base32_decode"
+  },
+  {
+   "variable": "function_dashboard_totp_code",
+   "item_id": "function.dashboard.totp_code"
+  },
+  {
+   "variable": "function_dashboard_totp_match",
+   "item_id": "function.dashboard.totp_match"
+  },
+  {
+   "variable": "function_dashboard_password_problem",
+   "item_id": "function.dashboard.password_problem"
+  },
+  {
+   "variable": "function_dashboard_audit",
+   "item_id": "function.dashboard.audit"
+  },
+  {
+   "variable": "function_dashboard_resolve_range",
+   "item_id": "function.dashboard.resolve_range"
+  },
+  {
+   "variable": "function_dashboard_slot_labels",
+   "item_id": "function.dashboard.slot_labels"
+  },
+  {
+   "variable": "function_dashboard_slot_label",
+   "item_id": "function.dashboard.slot_label"
+  },
+  {
+   "variable": "function_dashboard_last_active",
+   "item_id": "function.dashboard.last_active"
+  },
+  {
+   "variable": "function_dashboard_attention",
+   "item_id": "function.dashboard.attention"
+  },
+  {
+   "variable": "function_dashboard_weekly_trend",
+   "item_id": "function.dashboard.weekly_trend"
+  },
+  {
+   "variable": "function_dashboard_students_json",
+   "item_id": "function.dashboard.students_json"
+  },
+  {
+   "variable": "function_dashboard_num",
+   "item_id": "function.dashboard.num"
+  },
+  {
+   "variable": "function_dashboard_broadcast_change",
+   "item_id": "function.dashboard.broadcast_change"
+  },
+  {
+   "variable": "function_dashboard_student_password_problem",
+   "item_id": "function.dashboard.student_password_problem"
+  },
+  {
+   "variable": "function_trigger_on_auth_user_created",
+   "item_id": "function.trigger.on_auth_user_created"
+  },
+  {
+   "variable": "function_trigger_profiles_lock_username",
+   "item_id": "function.trigger.profiles_lock_username"
+  },
+  {
+   "variable": "function_trigger_dashboard_broadcast",
+   "item_id": "function.trigger.dashboard_broadcast"
+  },
+  {
+   "variable": "external_student_no",
+   "item_id": "external.student_no"
+  },
+  {
+   "variable": "external_PreQ1",
+   "item_id": "external.PreQ1"
+  },
+  {
+   "variable": "external_PreQ2",
+   "item_id": "external.PreQ2"
+  },
+  {
+   "variable": "external_PreQ3",
+   "item_id": "external.PreQ3"
+  },
+  {
+   "variable": "external_PreQ4",
+   "item_id": "external.PreQ4"
+  },
+  {
+   "variable": "external_PreQ5",
+   "item_id": "external.PreQ5"
+  },
+  {
+   "variable": "external_PreQ6",
+   "item_id": "external.PreQ6"
+  },
+  {
+   "variable": "external_PreQ7",
+   "item_id": "external.PreQ7"
+  },
+  {
+   "variable": "external_PreQ8",
+   "item_id": "external.PreQ8"
+  },
+  {
+   "variable": "external_PreQ9",
+   "item_id": "external.PreQ9"
+  },
+  {
+   "variable": "external_PreQ10",
+   "item_id": "external.PreQ10"
+  },
+  {
+   "variable": "external_PreQ11",
+   "item_id": "external.PreQ11"
+  },
+  {
+   "variable": "external_PreQ12",
+   "item_id": "external.PreQ12"
+  },
+  {
+   "variable": "external_PreQ13",
+   "item_id": "external.PreQ13"
+  },
+  {
+   "variable": "external_PreQ14",
+   "item_id": "external.PreQ14"
+  },
+  {
+   "variable": "external_PreQ15",
+   "item_id": "external.PreQ15"
+  },
+  {
+   "variable": "external_PreQ16",
+   "item_id": "external.PreQ16"
+  },
+  {
+   "variable": "external_PreQ17",
+   "item_id": "external.PreQ17"
+  },
+  {
+   "variable": "external_PreQ18",
+   "item_id": "external.PreQ18"
+  },
+  {
+   "variable": "external_PreQ19",
+   "item_id": "external.PreQ19"
+  },
+  {
+   "variable": "external_PreQ20",
+   "item_id": "external.PreQ20"
+  },
+  {
+   "variable": "external_PreQ21",
+   "item_id": "external.PreQ21"
+  },
+  {
+   "variable": "external_PreQ22",
+   "item_id": "external.PreQ22"
+  },
+  {
+   "variable": "external_PreQ23",
+   "item_id": "external.PreQ23"
+  },
+  {
+   "variable": "external_PreQ24",
+   "item_id": "external.PreQ24"
+  },
+  {
+   "variable": "external_PreQ25",
+   "item_id": "external.PreQ25"
+  },
+  {
+   "variable": "external_PreQ26",
+   "item_id": "external.PreQ26"
+  },
+  {
+   "variable": "external_PreQ27",
+   "item_id": "external.PreQ27"
+  },
+  {
+   "variable": "external_PreQ28",
+   "item_id": "external.PreQ28"
+  },
+  {
+   "variable": "external_PostQ1",
+   "item_id": "external.PostQ1"
+  },
+  {
+   "variable": "external_PostQ2",
+   "item_id": "external.PostQ2"
+  },
+  {
+   "variable": "external_PostQ3",
+   "item_id": "external.PostQ3"
+  },
+  {
+   "variable": "external_PostQ4",
+   "item_id": "external.PostQ4"
+  },
+  {
+   "variable": "external_PostQ5",
+   "item_id": "external.PostQ5"
+  },
+  {
+   "variable": "external_PostQ6",
+   "item_id": "external.PostQ6"
+  },
+  {
+   "variable": "external_PostQ7",
+   "item_id": "external.PostQ7"
+  },
+  {
+   "variable": "external_PostQ8",
+   "item_id": "external.PostQ8"
+  },
+  {
+   "variable": "external_PostQ9",
+   "item_id": "external.PostQ9"
+  },
+  {
+   "variable": "external_PostQ10",
+   "item_id": "external.PostQ10"
+  },
+  {
+   "variable": "external_PostQ11",
+   "item_id": "external.PostQ11"
+  },
+  {
+   "variable": "external_PostQ12",
+   "item_id": "external.PostQ12"
+  },
+  {
+   "variable": "external_PostQ13",
+   "item_id": "external.PostQ13"
+  },
+  {
+   "variable": "external_PostQ14",
+   "item_id": "external.PostQ14"
+  },
+  {
+   "variable": "external_PostQ15",
+   "item_id": "external.PostQ15"
+  },
+  {
+   "variable": "external_PostQ16",
+   "item_id": "external.PostQ16"
+  },
+  {
+   "variable": "external_PostQ17",
+   "item_id": "external.PostQ17"
+  },
+  {
+   "variable": "external_PostQ18",
+   "item_id": "external.PostQ18"
+  },
+  {
+   "variable": "external_PostQ19",
+   "item_id": "external.PostQ19"
+  },
+  {
+   "variable": "external_PostQ20",
+   "item_id": "external.PostQ20"
+  },
+  {
+   "variable": "external_PostQ21",
+   "item_id": "external.PostQ21"
+  },
+  {
+   "variable": "external_PostQ22",
+   "item_id": "external.PostQ22"
+  },
+  {
+   "variable": "external_PostQ23",
+   "item_id": "external.PostQ23"
+  },
+  {
+   "variable": "external_PostQ24",
+   "item_id": "external.PostQ24"
+  },
+  {
+   "variable": "external_PostQ25",
+   "item_id": "external.PostQ25"
+  },
+  {
+   "variable": "external_PostQ26",
+   "item_id": "external.PostQ26"
+  },
+  {
+   "variable": "external_PostQ27",
+   "item_id": "external.PostQ27"
+  },
+  {
+   "variable": "external_PostQ28",
+   "item_id": "external.PostQ28"
+  },
+  {
+   "variable": "external_Item1",
+   "item_id": "external.Item1"
+  },
+  {
+   "variable": "external_Item2",
+   "item_id": "external.Item2"
+  },
+  {
+   "variable": "external_Item3",
+   "item_id": "external.Item3"
+  },
+  {
+   "variable": "external_Item4",
+   "item_id": "external.Item4"
+  },
+  {
+   "variable": "external_Item5",
+   "item_id": "external.Item5"
+  },
+  {
+   "variable": "external_Item6",
+   "item_id": "external.Item6"
+  },
+  {
+   "variable": "external_Item7",
+   "item_id": "external.Item7"
+  },
+  {
+   "variable": "external_Item8",
+   "item_id": "external.Item8"
+  },
+  {
+   "variable": "external_Item9",
+   "item_id": "external.Item9"
+  },
+  {
+   "variable": "external_Item10",
+   "item_id": "external.Item10"
+  },
+  {
+   "variable": "external_Item11",
+   "item_id": "external.Item11"
+  },
+  {
+   "variable": "external_Item12",
+   "item_id": "external.Item12"
+  },
+  {
+   "variable": "external_Item13",
+   "item_id": "external.Item13"
+  },
+  {
+   "variable": "external_Item14",
+   "item_id": "external.Item14"
+  },
+  {
+   "variable": "external_Item15",
+   "item_id": "external.Item15"
+  },
+  {
+   "variable": "external_Item16",
+   "item_id": "external.Item16"
+  },
+  {
+   "variable": "external_Item17",
+   "item_id": "external.Item17"
+  },
+  {
+   "variable": "external_Item18",
+   "item_id": "external.Item18"
+  },
+  {
+   "variable": "external_Item19",
+   "item_id": "external.Item19"
+  },
+  {
+   "variable": "external_pre_total",
+   "item_id": "external.pre_total"
+  },
+  {
+   "variable": "external_post_total",
+   "item_id": "external.post_total"
+  },
+  {
+   "variable": "external_gain",
+   "item_id": "external.gain"
+  },
+  {
+   "variable": "external_tam_pu",
+   "item_id": "external.tam_pu"
+  },
+  {
+   "variable": "external_tam_sn",
+   "item_id": "external.tam_sn"
+  },
+  {
+   "variable": "external_tam_bi",
+   "item_id": "external.tam_bi"
+  },
+  {
+   "variable": "external_tam_att",
+   "item_id": "external.tam_att"
+  },
+  {
+   "variable": "external_tam_au",
+   "item_id": "external.tam_au"
+  }
+ ]
+}

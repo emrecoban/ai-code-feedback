@@ -8,7 +8,7 @@
 // choosing their own feedback language from the sidebar. This table is
 // that: a manually-maintained, runtime-switchable replacement for every
 // string whose language should follow the student's own choice, not VS
-// Code's. See docs/SPEC_ADDENDUM.md §13.
+// Code's. See specs/SPEC_ADDENDUM.md §13.
 
 export type Language = 'en' | 'tr' | 'es';
 

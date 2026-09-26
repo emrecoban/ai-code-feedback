@@ -1,0 +1,284 @@
+/* Colours follow the research dashboard (dashboard/src/styles.css), with a dark variant. */
+:root {
+  --vp-c-brand-1: #256abf;
+  --vp-c-brand-2: #1c5cab;
+  --vp-c-brand-3: #2a78d6;
+  --vp-c-brand-soft: rgba(42, 120, 214, 0.14);
+
+  --chart-grid: #e1e0d9;
+  --chart-baseline: #c3c2b7;
+  --chart-tick: #6f6e69;
+  --chart-featured: #2a78d6;
+  --chart-class: #52514e;
+  --chart-band: rgba(42, 120, 214, 0.12);
+  --chart-series-2: #eb6834;
+  --chart-series-3: #1baf7a;
+  --chart-hist: #86b6ef;
+  --level-hint: #86b6ef;
+  --level-rule: #2a78d6;
+  --level-fix: #104281;
+  --todo-bg: #fff6e0;
+  --todo-fg: #7a4d00;
+  --todo-border: #f0c14b;
+  --confirm-bg: #e8f0fb;
+  --confirm-fg: #184b8a;
+  --confirm-border: #86b6ef;
+}
+
+.dark {
+  --chart-grid: #2f3136;
+  --chart-baseline: #4a4c52;
+  --chart-tick: #a3a4ab;
+  --chart-featured: #6ea8f2;
+  --chart-class: #c9c9cf;
+  --chart-band: rgba(110, 168, 242, 0.16);
+  --chart-series-2: #f08a5d;
+  --chart-series-3: #3fcf99;
+  --chart-hist: #3d5f8a;
+  --level-hint: #86b6ef;
+  --level-rule: #4f8fe0;
+  --level-fix: #2458a0;
+  --todo-bg: #3a2f14;
+  --todo-fg: #ffd98a;
+  --todo-border: #8a6a1f;
+  --confirm-bg: #16263d;
+  --confirm-fg: #a9cbff;
+  --confirm-border: #35598a;
+}
+
+/* ---------- figures ---------- */
+.figure {
+  margin: 20px 0 8px;
+  padding: 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+}
+.figure-caption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+}
+.figure-caption .synthetic {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-default-soft);
+}
+.takeaway {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--vp-c-text-1);
+}
+
+.small-multiples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+}
+.panel-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+.key-line {
+  width: 18px;
+  height: 0;
+  border-top: 2.5px solid var(--chart-featured);
+}
+.key-line.class {
+  border-top: 2px dashed var(--chart-class);
+}
+.key-band {
+  width: 14px;
+  height: 10px;
+  background: var(--chart-band);
+  border: 1px solid var(--chart-featured);
+  opacity: 0.8;
+}
+
+svg.chart {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+svg.chart .grid { stroke: var(--chart-grid); stroke-width: 1; }
+svg.chart .baseline { stroke: var(--chart-baseline); stroke-width: 1; }
+svg.chart .tick { fill: var(--chart-tick); font-size: 11px; }
+svg.chart .band { fill: var(--chart-band); stroke: none; }
+svg.chart .line-featured { fill: none; stroke: var(--chart-featured); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+svg.chart .dot-featured { fill: var(--chart-featured); stroke: var(--vp-c-bg-soft); stroke-width: 1.5; }
+svg.chart .line-class { fill: none; stroke: var(--chart-class); stroke-width: 1.75; stroke-dasharray: 5 4; }
+
+.figure details {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.figure details summary {
+  cursor: pointer;
+  color: var(--vp-c-brand-1);
+}
+.figure table {
+  font-size: 13px;
+}
+
+/* ---------- badges ---------- */
+.todo-badge {
+  display: inline;
+  padding: 1px 6px;
+  border: 1px solid var(--todo-border);
+  border-radius: 4px;
+  background: var(--todo-bg);
+  color: var(--todo-fg);
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+.todo-badge.confirm {
+  border-color: var(--confirm-border);
+  background: var(--confirm-bg);
+  color: var(--confirm-fg);
+}
+.todo-badge strong {
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+}
+.draft-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--todo-bg);
+  color: var(--todo-fg);
+  border: 1px solid var(--todo-border);
+  vertical-align: middle;
+}
+
+/* ---------- facts and lists ---------- */
+.facts {
+  margin: 12px 0;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+.facts code {
+  font-size: 13px;
+}
+.rq-list {
+  padding-left: 0;
+  list-style: none;
+}
+.rq-list li {
+  margin: 6px 0;
+}
+.role {
+  display: inline-block;
+  min-width: 90px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+}
+
+/* ---------- home ---------- */
+.home-block h2 {
+  margin-top: 36px;
+}
+.citation {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--vp-c-brand-3);
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 8px 8px 0;
+  /* long DOI links must wrap on phones */
+  overflow-wrap: anywhere;
+}
+.citation .style {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+.bibtex {
+  position: relative;
+}
+.bibtex button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  font-size: 13px;
+  cursor: pointer;
+}
+.vp-doc ol.timeline {
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid var(--vp-c-divider);
+}
+.timeline li {
+  position: relative;
+  margin: 0 0 18px;
+  padding-left: 18px;
+}
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-3);
+  border: 2px solid var(--vp-c-bg);
+}
+.timeline .when {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+.timeline .title {
+  display: block;
+  font-weight: 600;
+}
+.timeline p {
+  margin: 4px 0 0;
+}
+.axis-caption {
+  margin: 0;
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+  text-align: center;
+}
+
+/* The default theme has no Turkish text for the "copied" message of code blocks. */
+:lang(tr) {
+  --vp-code-copy-copied-text-content: 'Kopyalandı';
+}
+.timeline p .todo-badge {
+  margin-left: 4px;
+}

@@ -63,7 +63,7 @@ export function resolveProviders(): ResolvedProviders {
     );
   }
 
-  // docs/SPEC_ADDENDUM.md §7: default raised from 1200 to 1600, with
+  // specs/SPEC_ADDENDUM.md §7: default raised from 1200 to 1600, with
   // optional per-language overrides for Turkish/Spanish token expansion.
   const baseMaxTokens = Number(Deno.env.get('AI_MAX_OUTPUT_TOKENS') ?? '1600');
   const overrides: Record<string, number> = {

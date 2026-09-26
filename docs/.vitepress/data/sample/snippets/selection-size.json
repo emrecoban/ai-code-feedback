@@ -1,0 +1,20 @@
+[
+  {
+    "id": "437ae49f-5179-4079-bbcf-8f2da7af2cc7",
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-05T08:27:52.178Z",
+    "trigger_source": "selection",
+    "selection_line_count": 40,
+    "selection_char_count": 760
+  },
+  {
+    "id": "b615e4af-d2a7-44a5-9a27-83a245a7e833",
+    "session_id": "ca511e50-d38e-4c17-b249-8e9e40f21e92",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-26T07:58:33.550Z",
+    "trigger_source": "selection",
+    "selection_line_count": 1,
+    "selection_char_count": 42
+  }
+]

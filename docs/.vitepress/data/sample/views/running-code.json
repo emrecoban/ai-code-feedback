@@ -1,0 +1,1 @@
+{"visual":{"type":"table","columns":["",{"item":"event.run_finished"},{"item":"event.run_finished.success"},{"val":["misc","afterExplanation"]}],"rows":[[{"ui":"class"},103,62,46],["S07",2,0,2]]},"facts":{"runs":103,"success":62,"after":46,"debugRuns":768,"taskRuns":103,"featuredRuns":2}}

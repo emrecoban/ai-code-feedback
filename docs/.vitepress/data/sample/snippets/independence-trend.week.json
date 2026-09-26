@@ -1,0 +1,12 @@
+{
+  "week": "2030-03-18",
+  "questions": 5,
+  "from_errors": 5,
+  "help_offers": 10,
+  "fixed_unaided": 7,
+  "sessions": 2,
+  "sessions_without_help": 1,
+  "pct_offers_taken": 50,
+  "pct_hint_enough": 60,
+  "pct_sessions_without_help": 50
+}

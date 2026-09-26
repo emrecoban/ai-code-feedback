@@ -1,0 +1,16 @@
+[
+  {
+    "id": "0f1f2606-716a-471d-adde-5e596e96bfd3",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-19T07:40:00.000Z",
+    "last_seen_at": "2030-03-19T07:40:00.000Z",
+    "active_seconds": 0
+  },
+  {
+    "id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-05T07:08:00.000Z",
+    "last_seen_at": "2030-03-05T08:53:00.000Z",
+    "active_seconds": 4101
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "id": 1302,
+  "session_id": "a567b05b-5b3c-4f19-ab05-e66c17f644d7",
+  "user_id": "1ddc2aeb-760b-492d-a25f-f8737a0c439c",
+  "interaction_id": null,
+  "event_type": "feedback_language_changed",
+  "client_event_id": "feedback_language_changed:d502d861-67ec-420e-bc7b-99bc6aa5af71",
+  "payload": {
+    "from": "en",
+    "to": "tr"
+  },
+  "client_ts": "2030-03-12T07:04:59.994Z",
+  "server_ts": "2030-03-12T07:05:00.000Z"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-05T07:08:00.000Z"
+  },
+  {
+    "id": "3c2194d2-3c32-4ec1-8eb1-e8d2251c5915",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-12T07:03:00.000Z"
+  },
+  {
+    "id": "db3cdf5d-438c-4196-a851-ce946a41ce5d",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-19T07:05:00.000Z"
+  }
+]

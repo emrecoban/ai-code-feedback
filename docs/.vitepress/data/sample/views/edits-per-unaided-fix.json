@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"count","series":["featured","class"],"rows":[{"label":{"item":"metric.edits_per_unaided_fix"},"featured":1.9,"class":1.8},{"label":{"item":"metric.avg_edits_before_ask"},"featured":2.8,"class":2.2}]},"facts":{"classEpf":1.8,"featuredEpf":1.9,"classFixed":1255,"classEdits":2214}}

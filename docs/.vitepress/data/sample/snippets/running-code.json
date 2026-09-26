@@ -1,0 +1,14 @@
+{
+  "id": 1014,
+  "session_id": "99d9cfb0-18df-4f73-bc1c-05210330cbbc",
+  "user_id": "fa30423e-5239-436f-92e5-8355663e2364",
+  "interaction_id": null,
+  "event_type": "run_finished",
+  "client_event_id": "run_finished:08ddf5b0-29e0-419c-be35-b0e871434010",
+  "payload": {
+    "exitCode": 0,
+    "success": true
+  },
+  "client_ts": "2030-03-12T08:25:59.986Z",
+  "server_ts": "2030-03-12T08:26:00.000Z"
+}

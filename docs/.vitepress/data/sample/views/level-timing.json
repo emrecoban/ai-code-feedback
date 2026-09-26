@@ -1,0 +1,1 @@
+{"visual":{"type":"timeline","events":[{"ms":0,"type":"asked"},{"ms":38232,"type":"level_reached","level":2},{"ms":47370,"type":"level_reached","level":3},{"ms":100511,"type":"post_feedback_edit","level":null},{"ms":647370,"type":"feedback_abandoned","level":3}]},"facts":{"toRuleSec":38,"toFixSec":47,"classToRuleSec":22,"classToFixSec":44,"title":"Undefined variable total"}}

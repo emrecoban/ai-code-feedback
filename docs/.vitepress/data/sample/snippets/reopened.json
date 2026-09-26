@@ -1,0 +1,11 @@
+{
+  "id": 4938,
+  "session_id": "6855c2fb-94e1-4b91-9448-f87d1807df05",
+  "user_id": "fa30423e-5239-436f-92e5-8355663e2364",
+  "interaction_id": "bb0cf9cd-4dab-43e6-b8df-f17fe6e08129",
+  "event_type": "explanation_reopened",
+  "client_event_id": "explanation_reopened:7cd53984-803e-4a78-aec5-28ab09355e87",
+  "payload": {},
+  "client_ts": "2030-03-17T16:06:59.973Z",
+  "server_ts": "2030-03-17T16:07:00.000Z"
+}

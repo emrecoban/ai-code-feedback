@@ -1,0 +1,21 @@
+{
+  "id": "97e18f7c-d224-4707-b1c9-1ad5283eda09",
+  "title": "Undefined variable total",
+  "concept": "variable definition",
+  "ladder_payload": {
+    "title": "Undefined variable total",
+    "concept": "variable definition",
+    "confidence": "high",
+    "needsMoreContext": false,
+    "l0_decode": "The editor cannot find a value with this name at this point of the program.",
+    "l1_locate": "Where in your code does this name get its first value?",
+    "l2_concept": {
+      "rule": "A name must have a value before a line reads it.",
+      "example": "price = 10\nprint(price)"
+    },
+    "l3_fix": {
+      "change": "Give the variable a starting value before the loop.",
+      "why": "Then the name exists when the loop reads it for the first time."
+    }
+  }
+}

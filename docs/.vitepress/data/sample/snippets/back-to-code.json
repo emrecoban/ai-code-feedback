@@ -1,0 +1,14 @@
+{
+  "id": 1822,
+  "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+  "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+  "interaction_id": "bbf56c66-bbe9-42d4-8190-f0ee61a6ee3e",
+  "event_type": "returned_to_code",
+  "client_event_id": "returned_to_code:bbf56c66-bbe9-42d4-8190-f0ee61a6ee3e:3",
+  "payload": {
+    "level": 3,
+    "msToReturn": 7799
+  },
+  "client_ts": "2030-03-05T07:32:35.619Z",
+  "server_ts": "2030-03-05T07:32:35.647Z"
+}

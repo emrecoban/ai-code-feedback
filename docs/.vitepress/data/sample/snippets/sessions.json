@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "course_id": null,
+    "started_at": "2030-03-05T07:08:00.000Z",
+    "last_seen_at": "2030-03-05T08:53:00.000Z",
+    "ended_at": null,
+    "extension_version": "0.2.0",
+    "vscode_version": "1.104.2",
+    "os": "win32"
+  },
+  {
+    "id": "3c2194d2-3c32-4ec1-8eb1-e8d2251c5915",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "course_id": null,
+    "started_at": "2030-03-12T07:03:00.000Z",
+    "last_seen_at": "2030-03-12T08:46:00.000Z",
+    "ended_at": null,
+    "extension_version": "0.2.0",
+    "vscode_version": "1.104.2",
+    "os": "win32"
+  }
+]

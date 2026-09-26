@@ -1,0 +1,11 @@
+{
+  "id": 1166,
+  "session_id": "0090f565-299f-4255-8505-230aa9a5025a",
+  "user_id": "09fa05b5-09ad-4f6e-a7ea-e9175ed93983",
+  "interaction_id": "1cec20ac-1510-44b5-9515-35b5428cb474",
+  "event_type": "fix_undone",
+  "client_event_id": "fix_undone:1cec20ac-1510-44b5-9515-35b5428cb474",
+  "payload": {},
+  "client_ts": "2030-03-19T07:21:32.288Z",
+  "server_ts": "2030-03-19T07:21:32.307Z"
+}

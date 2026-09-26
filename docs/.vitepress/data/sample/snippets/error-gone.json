@@ -1,0 +1,15 @@
+{
+  "id": 1826,
+  "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+  "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+  "interaction_id": "bbf56c66-bbe9-42d4-8190-f0ee61a6ee3e",
+  "event_type": "diagnostic_resolved",
+  "client_event_id": "diagnostic_resolved:bbf56c66-bbe9-42d4-8190-f0ee61a6ee3e",
+  "payload": {
+    "msToResolution": 23627,
+    "msPresent": 75105,
+    "editsWhilePresent": 4
+  },
+  "client_ts": "2030-03-05T07:31:53.361Z",
+  "server_ts": "2030-03-05T07:31:53.368Z"
+}

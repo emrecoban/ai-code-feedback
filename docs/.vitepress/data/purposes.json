@@ -1,0 +1,317 @@
+{
+ "data/accounts/consent-status": {
+  "en": "Which accounts may enter the analysis, and under which version of the consent text?",
+  "tr": "Hangi hesaplar analize girebilir ve hangi onay metni sürümüyle?",
+  "es": "¿Qué cuentas pueden entrar en el análisis y con qué versión del texto de consentimiento?"
+ },
+ "data/accounts/feedback-language": {
+  "en": "Does the feedback language, or a switch to the first language, relate to how students use the hints?",
+  "tr": "Geri bildirim dili ya da ana dile geçiş, öğrencilerin ipuçlarını kullanma biçimiyle ilişkili mi?",
+  "es": "¿Se relaciona el idioma de las explicaciones, o el cambio a la lengua materna, con el uso de las pistas?"
+ },
+ "data/asking/trigger-source": {
+  "en": "Through which route do students enter the help system, and do the two routes lead to different hint depths?",
+  "tr": "Öğrenciler yardım sistemine hangi yoldan giriyor ve iki yol farklı ipucu derinliklerine mi götürüyor?",
+  "es": "¿Por qué vía entran los estudiantes al sistema de ayuda y llevan las dos vías a profundidades distintas?"
+ },
+ "data/asking/trigger-surface": {
+  "en": "Which entry points do students use, and does the visibility of an entry point change how often they ask?",
+  "tr": "Öğrenciler hangi giriş noktalarını kullanıyor ve bir giriş noktasının görünür olması soru sıklığını değiştiriyor mu?",
+  "es": "¿Qué puntos de entrada usan los estudiantes y cambia la visibilidad de un punto de entrada la frecuencia con que preguntan?"
+ },
+ "data/asking/question-type": {
+  "en": "Does the kind of question relate to how far the student goes into the hints?",
+  "tr": "Soru türü, öğrencinin ipuçlarında ne kadar ilerlediğiyle ilişkili mi?",
+  "es": "¿Se relaciona el tipo de pregunta con hasta dónde llega el estudiante en las pistas?"
+ },
+ "data/asking/own-question": {
+  "en": "Which misconceptions and question forms appear when students are free to ask?",
+  "tr": "Öğrenciler serbestçe soru sorabildiğinde hangi kavram yanılgıları ve soru biçimleri ortaya çıkıyor?",
+  "es": "¿Qué ideas erróneas y qué formas de pregunta aparecen cuando los estudiantes preguntan libremente?"
+ },
+ "data/asking/selection-size": {
+  "en": "Does the precision of the question change over the weeks, and does it relate to hint depth?",
+  "tr": "Sorunun kesinliği haftalar içinde değişiyor mu ve ipucu derinliğiyle ilişkili mi?",
+  "es": "¿Cambia la precisión de la pregunta con las semanas y se relaciona con la profundidad de las pistas?"
+ },
+ "data/asking/error-type": {
+  "en": "Which classes of error lead students to ask, and which of them need the full fix?",
+  "tr": "Hangi hata sınıfları öğrencileri soru sormaya yöneltiyor ve bunların hangileri tam çözüm gerektiriyor?",
+  "es": "¿Qué clases de error llevan a preguntar y cuáles necesitan la solución completa?"
+ },
+ "data/asking/question-picker-abandoned": {
+  "en": "How often does hesitation occur before a question, and in which situations?",
+  "tr": "Sorudan önceki tereddüt ne sıklıkla ve hangi durumlarda ortaya çıkıyor?",
+  "es": "¿Con qué frecuencia aparece la duda antes de preguntar y en qué situaciones?"
+ },
+ "data/before/help-offers": {
+  "en": "What is the base for the share of errors on which students asked for help?",
+  "tr": "Öğrencilerin yardım istediği hataların payı için payda nedir?",
+  "es": "¿Cuál es la base para la proporción de errores en los que los estudiantes pidieron ayuda?"
+ },
+ "data/before/help-latency": {
+  "en": "How long do students persist before seeking help, and does this time grow over the weeks?",
+  "tr": "Öğrenciler yardım istemeden önce ne kadar direniyor ve bu süre haftalar içinde uzuyor mu?",
+  "es": "¿Cuánto persisten los estudiantes antes de pedir ayuda y crece ese tiempo con las semanas?"
+ },
+ "data/before/edits-before-asking": {
+  "en": "How much effort comes before a help request, and how does it compare with the effort of unaided fixes?",
+  "tr": "Bir yardım isteğinden önce ne kadar çaba harcanıyor ve bu, yardımsız düzeltmelerin çabasıyla nasıl karşılaştırılıyor?",
+  "es": "¿Cuánto esfuerzo hay antes de una petición de ayuda y cómo se compara con el de las correcciones sin ayuda?"
+ },
+ "data/before/repeated-error": {
+  "en": "Does an explanation lead to lasting understanding, or does the same error come back?",
+  "tr": "Bir açıklama kalıcı bir anlamaya yol açıyor mu, yoksa aynı hata geri mi geliyor?",
+  "es": "¿Lleva una explicación a una comprensión duradera o vuelve el mismo error?"
+ },
+ "data/before/time-since-same-error": {
+  "en": "Can quick repeats serve as a sign that an explanation failed, separate from forgetting over time?",
+  "tr": "Hızlı tekrarlar, zamanla unutmadan ayrı olarak bir açıklamanın başarısız olduğunun işareti sayılabilir mi?",
+  "es": "¿Pueden las repeticiones rápidas servir como señal de una explicación fallida, distinta del olvido con el tiempo?"
+ },
+ "data/before/recurring-concept": {
+  "en": "Do misconceptions recur across different-looking errors?",
+  "tr": "Kavram yanılgıları farklı görünen hatalarda tekrar ediyor mu?",
+  "es": "¿Se repiten las ideas erróneas en errores de aspecto distinto?"
+ },
+ "data/ladder/hint-depth": {
+  "en": "How far do students go down the ladder, and does the depth change over the weeks?",
+  "tr": "Öğrenciler merdivende ne kadar ilerliyor ve derinlik haftalar içinde değişiyor mu?",
+  "es": "¿Hasta dónde bajan los estudiantes por la escalera y cambia la profundidad con las semanas?"
+ },
+ "data/ladder/level-timing": {
+  "en": "How much time do students spend on each step before they open the next one?",
+  "tr": "Öğrenciler bir sonrakini açmadan önce her adımda ne kadar zaman geçiriyor?",
+  "es": "¿Cuánto tiempo pasan los estudiantes en cada paso antes de abrir el siguiente?"
+ },
+ "data/ladder/explanation": {
+  "en": "What was the quality and content of the feedback the student received?",
+  "tr": "Öğrencinin aldığı geri bildirimin niteliği ve içeriği neydi?",
+  "es": "¿Cuál fue la calidad y el contenido de la retroalimentación que recibió el estudiante?"
+ },
+ "data/reading/time-on-screen": {
+  "en": "Can the other reading measures be trusted, that is, was the panel visible at all?",
+  "tr": "Diğer okuma ölçülerine güvenilebilir mi, yani panel gerçekten görünür müydü?",
+  "es": "¿Se puede confiar en las demás medidas de lectura, es decir, estaba visible el panel?"
+ },
+ "data/reading/back-to-code": {
+  "en": "How long do students engage with each step before acting on it?",
+  "tr": "Öğrenciler bir adıma göre davranmadan önce onunla ne kadar ilgileniyor?",
+  "es": "¿Cuánto tiempo dedican los estudiantes a cada paso antes de actuar?"
+ },
+ "data/reading/left-without-acting": {
+  "en": "How often is feedback read and then dropped, and does this relate to the hint depth or the rating?",
+  "tr": "Geri bildirim ne sıklıkla okunup bırakılıyor ve bu, ipucu derinliği ya da değerlendirmeyle ilişkili mi?",
+  "es": "¿Con qué frecuencia se lee la retroalimentación y luego se abandona, y se relaciona con la profundidad o con la valoración?"
+ },
+ "data/reading/edit-after-fix": {
+  "en": "How closely does the student's action follow the feedback?",
+  "tr": "Öğrencinin eylemi geri bildirimi ne kadar yakından izliyor?",
+  "es": "¿Hasta qué punto sigue la acción del estudiante a la retroalimentación?"
+ },
+ "data/reading/fix-undone": {
+  "en": "How often does acting on the fix end in a quick reversal?",
+  "tr": "Düzeltmeye göre davranmak ne sıklıkla hızlı bir geri almayla bitiyor?",
+  "es": "¿Con qué frecuencia actuar según la corrección termina en una marcha atrás rápida?"
+ },
+ "data/reading/copied": {
+  "en": "How often is the answer taken directly, which the edit similarity may miss?",
+  "tr": "Yanıt, düzenleme benzerliğinin gözden kaçırabileceği biçimde ne sıklıkla doğrudan alınıyor?",
+  "es": "¿Con qué frecuencia se toma la respuesta directamente, algo que el parecido de las ediciones puede no detectar?"
+ },
+ "data/reading/reopened": {
+  "en": "Do students use past feedback for review?",
+  "tr": "Öğrenciler geçmiş geri bildirimi tekrar için kullanıyor mu?",
+  "es": "¿Usan los estudiantes la retroalimentación anterior para repasar?"
+ },
+ "data/outcomes/error-gone": {
+  "en": "Is a deeper hint level related to a higher or faster resolution of the error?",
+  "tr": "Daha derin bir ipucu düzeyi, hatanın daha sık ya da daha hızlı çözülmesiyle ilişkili mi?",
+  "es": "¿Se relaciona un nivel de pista más profundo con una resolución más frecuente o más rápida del error?"
+ },
+ "data/outcomes/fixed-without-asking": {
+  "en": "Does unaided error resolution grow over the weeks, next to help-seeking?",
+  "tr": "Yardımsız hata çözme, yardım istemeyle birlikte haftalar içinde artıyor mu?",
+  "es": "¿Crece la resolución de errores sin ayuda con las semanas, junto a la búsqueda de ayuda?"
+ },
+ "data/outcomes/edits-per-unaided-fix": {
+  "en": "How does the effort of unaided fixes compare with the effort before a help request?",
+  "tr": "Yardımsız düzeltmelerin çabası, yardım isteğinden önceki çabayla nasıl karşılaştırılır?",
+  "es": "¿Cómo se compara el esfuerzo de las correcciones sin ayuda con el esfuerzo previo a una petición de ayuda?"
+ },
+ "data/outcomes/follow-on-errors": {
+  "en": "How often does a change only move the problem instead of solving it?",
+  "tr": "Bir değişiklik ne sıklıkla sorunu çözmek yerine yalnızca taşıyor?",
+  "es": "¿Con qué frecuencia un cambio solo traslada el problema en lugar de resolverlo?"
+ },
+ "data/outcomes/files-worked-through": {
+  "en": "What does the whole repair of a file cost, and which share of its problems needed help?",
+  "tr": "Bir dosyanın tüm onarımı neye mal oluyor ve sorunlarının ne kadarı yardım gerektirdi?",
+  "es": "¿Cuánto cuesta la reparación completa de un archivo y qué parte de sus problemas necesitó ayuda?"
+ },
+ "data/outcomes/running-code": {
+  "en": "Does a run after an explanation end without error more often?",
+  "tr": "Bir açıklamadan sonraki çalıştırma daha sık mı hatasız bitiyor?",
+  "es": "¿Termina sin error con más frecuencia una ejecución posterior a una explicación?"
+ },
+ "data/self-report/helpful-rating": {
+  "en": "How do students judge the feedback, and does their judgement relate to what they did next?",
+  "tr": "Öğrenciler geri bildirimi nasıl değerlendiriyor ve bu değerlendirme sonraki davranışlarıyla ilişkili mi?",
+  "es": "¿Cómo juzgan los estudiantes la retroalimentación y se relaciona su juicio con lo que hicieron después?"
+ },
+ "data/self-report/outcome": {
+  "en": "Do the behavioural signals, such as the error going away, agree with what students report?",
+  "tr": "Hatanın ortadan kalkması gibi davranışsal işaretler öğrencilerin bildirdikleriyle örtüşüyor mu?",
+  "es": "¿Coinciden las señales de comportamiento, como la desaparición del error, con lo que informan los estudiantes?"
+ },
+ "data/self-report/confidence": {
+  "en": "Is the students' confidence calibrated, that is, does it predict whether the problem comes back?",
+  "tr": "Öğrencilerin özgüveni ayarlı mı, yani sorunun geri gelip gelmeyeceğini yordayabiliyor mu?",
+  "es": "¿Está calibrada la confianza de los estudiantes, es decir, predice si el problema vuelve?"
+ },
+ "data/activity/sessions": {
+  "en": "What is the unit for the activity counters, and how much did each student use the environment?",
+  "tr": "Etkinlik sayaçlarının birimi nedir ve her öğrenci ortamı ne kadar kullandı?",
+  "es": "¿Cuál es la unidad de los contadores de actividad y cuánto usó cada estudiante el entorno?"
+ },
+ "data/activity/active-days": {
+  "en": "How regular is the use, as a control for exposure?",
+  "tr": "Maruz kalmanın kontrolü olarak kullanım ne kadar düzenli?",
+  "es": "¿Qué regularidad tiene el uso, como control de la exposición?"
+ },
+ "data/activity/active-time": {
+  "en": "How long was each student exposed to the environment, as a base for rates per hour?",
+  "tr": "Saat başına oranlar için bir temel olarak her öğrenci ortama ne kadar süre maruz kaldı?",
+  "es": "¿Cuánto tiempo estuvo expuesto cada estudiante al entorno, como base para tasas por hora?"
+ },
+ "data/activity/lines": {
+  "en": "How much production is there, and how much of it is rewriting?",
+  "tr": "Ne kadar üretim var ve bunun ne kadarı yeniden yazma?",
+  "es": "¿Cuánta producción hay y cuánta es reescritura?"
+ },
+ "data/activity/files-created": {
+  "en": "How do students organize their work?",
+  "tr": "Öğrenciler çalışmalarını nasıl düzenliyor?",
+  "es": "¿Cómo organizan los estudiantes su trabajo?"
+ },
+ "data/activity/languages-edited": {
+  "en": "Which share of the activity belongs to the course language, as a check on the data?",
+  "tr": "Verinin bir kontrolü olarak, etkinliğin ne kadarı dersin diline ait?",
+  "es": "¿Qué parte de la actividad corresponde al lenguaje de la asignatura, como comprobación de los datos?"
+ },
+ "data/activity/large-pastes": {
+  "en": "How much of the code was not typed, which may affect the other activity measures?",
+  "tr": "Kodun ne kadarı yazılmadı ve bu diğer etkinlik ölçülerini etkileyebilir mi?",
+  "es": "¿Cuánto código no se tecleó, lo que puede afectar a las demás medidas de actividad?"
+ },
+ "data/activity/left-vscode": {
+  "en": "How often do students switch to other sources, which the extension cannot see?",
+  "tr": "Öğrenciler eklentinin göremediği başka kaynaklara ne sıklıkla geçiyor?",
+  "es": "¿Con qué frecuencia pasan los estudiantes a otras fuentes, que la extensión no puede ver?"
+ },
+ "data/activity/saves": {
+  "en": "How short is the edit-and-run cycle?",
+  "tr": "Düzenle ve çalıştır döngüsü ne kadar kısa?",
+  "es": "¿Cómo de corto es el ciclo de editar y ejecutar?"
+ },
+ "data/activity/debug-and-task-runs": {
+  "en": "How often do students run their programs from VS Code, as far as the extension can see it?",
+  "tr": "Öğrenciler programlarını, eklentinin görebildiği kadarıyla, VS Code’dan ne sıklıkla çalıştırıyor?",
+  "es": "¿Con qué frecuencia ejecutan los estudiantes sus programas desde VS Code, en la medida en que la extensión lo ve?"
+ },
+ "data/activity/breaks": {
+  "en": "How continuous is the work within a session?",
+  "tr": "Bir oturum içinde çalışma ne kadar kesintisiz?",
+  "es": "¿Cómo de continuo es el trabajo dentro de una sesión?"
+ },
+ "data/activity/file-switches": {
+  "en": "How much do students navigate between files, as a sign of reuse of their own code?",
+  "tr": "Öğrenciler, kendi kodlarını yeniden kullanmanın bir işareti olarak, dosyalar arasında ne kadar geziniyor?",
+  "es": "¿Cuánto navegan los estudiantes entre archivos, como señal de reutilización de su propio código?"
+ },
+ "data/learner/ai-learning-summary": {
+  "en": "What reflective feedback did students receive, beside the hints?",
+  "tr": "Öğrenciler ipuçlarının yanında hangi yansıtıcı geri bildirimi aldı?",
+  "es": "¿Qué retroalimentación reflexiva recibieron los estudiantes, además de las pistas?"
+ },
+ "data/learner/suggested-practice": {
+  "en": "Does the suggested topic match the student's weak points in the tests?",
+  "tr": "Önerilen konu, öğrencinin testlerdeki zayıf noktalarıyla örtüşüyor mu?",
+  "es": "¿Coincide el tema sugerido con los puntos débiles del estudiante en los tests?"
+ },
+ "data/learner/private-notes": {
+  "en": "How is the feedback personalised, and how often does the personalisation change?",
+  "tr": "Geri bildirim nasıl kişiselleştiriliyor ve kişiselleştirme ne sıklıkla değişiyor?",
+  "es": "¿Cómo se personaliza la retroalimentación y con qué frecuencia cambia la personalización?"
+ },
+ "data/indicators/hint-was-enough": {
+  "en": "How much support do students need per question, as one measure of independence?",
+  "tr": "Bağımsızlığın bir ölçüsü olarak öğrenciler soru başına ne kadar desteğe ihtiyaç duyuyor?",
+  "es": "¿Cuánto apoyo necesitan los estudiantes por pregunta, como una medida de autonomía?"
+ },
+ "data/indicators/sessions-without-help": {
+  "en": "Does the share of sessions without help grow over the weeks?",
+  "tr": "Yardımsız oturumların payı haftalar içinde artıyor mu?",
+  "es": "¿Crece la proporción de sesiones sin ayuda con las semanas?"
+ },
+ "data/indicators/needs-attention": {
+  "en": "Can simple rules on the log data find students at risk, and do they agree with the test results?",
+  "tr": "Kayıt verisi üzerindeki basit kurallar risk altındaki öğrencileri bulabilir mi ve bunlar test sonuçlarıyla örtüşüyor mu?",
+  "es": "¿Pueden unas reglas sencillas sobre los registros detectar estudiantes en riesgo, y coinciden con los resultados de los tests?"
+ },
+ "data/indicators/online-and-active": {
+  "en": "How many students took part in each week, as a base for attrition and missing data?",
+  "tr": "Kayıp ve eksik veri için bir temel olarak her haftaya kaç öğrenci katıldı?",
+  "es": "¿Cuántos estudiantes participaron cada semana, como base para el abandono y los datos perdidos?"
+ },
+ "data/indicators/questions-over-time": {
+  "en": "How does help-seeking change over the weeks?",
+  "tr": "Yardım isteme haftalar içinde nasıl değişiyor?",
+  "es": "¿Cómo cambia la búsqueda de ayuda con las semanas?"
+ },
+ "data/indicators/concepts-and-errors": {
+  "en": "Which concepts cause the most help requests in the course?",
+  "tr": "Derste en çok yardım isteğine hangi kavramlar yol açıyor?",
+  "es": "¿Qué conceptos generan más peticiones de ayuda en la asignatura?"
+ },
+ "data/indicators/work-rhythm": {
+  "en": "How much of the use happens in class and how much in self-study?",
+  "tr": "Kullanımın ne kadarı derste, ne kadarı bireysel çalışmada oluyor?",
+  "es": "¿Qué parte del uso ocurre en clase y qué parte en el estudio autónomo?"
+ },
+ "data/indicators/student-panel": {
+  "en": "Which feedback about their own behaviour did students receive, which may itself change the behaviour?",
+  "tr": "Öğrenciler kendi davranışları hakkında, davranışın kendisini de değiştirebilecek hangi geri bildirimi aldı?",
+  "es": "¿Qué retroalimentación sobre su propio comportamiento recibieron los estudiantes, que a su vez puede cambiar ese comportamiento?"
+ },
+ "data/system/response-time": {
+  "en": "Was the service fast and stable enough during the study, as a condition of the intervention?",
+  "tr": "Müdahalenin bir koşulu olarak hizmet çalışma boyunca yeterince hızlı ve kararlı mıydı?",
+  "es": "¿Fue el servicio lo bastante rápido y estable durante el estudio, como condición de la intervención?"
+ },
+ "data/system/tokens": {
+  "en": "What are the running costs, for a report on the feasibility of the approach?",
+  "tr": "Yaklaşımın uygulanabilirliği üzerine bir rapor için işletme maliyetleri nedir?",
+  "es": "¿Cuáles son los costes de funcionamiento, para un informe sobre la viabilidad del enfoque?"
+ },
+ "data/system/cache": {
+  "en": "Which answers were not personalised, which matters for the private notes and the analysis?",
+  "tr": "Hangi yanıtlar kişiselleştirilmedi? Bu, gizli notlar ve analiz için önemlidir.",
+  "es": "¿Qué respuestas no se personalizaron? Esto importa para las notas privadas y para el análisis."
+ },
+ "data/system/failed-requests": {
+  "en": "How reliable was the service, and are there requests missing from the question data?",
+  "tr": "Hizmet ne kadar güvenilirdi ve soru verisinde eksik istekler var mı?",
+  "es": "¿Qué fiabilidad tuvo el servicio y faltan peticiones en los datos de preguntas?"
+ },
+ "data/system/usage-limits": {
+  "en": "Did the limits restrict help-seeking during the study?",
+  "tr": "Sınırlar çalışma sırasında yardım istemeyi kısıtladı mı?",
+  "es": "¿Restringieron los límites la búsqueda de ayuda durante el estudio?"
+ },
+ "data/indicators/independence-trend": {
+  "en": "Does help-seeking fall, and does the first hint suffice more often over the weeks, for the class and for each student?",
+  "tr": "Yardım isteme haftalar içinde azalıyor mu ve ilk ipucu daha sık yeterli oluyor mu? Bu, sınıf için ve her öğrenci için nasıl değişiyor?",
+  "es": "¿Disminuye la búsqueda de ayuda y basta la primera pista más a menudo con el tiempo, en la clase y en cada estudiante?"
+ }
+}

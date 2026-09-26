@@ -1,0 +1,1 @@
+{"visual":{"type":"hist","unit":"count","bins":[{"label":"0–2 s","count":16},{"label":"2–3 s","count":123},{"label":"3–4 s","count":246},{"label":"4–5 s","count":192},{"label":"5–6 s","count":135},{"label":"6–8 s","count":115},{"label":"8+ s","count":32}]},"facts":{"avgSec":4.5,"p50Sec":4.3,"p95Sec":7.6,"measured":859,"cacheHits":69}}

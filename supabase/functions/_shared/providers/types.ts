@@ -27,7 +27,7 @@ export interface ChatResponse {
   modelUsed: string;
   structuredOutputUsed: boolean;
   /** true only when the vendor's own stop/finish reason was a clean stop,
-   * never a length/max-tokens cutoff -- see docs/SPEC_ADDENDUM.md §7. */
+   * never a length/max-tokens cutoff -- see specs/SPEC_ADDENDUM.md §7. */
   finishedCleanly: boolean;
 }
 

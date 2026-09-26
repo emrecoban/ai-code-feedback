@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"count","series":["class"],"rows":[{"label":{"val":["consent_status","granted"]},"class":27},{"label":{"val":["consent_status","declined"]},"class":1},{"label":{"val":["consent_status","pending"]},"class":0}]},"facts":{"accounts":28,"granted":27,"declined":1,"pending":0,"featuredTime":"10:07","version":"2026-08-v1"}}

@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"count","series":["class"],"rows":[{"label":{"val":["failureCode","provider_error"]},"class":22},{"label":{"val":["failure","timeout"]},"class":6},{"label":{"val":["failureCode","rate_limited"]},"class":2}]},"facts":{"failures":30,"questions":928,"ratePct":3.1}}

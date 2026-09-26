@@ -495,7 +495,7 @@ inlining it, so the two schemas don't silently drift into each other.
 
 ## 12. Synthetic email domain (corrects §4.2's example) and a required dashboard setting
 
-Found by testing against the live project (`spmypppuxdtnvelkldya`) during M1, not by static review.
+Found by testing against the live project (`<project-ref>`) during M1, not by static review.
 
 **No RFC 2606 reserved TLD passes Supabase Auth's email validator on this
 project.** §4.2 names `students.aicodefeedback.local` as the example
@@ -519,7 +519,7 @@ first — don't assume any TLD passes, reserved or otherwise.
 
 **Action required, outside what any tool available to this build could
 reach — confirmed a second time, now with a clean, isolated reproduction:**
-`auth.signUp` for a brand-new username (`emrecoban55@students.aicodefeedback.dev`)
+`auth.signUp` for a brand-new username (`<test-username>@students.aicodefeedback.dev`)
 returns `429 over_email_send_rate_limit`, and no `auth.users` row is
 created (confirmed by querying `auth.users` directly). That only happens
 if this project is still attempting to send a confirmation email on

@@ -4,6 +4,7 @@
   "description": "AI-powered feedback for your code, when you ask for it.",
   "version": "0.2.0",
   "publisher": "EmreCOBAN",
+  "license": "MIT",
   "icon": "media/feedback-icon.png",
   "repository": {
     "type": "git",
@@ -135,6 +136,7 @@
     }
   },
   "scripts": {
+    "vscode:prepublish": "npm run package",
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
     "typecheck": "tsc --noEmit -p ./",

@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"pct","series":["featured","class"],"rows":[{"label":{"val":["misc","allSessions"]},"featured":25,"class":22.1},{"label":{"val":["misc","withoutEmpty"]},"featured":18.2,"class":18.3}]},"facts":{"classPct":22.1,"classPctNoEmpty":18.3,"featuredPct":25,"featuredPctNoEmpty":18.2,"sessions":321,"sessionsNoEmpty":306}}

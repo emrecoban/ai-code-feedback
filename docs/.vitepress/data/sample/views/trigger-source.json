@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"pct","series":["featured","class"],"rows":[{"label":{"val":["trigger_source","diagnostic"]},"featured":59.5,"class":70.8},{"label":{"val":["trigger_source","selection"]},"featured":40.5,"class":29.2}]},"facts":{"featuredQuestions":37,"featuredDiagnostic":22,"featuredSelection":15,"classDiagnosticPct":70.8,"classQuestions":928}}
