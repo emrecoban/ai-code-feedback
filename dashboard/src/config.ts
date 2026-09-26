@@ -7,6 +7,13 @@ export const SUPABASE_URL: string =
 export const SUPABASE_PUBLISHABLE_KEY: string =
   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_KtX91bV4KxdudHoO-SiFKw_RK-ukcMs';
 
+/** The data documentation site (docs/, VitePress). Where it is hosted is
+ * decided at deploy time, so its address is a build setting; without one the
+ * Docs link is left out rather than pointing nowhere. `pnpm dev` falls back
+ * to the docs dev server (port 5174, the "docs" entry in .claude/launch.json). */
+export const DOCS_URL: string =
+  import.meta.env.VITE_DOCS_URL || (import.meta.env.DEV ? 'http://localhost:5174/' : '');
+
 /** Realtime channel the database announces changes on
  * (supabase/migrations/0021_dashboard_realtime.sql). */
 export const REALTIME_CHANNEL = 'dashboard-activity';

@@ -345,6 +345,10 @@ input:disabled {
   background: var(--accent-soft);
   color: var(--accent);
 }
+.tab-external {
+  margin-left: 4px;
+  font-size: 11px;
+}
 .topbar-actions {
   display: flex;
   align-items: center;

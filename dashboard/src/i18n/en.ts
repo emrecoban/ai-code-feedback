@@ -67,6 +67,8 @@ export const en = {
   'nav.insights': 'Insights',
   'nav.log': 'Activity log',
   'nav.account': 'Account',
+  'nav.docs': 'Docs',
+  'nav.newTab': 'opens in a new tab',
   'live.live': 'Live',
   'live.auto': 'Auto-refresh',
   'live.paused': 'Paused',

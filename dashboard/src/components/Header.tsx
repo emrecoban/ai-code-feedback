@@ -1,5 +1,6 @@
+import { DOCS_URL } from '../config';
 import { useNow } from '../hooks/usePolling';
-import { useI18n } from '../i18n';
+import { useI18n, type Lang } from '../i18n';
 import type { MessageKey } from '../i18n/en';
 import { useAuth, useSession } from '../lib/auth';
 import { useLive } from '../lib/live';
@@ -14,8 +15,15 @@ const TAB_LABELS: Record<Tab, MessageKey> = {
   account: 'nav.account',
 };
 
+/** The docs home in the viewer's language: English at the site root, the
+ * others under /tr/ and /es/ (docs/.vitepress/config.ts). */
+function docsHome(lang: Lang): string {
+  const base = DOCS_URL.endsWith('/') ? DOCS_URL : `${DOCS_URL}/`;
+  return lang === 'en' ? base : `${base}${lang}/`;
+}
+
 export function Header({ tab, tabs }: { tab: Tab; tabs: Tab[] }) {
-  const { t, f } = useI18n();
+  const { t, f, lang } = useI18n();
   const { account } = useSession();
   const { signOut } = useAuth();
   const { paused, setPaused, refresh, realtime, lastUpdated, failing } = useLive();
@@ -45,6 +53,21 @@ export function Header({ tab, tabs }: { tab: Tab; tabs: Tab[] }) {
               {t(TAB_LABELS[id])}
             </a>
           ))}
+          {DOCS_URL && (
+            <a
+              href={docsHome(lang)}
+              className="tab"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t('nav.docs')} (${t('nav.newTab')})`}
+              title={t('nav.newTab')}
+            >
+              {t('nav.docs')}
+              <span className="tab-external" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          )}
         </nav>
 
         <div className="topbar-actions">

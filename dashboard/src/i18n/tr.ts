@@ -69,6 +69,8 @@ export const tr: Dict = {
   'nav.insights': 'Analizler',
   'nav.log': 'İşlem kaydı',
   'nav.account': 'Hesap',
+  'nav.docs': 'Dokümanlar',
+  'nav.newTab': 'yeni sekmede açılır',
   'live.live': 'Canlı',
   'live.auto': 'Otomatik yenileme',
   'live.paused': 'Duraklatıldı',

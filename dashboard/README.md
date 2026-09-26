@@ -37,6 +37,8 @@ pnpm build      # type-check + production build into dist/
 
 It talks to the same Supabase project as the extension by default. To point it at another one, copy `.env.example` to `.env.local` and fill it in.
 
+The **Docs** link in the top bar opens the data documentation site (`docs/`) in the dashboard's language. Set its address with `VITE_DOCS_URL` at build time (for example in the hosting provider's build settings). Without it the link is hidden, except in `pnpm dev`, where it points at the docs dev server on port 5174.
+
 ## Accounts and security
 
 Dashboard accounts are separate from student accounts. They live in the `dashboard` schema, which the REST API does not expose (see `supabase/migrations/0017`–`0023`). The browser only calls the `dashboard_*` RPC functions, and each one checks the session token before touching anything, so the publishable key alone opens nothing.
