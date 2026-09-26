@@ -1,0 +1,13 @@
+{
+  "id": 1135,
+  "session_id": "fa793d6f-e8be-4ca8-9500-f8e705df7411",
+  "user_id": "09fa05b5-09ad-4f6e-a7ea-e9175ed93983",
+  "interaction_id": "530efaea-545e-4e7c-b2ac-ff963c1ac719",
+  "event_type": "explanation_copied",
+  "client_event_id": "explanation_copied:e6d3dd85-406b-482b-bb12-6acabf1573fd",
+  "payload": {
+    "level": "L3"
+  },
+  "client_ts": "2030-03-12T07:28:20.331Z",
+  "server_ts": "2030-03-12T07:28:20.345Z"
+}

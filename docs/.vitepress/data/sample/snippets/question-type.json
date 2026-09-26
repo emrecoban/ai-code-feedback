@@ -1,0 +1,18 @@
+[
+  {
+    "id": "97e18f7c-d224-4707-b1c9-1ad5283eda09",
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-05T07:19:03.326Z",
+    "trigger_source": "diagnostic",
+    "question_type": "what_does_this_mean"
+  },
+  {
+    "id": "437ae49f-5179-4079-bbcf-8f2da7af2cc7",
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-05T08:27:52.178Z",
+    "trigger_source": "selection",
+    "question_type": "what_does_this_do"
+  }
+]

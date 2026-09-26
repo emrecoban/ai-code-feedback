@@ -1,0 +1,14 @@
+{
+  "id": 1136,
+  "session_id": "fa793d6f-e8be-4ca8-9500-f8e705df7411",
+  "user_id": "09fa05b5-09ad-4f6e-a7ea-e9175ed93983",
+  "interaction_id": null,
+  "event_type": "request_failed",
+  "client_event_id": "request_failed:71129093-c3c0-4082-aa87-eb09f279e660",
+  "payload": {
+    "kind": "backend",
+    "code": "provider_error"
+  },
+  "client_ts": "2030-03-12T07:27:03.871Z",
+  "server_ts": "2030-03-12T07:27:03.884Z"
+}

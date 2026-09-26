@@ -1,0 +1,16 @@
+{
+  "id": 1053,
+  "session_id": "34ea7275-d41f-46d9-8fd8-862c55fa6dc5",
+  "user_id": "fa30423e-5239-436f-92e5-8355663e2364",
+  "interaction_id": null,
+  "event_type": "question_picker_abandoned",
+  "client_event_id": "question_picker_abandoned:e58e6e2b-de95-4a58-b044-2759f2e8e128",
+  "payload": {
+    "stage": "preset",
+    "triggerSurface": "selection_keybinding",
+    "selectionLineCount": 2,
+    "selectionCharCount": 40
+  },
+  "client_ts": "2030-04-02T07:31:59.977Z",
+  "server_ts": "2030-04-02T07:32:00.000Z"
+}

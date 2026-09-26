@@ -1,0 +1,1 @@
+{"visual":{"type":"table","columns":[{"item":"metric.questions"},{"item":"interactions.cache_hit"},{"item":"metric.cache_rate"},{"item":"explanations.reuse_count"}],"rows":[[928,69,{"pct":7.4},70]]},"facts":{"questions":928,"hits":69,"ratePct":7.4,"cacheRows":868,"reusedRows":63}}

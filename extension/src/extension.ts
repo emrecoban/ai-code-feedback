@@ -56,7 +56,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   // Seed with whatever language this machine last used, before we even
   // know if anyone is signed in -- otherwise the very first sign-in
   // prompt of a fresh VS Code session would always show in English
-  // regardless of the student's actual preference (docs/SPEC_ADDENDUM.md
+  // regardless of the student's actual preference (specs/SPEC_ADDENDUM.md
   // §13: vscode.l10n can't do this, since it's locked to VS Code's own
   // display language, not to a value this extension controls).
   const storedLanguage = context.globalState.get<Language>(LANGUAGE_STORAGE_KEY);
@@ -1042,7 +1042,7 @@ async function logPostFeedbackEdit(
 
 /** Invoked from [WELCOMEVIEW]'s signed-out language <select>. One picker
  * for both the sidebar's own UI and the AI's feedback language
- * (docs/SPEC_ADDENDUM.md §13) -- vscode.l10n can't do this since it only
+ * (specs/SPEC_ADDENDUM.md §13) -- vscode.l10n can't do this since it only
  * follows VS Code's own display language, shared by every student on a
  * lab machine, not settable per student. Once signed in, the equivalent
  * entry point is [AUTH-TOOLBAR]'s globe icon -> changeFeedbackLanguage()

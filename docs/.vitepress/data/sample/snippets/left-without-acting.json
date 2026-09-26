@@ -1,0 +1,14 @@
+{
+  "id": 1048,
+  "session_id": "34ea7275-d41f-46d9-8fd8-862c55fa6dc5",
+  "user_id": "fa30423e-5239-436f-92e5-8355663e2364",
+  "interaction_id": "82b0db39-302e-4991-8c75-60615eccafb2",
+  "event_type": "feedback_abandoned",
+  "client_event_id": "feedback_abandoned:82b0db39-302e-4991-8c75-60615eccafb2:1",
+  "payload": {
+    "level": 1,
+    "reason": "timeout"
+  },
+  "client_ts": "2030-04-02T07:53:38.351Z",
+  "server_ts": "2030-04-02T07:53:38.361Z"
+}

@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"count","series":["featured","class"],"rows":[{"label":{"val":["abandon_reason","timeout"]},"featured":3,"class":89},{"label":{"val":["abandon_reason","session_end"]},"featured":0,"class":24}]},"facts":{"classAbandoned":113,"explanations":928,"abandonedPct":12.2,"featuredAbandoned":3}}

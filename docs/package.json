@@ -1,0 +1,17 @@
+{
+  "name": "ai-code-feedback-docs",
+  "private": true,
+  "type": "module",
+  "description": "Data documentation site for AI Code Feedback (EN/TR/ES). All examples use synthetic data.",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "docs:sample": "node scripts/sample.mjs && node scripts/codebook.mjs",
+    "docs:check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "vitepress": "1.6.4"
+  }
+}

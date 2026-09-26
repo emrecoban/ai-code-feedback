@@ -1,0 +1,12 @@
+{
+  "id": "8855e789-f97e-4746-a5cf-1715cd28d49e",
+  "cache_key": "785e41b0c3d1c2cbb13dee064401b8ee91be6130c4de42e912746068c9982b53",
+  "course_id": null,
+  "week_no": null,
+  "language": "tr",
+  "error_signature": "Expression value is unused",
+  "model_used": "openai_compatible",
+  "source": "generated",
+  "reuse_count": 1,
+  "created_at": "2030-03-05T07:34:13.777Z"
+}

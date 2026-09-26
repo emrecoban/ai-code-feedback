@@ -1,4 +1,4 @@
-// Appendix B of the base spec, corrected per docs/SPEC_ADDENDUM.md §2:
+// Appendix B of the base spec, corrected per specs/SPEC_ADDENDUM.md §2:
 // the rolling summary lives in the user message, not the system prefix,
 // so the system message stays byte-identical across every student in a
 // course/week/language and provider prefix caching actually applies.

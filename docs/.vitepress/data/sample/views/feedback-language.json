@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"count","series":["class"],"rows":[{"label":{"val":["language","tr"]},"class":20},{"label":{"val":["language","en"]},"class":4},{"label":{"val":["language","es"]},"class":1}]},"facts":{"tr":20,"en":4,"es":1,"changes":3,"exampleStudent":"S03","exampleWeek":2,"exampleFrom":"en","exampleTo":"tr","featuredLanguage":"en"}}

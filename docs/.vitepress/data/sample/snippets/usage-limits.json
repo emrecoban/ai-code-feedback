@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "window_start": "2030-03-05T07:00:00.000Z",
+    "requests": 5,
+    "total_tokens": 10130
+  },
+  {
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "window_start": "2030-03-05T08:00:00.000Z",
+    "requests": 1,
+    "total_tokens": 2016
+  }
+]

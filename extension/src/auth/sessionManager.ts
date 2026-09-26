@@ -144,7 +144,7 @@ export class SessionManager {
         // All three mean the project's Auth configuration is wrong, not
         // that the student did anything wrong -- most commonly, "Confirm
         // email" is still on, so GoTrue tries (and fails) to send a
-        // confirmation email on every signup. See docs/SPEC_ADDENDUM.md §12.
+        // confirmation email on every signup. See specs/SPEC_ADDENDUM.md §12.
         logger.error('signUp failed due to Auth project configuration', signUpRes.error);
         return { ok: false, reason: 'server_misconfigured' };
       }

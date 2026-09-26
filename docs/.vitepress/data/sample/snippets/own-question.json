@@ -1,0 +1,9 @@
+{
+  "id": "7207f6a1-bd4e-4230-ada2-06a863301514",
+  "session_id": "00002aaa-0d1b-4929-901a-edd210d0f2ac",
+  "user_id": "3c77282d-852f-4d73-9bb7-8e5a6ec28954",
+  "created_at": "2030-03-23T17:47:57.513Z",
+  "trigger_source": "selection",
+  "question_type": "free_text",
+  "free_text": "why does this loop stop too early?"
+}

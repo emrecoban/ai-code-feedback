@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1816,
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "interaction_id": "97e18f7c-d224-4707-b1c9-1ad5283eda09",
+    "event_type": "level_reached",
+    "client_event_id": "level_reached:97e18f7c-d224-4707-b1c9-1ad5283eda09:2",
+    "payload": {
+      "level": 2,
+      "isEscalation": true,
+      "msSinceCreated": 38232
+    },
+    "client_ts": "2030-03-05T07:19:41.528Z",
+    "server_ts": "2030-03-05T07:19:41.558Z"
+  },
+  {
+    "id": 1817,
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "interaction_id": "97e18f7c-d224-4707-b1c9-1ad5283eda09",
+    "event_type": "level_reached",
+    "client_event_id": "level_reached:97e18f7c-d224-4707-b1c9-1ad5283eda09:3",
+    "payload": {
+      "level": 3,
+      "isEscalation": true,
+      "msSinceCreated": 47370
+    },
+    "client_ts": "2030-03-05T07:19:50.679Z",
+    "server_ts": "2030-03-05T07:19:50.696Z"
+  }
+]

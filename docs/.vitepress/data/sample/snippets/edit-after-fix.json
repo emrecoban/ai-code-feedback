@@ -1,0 +1,14 @@
+{
+  "id": 1819,
+  "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+  "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+  "interaction_id": "97e18f7c-d224-4707-b1c9-1ad5283eda09",
+  "event_type": "post_feedback_edit",
+  "client_event_id": "post_feedback_edit:97e18f7c-d224-4707-b1c9-1ad5283eda09",
+  "payload": {
+    "overlapRatio": 0.365,
+    "editedLineDistance": 0
+  },
+  "client_ts": "2030-03-05T07:20:43.814Z",
+  "server_ts": "2030-03-05T07:20:43.837Z"
+}

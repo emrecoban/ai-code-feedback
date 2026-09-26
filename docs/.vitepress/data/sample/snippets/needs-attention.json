@@ -1,0 +1,19 @@
+{
+  "user_id": "S12",
+  "username": "s12",
+  "last_active": "2030-04-28T19:36:00+00:00",
+  "reasons": [
+    "repeat_error",
+    "still_stuck",
+    "unhelpful"
+  ],
+  "counts": {
+    "repeat": 3,
+    "still_stuck": 5,
+    "fix": 1,
+    "questions": 33,
+    "avg_edits": 0.9,
+    "unhelpful": 6,
+    "days_inactive": 0
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "bbf56c66-bbe9-42d4-8190-f0ee61a6ee3e",
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-05T07:31:29.741Z",
+    "max_level_reached": 3,
+    "self_reported_outcome": "still_stuck"
+  },
+  {
+    "id": "a2ab3453-5d1d-4473-a8dc-9db730ec2a15",
+    "session_id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "created_at": "2030-03-05T07:49:34.093Z",
+    "max_level_reached": 0,
+    "self_reported_outcome": "solved"
+  }
+]

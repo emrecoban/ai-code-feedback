@@ -1,0 +1,18 @@
+[
+  {
+    "id": "bf1fd4d2-b334-475c-9555-3cff275fda55",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-05T07:08:00.000Z",
+    "last_seen_at": "2030-03-05T08:53:00.000Z",
+    "errors_resolved_without_asking": 5,
+    "follow_on_error_count": 1
+  },
+  {
+    "id": "5a602d50-fe0d-4e43-9e6b-4bfbb5387a1c",
+    "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+    "started_at": "2030-03-27T14:13:00.000Z",
+    "last_seen_at": "2030-03-27T15:20:00.000Z",
+    "errors_resolved_without_asking": 4,
+    "follow_on_error_count": 1
+  }
+]

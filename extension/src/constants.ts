@@ -13,7 +13,7 @@ export const SUPABASE_PUBLISHABLE_KEY =
 // base spec suggests doesn't actually work here. A real-gTLD-shaped
 // domain (".dev") passes the same validator cleanly. This carries a small
 // residual risk: IF email confirmation is ever left on by mistake (it
-// must be off per §4.2 regardless -- see docs/SPEC_ADDENDUM.md §12),
+// must be off per §4.2 regardless -- see specs/SPEC_ADDENDUM.md §12),
 // GoTrue would attempt to send real mail to this domain. Not a concern
 // once confirmation is correctly disabled, since no email is ever sent.
 export const AUTH_EMAIL_DOMAIN = 'students.aicodefeedback.dev';

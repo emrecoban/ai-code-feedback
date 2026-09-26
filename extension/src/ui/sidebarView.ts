@@ -253,7 +253,7 @@ const STRINGS: Record<
 /**
  * [WELCOMEVIEW] (signed-out state) + the signed-in session view, in one
  * webview that toggles between them. The hover-anchored tier-1 reveal
- * from docs/SPEC_ADDENDUM.md §5 is a follow-up increment; for now this
+ * from specs/SPEC_ADDENDUM.md §5 is a follow-up increment; for now this
  * panel (base spec §9.3's "session review log") is also where
  * explanations are read, including the L2/L3 reveal and gating-degraded
  * notes, and where the student picks the language for both the sidebar

@@ -1,0 +1,1 @@
+{"visual":{"type":"bars","unit":"sec","series":["featured","class"],"rows":[{"label":{"val":["shown_level","1"]},"featured":26,"class":16.9},{"label":{"val":["shown_level","2"]},"featured":39,"class":20},{"label":{"val":["shown_level","3"]},"featured":11.2,"class":18.3}]},"facts":{"classMedianSec":18,"featuredMedianSec":24,"returns":815,"explanations":928}}

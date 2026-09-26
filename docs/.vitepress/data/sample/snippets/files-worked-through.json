@@ -1,0 +1,17 @@
+{
+  "id": 1979,
+  "session_id": "b5d1e571-4c8e-44bd-91ca-b256a6834a3a",
+  "user_id": "acdfcba7-aabd-490f-9ef2-df9ecdd30a71",
+  "interaction_id": null,
+  "event_type": "file_cleared",
+  "client_event_id": "file_cleared:137735db-dbd6-4be6-bb48-e5586f3c677a",
+  "payload": {
+    "fileName": "hw8.py",
+    "msWithErrors": 1566798,
+    "editsWhileErrors": 14,
+    "diagnosticsSeen": 3,
+    "diagnosticsAsked": 1
+  },
+  "client_ts": "2030-04-27T18:55:59.994Z",
+  "server_ts": "2030-04-27T18:56:00.000Z"
+}

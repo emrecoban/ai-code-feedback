@@ -161,7 +161,7 @@ export function languageMatches(ladder: HintLadder, language: string): boolean {
   return marker.test(sample);
 }
 
-/** docs/SPEC_ADDENDUM.md §2: the rolling summary now travels in the same
+/** specs/SPEC_ADDENDUM.md §2: the rolling summary now travels in the same
  * message as the visible fields, so guard against the model echoing it
  * back to the student. */
 export function noRollingSummaryLeak(ladder: HintLadder, rollingSummary: string): boolean {

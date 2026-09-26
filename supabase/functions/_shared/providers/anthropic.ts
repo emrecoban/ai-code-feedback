@@ -28,7 +28,7 @@ export function createAnthropicProvider(opts: { apiKey: string; model: string })
             temperature: req.temperature,
             // Explicit cache_control breakpoint (base spec §6.4): the
             // system message is fully static per course/week/language
-            // after docs/SPEC_ADDENDUM.md §2, so this hits across every
+            // after specs/SPEC_ADDENDUM.md §2, so this hits across every
             // student in the cohort, not just repeat calls from one user.
             system: [{ type: 'text', text: req.system, cache_control: { type: 'ephemeral' } }],
             messages: [{ role: 'user', content: req.user }],
