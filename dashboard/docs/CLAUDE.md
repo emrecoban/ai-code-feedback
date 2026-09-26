@@ -1,15 +1,22 @@
-# docs: data documentation site
+# dashboard/docs: data documentation site
 
 VitePress 1.6.4 site that documents every data item the system collects, what it means and how
-research can use it. English at `/`, Turkish at `/tr/`, Spanish at `/es/`. Self-contained: its own
-`package.json` (npm), nothing outside `docs/` is needed at build time.
+research can use it. English at `/`, Turkish at `/tr/`, Spanish at `/es/`. It has its own `package.json`
+(npm) and needs nothing else at build time. The scripts read `supabase/`, `extension/` and
+`dashboard/src/config.ts` two levels up (`REPO` in `scripts/sample.mjs` and `scripts/check.mjs`).
 
-## Commands (run in `docs/`)
+**Published with the dashboard.** The dashboard's `pnpm build` runs `build:docs`: `npm ci` here, then
+`docs:build:dashboard`, which builds the site with base `/docs/` into `../dist/docs/`. In that build the
+links end in `.html` (no clean URLs), so any static host serves the pages without rewrite rules. The
+dashboard's Docs link points to `/docs/` unless `VITE_DOCS_URL` is set.
+
+## Commands (run in `dashboard/docs/`)
 
 | Command | What it does |
 |---|---|
 | `npm run docs:dev` | Dev server. Also shows draft pages (the ethics page) |
-| `npm run docs:build` | Static build to `.vitepress/dist/`. Fails on dead links |
+| `npm run docs:build` | Standalone build to `.vitepress/dist/` (site at the root). Fails on dead links |
+| `npm run docs:build:dashboard` | Build under `/docs/` into the dashboard's `dist/docs/` (`DOCS_BASE`, `DOCS_OUT_DIR`) |
 | `npm run docs:sample` | `scripts/sample.mjs` then `scripts/codebook.mjs`: synthetic cohort, dashboard metrics, views, codebook and downloads. Deterministic (fixed seed and clock) |
 | `npm run docs:check` | `scripts/check.mjs`: all coverage, schema, secret, style and language checks. Set `DOCS_ACCOUNTS_FILE` to the local list of test and teacher accounts to scan for those usernames |
 
@@ -33,7 +40,7 @@ then `docs:build` and `docs:check`.
 ## Rules
 
 - **Synthetic data only.** Never connect to the live Supabase project, never copy real data, and never
-  put URLs, keys or values from `.env` or config files into `docs/`. `docs:check` scans for them.
+  put URLs, keys or values from `.env` or config files into this folder. `docs:check` scans for them.
 - **Every page in all three languages**, same file names. No English interface text on TR/ES pages.
 - **Style:** short plain sentences, no em-dashes, no semicolons (checked). Metric names match the
   dashboard labels in `terms.ts`.

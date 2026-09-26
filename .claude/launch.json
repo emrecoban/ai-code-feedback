@@ -10,8 +10,14 @@
     {
       "name": "docs",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "docs", "run", "docs:dev", "--", "--port", "5174", "--strictPort"],
+      "runtimeArgs": ["--prefix", "dashboard/docs", "run", "docs:dev", "--", "--port", "5174", "--strictPort"],
       "port": 5174
+    },
+    {
+      "name": "dashboard-dist",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "dashboard", "preview", "--port", "4173", "--strictPort"],
+      "port": 4173
     }
   ]
 }

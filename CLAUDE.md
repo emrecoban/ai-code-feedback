@@ -5,8 +5,8 @@ programming problems. A VS Code extension gives a four-level hint ladder (L0 Dec
 L2 Concept → L3 Fix) **only when the student asks**, and records research data about how it is used.
 Instructors and researchers read that data in a web dashboard. Both run against one hosted Supabase project.
 
-> `specs/SPEC_ADDENDUM.md` is the only design document in the repo. `docs/` is the public data
-> documentation site (VitePress, EN/TR/ES), built on the `docs-site` branch.
+> `specs/SPEC_ADDENDUM.md` is the only design document in the repo. `dashboard/docs/` is the public data
+> documentation site (VitePress, EN/TR/ES), published with the dashboard under `/docs/`.
 
 ## Directory map
 
@@ -15,9 +15,9 @@ Instructors and researchers read that data in a web dashboard. Both run against 
 | `extension/` | VS Code extension `ai-code-feedback` (TypeScript, esbuild, pnpm) | `extension/CLAUDE.md` |
 | `supabase/` | Postgres migrations, Deno Edge Functions, read-only analytics SQL | `supabase/CLAUDE.md` |
 | `dashboard/` | Instructor/research dashboard (React 19, Vite 8, TypeScript 7, pnpm) | `dashboard/CLAUDE.md` |
+| `dashboard/docs/` | Data documentation site (VitePress 1.6, npm, EN/TR/ES), synthetic data only. `pnpm build` in `dashboard/` builds it into `dist/docs/` | `dashboard/docs/CLAUDE.md` |
 | `specs/SPEC_ADDENDUM.md` | Corrections to the external "base spec"; wins wherever the two disagree. Comments in migrations 0001 and 0018 still cite its old path `docs/SPEC_ADDENDUM.md` (applied migrations are not edited) | |
-| `docs/` | Data documentation site (VitePress 1.6, npm, EN/TR/ES), self-contained, synthetic data only | `docs/CLAUDE.md` |
-| `.claude/launch.json` | Preview configs: dashboard dev server (port 5173) and docs dev server (port 5174) | |
+| `.claude/launch.json` | Preview configs: dashboard dev server (5173), docs dev server (5174), built dashboard with docs (4173) | |
 | `scripts/` | Empty | |
 
 There is no root `package.json` or workspace. Each component installs and runs from its own folder.
@@ -53,19 +53,19 @@ DB triggers ─ Realtime broadcast "dashboard-activity" ► dashboard refetches
 
 ## Commands
 
-Run everything from the component folder: pnpm for extension and dashboard, npm for docs.
+Run everything from the component folder: pnpm for extension and dashboard, npm for `dashboard/docs`.
 
 | Component | Commands |
 |---|---|
 | extension | `pnpm install` · `pnpm compile` / `pnpm watch` (→ `dist/extension.js`) · `pnpm typecheck` · `pnpm package` (minified) · F5 in VS Code with `extension/` as the workspace root |
-| dashboard | `pnpm install` · `pnpm dev` (http://localhost:5173) · `pnpm build` (tsc + vite → `dist/`) · `pnpm typecheck` · `pnpm preview` |
+| dashboard | `pnpm install` · `pnpm dev` (http://localhost:5173) · `pnpm build` (tsc + vite → `dist/`, then the docs → `dist/docs/`) · `pnpm typecheck` · `pnpm preview` |
 | supabase | No CLI project (`config.toml` absent), no local stack, no deploy scripts. See `supabase/CLAUDE.md` |
-| docs | `npm install` · `npm run docs:dev` · `docs:build` · `docs:sample` (synthetic data, codebook, downloads) · `docs:check` (coverage, schema, secrets, style) |
+| dashboard/docs | `npm install` · `npm run docs:dev` · `docs:build` · `docs:sample` (synthetic data, codebook, downloads) · `docs:check` (coverage, schema, secrets, style) |
 
 **There are no tests, linters, formatters or CI.** To verify a change, run `pnpm typecheck` in every
 component you touched, plus `pnpm build` for the dashboard. The Edge Functions have no typecheck setup.
-A schema, event or dashboard-metric change also needs `docs/.vitepress/data/inventory.json` updated: `npm run docs:check`
-in `docs/` replays the migrations and fails when a column, function or event type is missing.
+A schema, event or dashboard-metric change also needs `dashboard/docs/.vitepress/data/inventory.json` updated:
+`npm run docs:check` in `dashboard/docs/` replays the migrations and fails when a column, function or event type is missing.
 `extension/dist/` and `dashboard/dist/` are gitignored build output.
 
 ## Shared conventions
@@ -98,7 +98,7 @@ in `docs/` replays the migrations and fails when a column, function or event typ
 | `/explain` request/response | `extension/src/backend/types.ts` ↔ `explain/index.ts` + `functions/_shared/hintLadder.ts` |
 | Dashboard RPC JSON shapes | SQL in `supabase/migrations/0017`–`0024` ↔ `dashboard/src/lib/types.ts` (hand-written, no codegen) |
 | "Online" window | `ONLINE_WINDOW_MS` in `dashboard/src/config.ts` and `dashboard_overview` (10 min) must stay above the extension's 3-min flush |
-| Data inventory and labels | schema, event payloads and dashboard metrics ↔ `docs/.vitepress/data/inventory.json` + `terms.ts` (dashboard labels, EN/TR/ES) |
+| Data inventory and labels | schema, event payloads and dashboard metrics ↔ `dashboard/docs/.vitepress/data/inventory.json` + `terms.ts` (dashboard labels, EN/TR/ES) |
 
 ## Pitfalls and known gaps
 

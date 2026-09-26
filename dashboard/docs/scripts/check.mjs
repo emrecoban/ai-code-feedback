@@ -27,7 +27,8 @@ import { cleaning, matrix, questions } from '../.vitepress/data/research.ts';
 import { openDb } from './lib/pg.mjs';
 
 const DOCS = join(dirname(fileURLToPath(import.meta.url)), '..');
-const REPO = join(DOCS, '..');
+// The site lives in dashboard/docs, two levels below the repository root.
+const REPO = join(DOCS, '../..');
 const SRC = join(DOCS, 'src');
 const DATA = join(DOCS, '.vitepress/data');
 const LANGS = ['en', 'tr', 'es'];
