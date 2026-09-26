@@ -1,0 +1,1 @@
+Review the changes made in this session (use git diff if helpful). If any of them affect architecture, folder structure, commands, environment variable names, the Supabase schema, or component communication, update the relevant CLAUDE.md files. Keep them concise. Never write secrets. Summarize what you changed, or say that no update was needed.
