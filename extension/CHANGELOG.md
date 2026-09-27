@@ -4,6 +4,16 @@ All notable changes to the "ai-code-feedback" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.1] - 27 Sep 2026
+
+### Fixed
+
+- Code in the Concept and Fix steps is no longer flattened onto a single line. The explanation body had no white-space rule, so the panel discarded every line break the model wrote and a five-line example arrived as one run-on sentence. Prose now keeps its line breaks, and code is set apart in its own monospace panel that scrolls sideways rather than wrapping — a wrapped line of code reads as though it were a second line of code. Inline `backtick` spans are marked up the same way, and the panel still follows the text-size setting.
+
+### Changed
+
+- Feedback is now reliable on the reasoning models reached through an OpenAI-compatible gateway (GLM, DeepSeek, Kimi and others). Those models spend part of their output budget thinking before they answer, and a budget sized for a model that answers directly could be used up entirely before the answer began — which surfaced as a failed request. This fix is server-side and already live: it needs no extension update, and it is listed here only because it changes what you see.
+
 ## [0.2.0] - 22 Sep 2026
 
 A complete rewrite. The extension no longer watches you type and no longer

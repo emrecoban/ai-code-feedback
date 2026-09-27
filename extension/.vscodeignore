@@ -7,3 +7,9 @@ tsconfig.json
 esbuild.js
 **/*.map
 **/*.ts
+# Everything is bundled into dist/, so the lockfile ships for no reason.
+pnpm-lock.yaml
+# Superseded by feedback-icon.svg when the v1 icon was restored; nothing
+# references it any more.
+media/icon.svg
+CLAUDE.md

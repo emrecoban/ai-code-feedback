@@ -2,7 +2,7 @@
   "name": "ai-code-feedback",
   "displayName": "AI Code Feedback",
   "description": "AI-powered feedback for your code, when you ask for it.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "EmreCOBAN",
   "license": "MIT",
   "icon": "media/feedback-icon.png",
