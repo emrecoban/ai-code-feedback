@@ -159,9 +159,15 @@ Deno.serve(async (req: Request) => {
     providerUsed: string;
     promptTokens: number;
     completionTokens: number;
+    finishedCleanly: boolean;
   } | null = null;
   let gatingDegraded = false;
   let lastErrors: string[] = [];
+  // Set when a pass ends at the output cap rather than at a natural
+  // stop. The retry then asks for more room, because repeating a
+  // truncated request at the same size just truncates again -- and for
+  // an always-thinking model the cap, not the prompt, is what failed.
+  let hitOutputCap = false;
 
   // Up to two passes: the second is a single whole-object repair attempt
   // (base spec Appendix A), not a per-field patch -- regenerating the
@@ -175,7 +181,7 @@ Deno.serve(async (req: Request) => {
         system: systemMessage,
         user: `${userMessage}${promptTail}`,
         schema: HINT_LADDER_SCHEMA,
-        maxOutputTokens,
+        maxOutputTokens: hitOutputCap ? maxOutputTokens * 2 : maxOutputTokens,
         temperature: 0.2,
       });
     } catch (e) {
@@ -187,7 +193,16 @@ Deno.serve(async (req: Request) => {
 
     const structure = validateStructure(sendResult.response.text);
     if (!structure.valid) {
-      lastErrors = structure.errors;
+      // finish_reason told us the model ran out of budget rather than
+      // produced something malformed. Saying "your JSON was invalid" to a
+      // reasoning model that never got as far as answering just buys a
+      // second truncated attempt, so name the real problem instead --
+      // this is the shape GLM 5.3 fails in when its whole token budget
+      // goes to reasoning_content.
+      hitOutputCap = !sendResult.response.finishedCleanly;
+      lastErrors = hitOutputCap
+        ? ['the previous answer was cut off before it was complete -- answer more briefly and emit only the JSON object']
+        : structure.errors;
       continue;
     }
     const ladder = structure.value!;
@@ -207,6 +222,7 @@ Deno.serve(async (req: Request) => {
         providerUsed: sendResult.providerUsed,
         promptTokens: sendResult.response.promptTokens,
         completionTokens: sendResult.response.completionTokens,
+        finishedCleanly: sendResult.response.finishedCleanly,
       };
       break;
     }
@@ -222,6 +238,7 @@ Deno.serve(async (req: Request) => {
         providerUsed: sendResult.providerUsed,
         promptTokens: sendResult.response.promptTokens,
         completionTokens: sendResult.response.completionTokens,
+        finishedCleanly: sendResult.response.finishedCleanly,
       };
     }
   }
@@ -229,6 +246,12 @@ Deno.serve(async (req: Request) => {
   if (!attempt) {
     console.error('Hint ladder validation failed twice:', lastErrors);
     return errorResponse('provider_error', 'Could not generate a valid explanation. Please try again.', 502);
+  }
+
+  // Worth knowing about even when the answer parsed: a model that keeps
+  // hitting the cap is one AI_MAX_OUTPUT_TOKENS is set too low for.
+  if (!attempt.finishedCleanly) {
+    console.warn('Model response hit the output cap but still parsed; consider raising AI_MAX_OUTPUT_TOKENS');
   }
 
   const latencyMs = Date.now() - startedAt;

@@ -20,12 +20,39 @@ function buildProvider(id: string, apiKey: string, model: string, baseUrl: strin
       return createGeminiProvider({ apiKey, model });
     case 'openai_compatible':
       if (!baseUrl) throw new Error('AI_BASE_URL is required when AI_PROVIDER=openai_compatible');
-      // Third-party endpoints vary in schema-strictness support; fall
-      // back to prompt-coerced JSON mode rather than assuming strict works.
-      return createOpenAiProvider({ id: 'openai_compatible', apiKey, model, baseUrl, strictSchema: false });
+      // Strict schema is now attempted here too. The adapter steps down
+      // to plain JSON mode by itself when a server rejects it, so asking
+      // costs one 400 on endpoints that can't do it and buys genuinely
+      // constrained output on the ones that can (Kimi K3 documents
+      // json_schema with strict).
+      //
+      // reasoning_effort defaults to "low" because the models reached
+      // this way are the always-thinking kind: GLM 5.3 cannot disable
+      // reasoning and defaults to "max" effort, which is how a 1600-token
+      // budget got spent entirely on thought with no answer left over.
+      // Set AI_REASONING_EFFORT to "high"/"max" to trade cost for depth,
+      // or to "none" for a model that rejects the field outright -- though
+      // the adapter also drops it on its own if the server objects.
+      return createOpenAiProvider({
+        id: 'openai_compatible',
+        apiKey,
+        model,
+        baseUrl,
+        strictSchema: true,
+        reasoningEffort: resolveReasoningEffort(),
+      });
     default:
       throw new Error(`Unrecognized AI_PROVIDER: "${id}"`);
   }
+}
+
+/** "none" (or an empty value) omits reasoning_effort entirely, for a
+ * gateway model that rejects the field. Anything else is passed straight
+ * through rather than validated against a fixed list, so a runtime that
+ * accepts efforts this code has never heard of still works. */
+function resolveReasoningEffort(): string | null {
+  const configured = (Deno.env.get('AI_REASONING_EFFORT') ?? 'low').trim();
+  return !configured || configured.toLowerCase() === 'none' ? null : configured;
 }
 
 let cached: ResolvedProviders | null = null;
@@ -63,9 +90,15 @@ export function resolveProviders(): ResolvedProviders {
     );
   }
 
-  // specs/SPEC_ADDENDUM.md §7: default raised from 1200 to 1600, with
-  // optional per-language overrides for Turkish/Spanish token expansion.
-  const baseMaxTokens = Number(Deno.env.get('AI_MAX_OUTPUT_TOKENS') ?? '1600');
+  // specs/SPEC_ADDENDUM.md §7 raised this from 1200 to 1600 for
+  // Turkish/Spanish token expansion, with optional per-language
+  // overrides. 1600 was sized for a model that answers directly, and it
+  // is far too small for the always-thinking models behind an
+  // openai_compatible gateway: GLM 5.3 spent a whole 1600-token budget on
+  // reasoning and returned no answer at all. The cap only bounds what a
+  // model may generate -- nothing is charged for headroom that goes
+  // unused -- so a model that answers in 800 tokens still costs 800.
+  const baseMaxTokens = Number(Deno.env.get('AI_MAX_OUTPUT_TOKENS') ?? '8000');
   const overrides: Record<string, number> = {
     tr: Number(Deno.env.get('AI_MAX_OUTPUT_TOKENS_TR') ?? baseMaxTokens),
     es: Number(Deno.env.get('AI_MAX_OUTPUT_TOKENS_ES') ?? baseMaxTokens),

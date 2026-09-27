@@ -1,6 +1,7 @@
 import { verifyUser, getAdminClient, UnauthenticatedError } from '../_shared/authClient.ts';
 import { errorResponse, json, corsHeaders } from '../_shared/http.ts';
 import { resolveProviders, sendWithFailover } from '../_shared/providers/registry.ts';
+import { extractJsonObject } from '../_shared/modelJson.ts';
 
 // [USER-STATS]: the narrative band and "Try this one" practice suggestion
 // are both produced by one call so there's no second AI cost. The client
@@ -167,7 +168,9 @@ Deno.serve(async (req: Request) => {
 
   let parsed: { summary: string; student_summary: string; suggested_practice: string };
   try {
-    parsed = JSON.parse(text);
+    // Same tolerance the hint ladder needs: a gateway model that
+    // ignores response_format fences its JSON or prefaces it.
+    parsed = JSON.parse(extractJsonObject(text) ?? '');
     if (
       typeof parsed.summary !== 'string' ||
       typeof parsed.student_summary !== 'string' ||

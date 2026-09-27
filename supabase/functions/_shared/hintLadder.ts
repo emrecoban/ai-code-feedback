@@ -1,5 +1,7 @@
 // Appendix A of the base spec, plus the addendum §2 anti-leak check.
 
+import { extractJsonObject } from './modelJson.ts';
+
 export const HINT_LADDER_SCHEMA: Record<string, unknown> = {
   type: 'object',
   required: ['title', 'concept', 'confidence', 'needsMoreContext', 'l0_decode', 'l1_locate', 'l2_concept', 'l3_fix'],
@@ -51,9 +53,19 @@ export interface HintLadder {
 }
 
 export function validateStructure(raw: string): { valid: boolean; value?: HintLadder; errors: string[] } {
+  // Not JSON.parse(raw) directly: a model that ignores response_format
+  // fences its JSON or introduces it with a sentence, and either one
+  // fails to parse for a reason that has nothing to do with the answer
+  // being wrong. extractJsonObject returns null only when there is no
+  // complete object in the text at all.
+  const json = extractJsonObject(raw);
+  if (json === null) {
+    return { valid: false, errors: [raw?.trim() ? 'no complete JSON object in the response' : 'the response was empty'] };
+  }
+
   let obj: unknown;
   try {
-    obj = JSON.parse(raw);
+    obj = JSON.parse(json);
   } catch {
     return { valid: false, errors: ['not valid JSON'] };
   }

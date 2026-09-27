@@ -88,6 +88,15 @@ Statement-level triggers on `interactions`, `coding_sessions`, `events` and `pro
 **Conventions that keep `explain` working:**
 - **Vendor isolation.** Only `_shared/providers/` knows which vendor is used. To add one, write an adapter and
   add a case in `registry.ts`. A misconfiguration throws at cold start; there is never a silent default.
+- **Never branch on a model name.** Gateways such as Doubleword serve many models behind one
+  `openai_compatible` endpoint, and they disagree on `max_completion_tokens` vs `max_tokens`, on how much of
+  `response_format` they honour, and on whether `reasoning_effort` is accepted. The adapter starts optimistic
+  and steps down one capability per 400, remembering what worked. Add a rung to `degrade()` rather than a
+  special case for a model.
+- **Always-thinking models.** They return the answer in `message.content` and the chain of thought in
+  `message.reasoning_content`; parse only the former. A too-small output cap is spent entirely on reasoning
+  and yields `finish_reason: "length"` with no content at all, which is why the cap is 8000 and
+  `reasoning_effort` defaults to `low`.
 - **Prompt caching.** The system message must stay byte-identical for every student with the same language and
   programming language. Per-student data (the rolling summary) goes in the user message (addendum §2).
 - **Cache key.** `computeCacheKey` / `normalizeErrorSignature` in `_shared/cache.ts` define it. Changing either
@@ -100,8 +109,11 @@ Statement-level triggers on `interactions`, `coding_sessions`, `events` and `pro
   `AI_BASE_URL` is also required with `openai_compatible`.
 - Optional:
   - Fallback provider: `AI_FALLBACK_PROVIDER`, `AI_FALLBACK_API_KEY`, `AI_FALLBACK_MODEL`, `AI_FALLBACK_BASE_URL`.
-  - Timeout and output size: `AI_TIMEOUT_MS`, `AI_MAX_OUTPUT_TOKENS`, `AI_MAX_OUTPUT_TOKENS_TR`,
-    `AI_MAX_OUTPUT_TOKENS_ES`.
+  - Timeout and output size: `AI_TIMEOUT_MS`, `AI_MAX_OUTPUT_TOKENS` (default 8000),
+    `AI_MAX_OUTPUT_TOKENS_TR`, `AI_MAX_OUTPUT_TOKENS_ES`.
+  - `AI_REASONING_EFFORT`: `low` (default), `high`, `max`, or `none` to omit the field. Only sent by the
+    `openai_compatible` adapter, for gateway models that always reason. The adapter drops the field by
+    itself if the server rejects it.
   - Rate limits: `RATE_LIMIT_HOURLY`, `RATE_LIMIT_DAILY`. These are only defaults; the `rate_limits` row wins
     when it exists.
 

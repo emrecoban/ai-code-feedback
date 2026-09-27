@@ -5,3 +5,5 @@ out/
 .DS_Store
 .env
 .env.*
+# Supabase CLI scratch dir, written on `functions deploy`
+supabase/.temp/
