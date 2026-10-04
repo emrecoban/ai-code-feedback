@@ -1590,6 +1590,10 @@ input:disabled {
 .data-table tfoot .num {
   text-align: right;
 }
+.provider-options {
+  margin: 4px 0 8px;
+  font-size: 12.5px;
+}
 .model-name {
   margin-bottom: 8px;
   font-family: var(--mono);

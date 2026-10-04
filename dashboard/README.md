@@ -19,7 +19,7 @@ Web dashboard for monitoring the data the AI Code Feedback extension collects in
 - Most-asked concepts and most common errors.
 - *Learning behaviour*: whether the error went away after an explanation, by how far the student went (L0–L1 / L2 / L3) and how fast; how explanations are read (on screen when they arrive, time on screen, back to the code, time to open L2 and L3, left without acting, reopened, copied); the first edit after the fix and undos; what happened before asking (wait after the offer, edits, the same error again, closed question pickers); where questions start (CodeLens, lightbulb, shortcut…); work habits (session length, breaks, time away from VS Code, file switches, saves, debug and task runs, large pastes); terminal runs and how they ended; errors fixed alone, follow-on errors and error severity; and the latest files that became error-free.
 - A weekday × hour heatmap of when students work.
-- System health: tokens, cache hit rate, failure rate, response time, providers, the AI model in use, the **Limits** (AI requests per student per hour and per day, which admins can change here), failed requests by reason, and each student's use of those limits today.
+- System health: tokens, cache hit rate, failure rate, response time, providers, the AI model in use (with the accepted `AI_PROVIDER` values and the ones in use, as raw text), the **Limits** (AI requests per student per hour and per day, which admins can change here), failed requests by reason, and each student's use of those limits today.
 - Whether "could you do this yourself now?" answers hold up.
 
 **Activity log** (admins): sign-ins, failed sign-ins, exports, and every change to student data or accounts.
