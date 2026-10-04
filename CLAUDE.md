@@ -82,7 +82,9 @@ A schema, event or dashboard-metric change also needs `dashboard/docs/.vitepress
   - Events carry only derived measurements (durations, ratios, counts), never raw code or anything the
     student typed.
   - Code is redacted before it reaches the model (`extension/src/context/redaction.ts`).
-  - The one piece of student text that is stored is `interactions.free_text`, capped at 300 characters.
+  - The student text stored is `interactions.free_text` (capped at 300 characters) and, since 0025, the
+    redacted code and learner notes of each generated answer in `training_samples` (fine-tuning data,
+    `[FINE-TUNING-DATA]`, addendum §19). That table has no policies and is read only by admin RPCs.
 - **Telemetry is best-effort.** Research writes are logged and swallowed, never shown to the student.
 - **Counters.** Read-then-write merges are accepted at classroom scale. Use an atomic RPC only when exact
   counts matter (for example `increment_explanation_reuse`).
@@ -96,7 +98,8 @@ A schema, event or dashboard-metric change also needs `dashboard/docs/.vitepress
 | Trigger surfaces | `extension/src/backend/types.ts` ↔ `SUPPORTED_TRIGGER_SURFACES` in `supabase/functions/explain/index.ts` |
 | Trigger sources | extension types ↔ explain ↔ `interactions.trigger_source` check ↔ `dashboard/src/lib/types.ts` |
 | `/explain` request/response | `extension/src/backend/types.ts` ↔ `explain/index.ts` + `functions/_shared/hintLadder.ts` |
-| Dashboard RPC JSON shapes | SQL in `supabase/migrations/0017`–`0024` ↔ `dashboard/src/lib/types.ts` (hand-written, no codegen) |
+| Dashboard RPC JSON shapes | SQL in `supabase/migrations/0017`–`0025` ↔ `dashboard/src/lib/types.ts` (hand-written, no codegen) |
+| Fine-tuning record format | `dashboard.training_record` (0025, `export_version`) ↔ `Training*` types in `dashboard/src/lib/types.ts` ↔ `research/fine-tuning` docs page. The ladder target's key order mirrors `HINT_LADDER_SCHEMA` |
 | "Online" window | `ONLINE_WINDOW_MS` in `dashboard/src/config.ts` and `dashboard_overview` (10 min) must stay above the extension's 3-min flush |
 | Data inventory and labels | schema, event payloads and dashboard metrics ↔ `dashboard/docs/.vitepress/data/inventory.json` + `terms.ts` (dashboard labels, EN/TR/ES) |
 
@@ -104,7 +107,7 @@ A schema, event or dashboard-metric change also needs `dashboard/docs/.vitepress
 
 - **supabase-js only sends a query once it is awaited or `.then()`-ed.** `void client.from(...).update(...)`
   silently does nothing. Migration 0022 fixed exactly this bug.
-- **Two migrations share the prefix `0003`.** Never renumber applied migrations. The next free number is `0025`.
+- **Two migrations share the prefix `0003`.** Never renumber applied migrations. The next free number is `0026`.
 - **Changing a `dashboard_*` RPC's parameters creates a new overload.** Drop the old signature in the same
   migration (0020 shows how), or the RPC call becomes ambiguous.
 - **Leftover course scaffolding.** The course tables were dropped (0018, addendum §17), but the `course_id`

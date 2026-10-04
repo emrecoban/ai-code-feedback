@@ -883,3 +883,56 @@ Auth already uses, and followed by deleting the student's `auth.sessions`
 and `auth.refresh_tokens`, so the extension signs the student out
 everywhere. Both actions are written to the dashboard's activity log, never
 with the password.
+
+---
+
+## 19. `[FINE-TUNING-DATA]`: every generated answer is kept as training data
+
+Until migration 0025 the project stored no code at all (events carry only
+derived measurements, see the root `CLAUDE.md`). `explain` received
+everything a training example needs, the redacted code, every diagnostic
+with its line and the learner notes, but kept only the answer. Past
+questions therefore cannot be rebuilt into (input, output) pairs. With
+ethics approval and the consent obtained at the start of the extension,
+that decision is reversed for one purpose: fine-tuning a model on how this
+extension should give progressive feedback.
+
+**What is stored.** `public.training_samples`, one row per newly generated
+answer (`_shared/trainingCapture.ts`): the system and user messages exactly
+as sent on the first pass, the same request as fields (`context`, including
+the code as the extension redacted it and the learner notes as they were at
+that moment), the raw model text, the validation result (accepted pass,
+first-pass errors, soft and hard issues, `gatingDegraded`), the model and
+sampling settings, and `prompt_version`, a hash of all fixed prompt text
+(`promptTemplateText()`), so examples from different prompt wordings stay
+apart. Cache hits are not captured: their answer was written for another
+request. The write happens after the response, best-effort, like every
+research write.
+
+**Labels are derived, never stored.** They arrive after the answer (the
+error leaving the file, a repeat within 10 minutes, the same concept within
+7 days) and their rules will be refined, so `dashboard.training_record()`
+computes them, with the training views, each time a record is read. Its
+`export_version` changes when a view format or a label rule does. Rules:
+an explicit bad signal (not helpful, still stuck, repeat within 10 minutes,
+fix undone) makes the KTO label false. Otherwise an explicit good signal,
+or the error going away after an answer that was not known to be skipped,
+makes it true. Behavioural signals of an unread answer (under 5 s on screen,
+no return to the code) do not count.
+
+**Views.** `sft` (production messages, whole ladder as the target),
+`levels` (one example per level, given the levels already shown, which
+supports separate or combined training for L0 to L3) and `kto` (good/bad
+label). Targets are compact JSON in the key order of `HINT_LADDER_SCHEMA`.
+Answers known to have failed never enter `sft` or `levels`, only `kto` as
+negatives. Older error questions without a stored request get a `reduced`
+record (L0 and L2 only, from the error message), because those two levels
+never depend on the student's code.
+
+**Access.** RLS with no policies. Only the admin RPCs
+`dashboard_training_record` (per-question preview) and
+`dashboard_training_export` (JSONL, audited) read it. Records are excluded
+unless `profiles.consent_status = 'granted'`. Deleting or resetting a
+student deletes the samples with the interactions. Names in comments or
+strings are not removed by the extension's redaction, so exported files
+need review before they leave the research team.
