@@ -1,5 +1,5 @@
 // Shapes returned by the dashboard_* RPC functions
-// (supabase/migrations/0017-0024) and the dashboard-config Edge Function. Timestamps arrive as ISO strings,
+// (supabase/migrations/0017-0025) and the dashboard-config Edge Function. Timestamps arrive as ISO strings,
 // days as yyyy-mm-dd.
 import type { Bucket } from '../i18n/format';
 
@@ -408,4 +408,97 @@ export interface ManagedAccount {
   last_login_at: string | null;
   created_at: string;
   is_self: boolean;
+}
+
+// ---------- [FINE-TUNING-DATA] (migrations/0025) ----------
+
+export interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
+
+/** Why a question can't be used as training data. */
+export type TrainingReason = 'no_consent' | 'cache_hit' | 'no_answer' | 'not_captured' | 'needs_more_context' | 'degraded';
+
+/** Labels derived from what happened after the answer. null = not known
+ * (yet): see status.labels_final. */
+export interface TrainingLabels {
+  max_level: number;
+  levels_opened: { level: number | null; ms_after_answer: number | null }[];
+  read: boolean | null;
+  visible_ms: number | null;
+  returned_to_code_ms: number | null;
+  error_resolved: boolean | null;
+  ms_to_resolution: number | null;
+  repeat_within_10_min: boolean | null;
+  concept_back_within_7_days: boolean | null;
+  helpful: 1 | -1 | null;
+  outcome: 'solved' | 'still_stuck' | null;
+  confidence: 'yes' | 'maybe' | 'no' | null;
+  fix_undone: boolean;
+  edit_after_fix: { overlap: number | null; line_distance: number | null } | null;
+  copied: boolean;
+  abandoned: boolean;
+  sufficient_level: 'L1' | 'L2' | 'L3' | null;
+  /** The KTO label: false wins over true, null = no usable signal. */
+  quality: boolean | null;
+}
+
+/** Travels with every exported JSONL line (dashboard.training_record). */
+export interface TrainingMetadata {
+  id: string;
+  export_version: number;
+  /** full = request stored; reduced = older error question (L0 + L2 only); none = nothing to train on. */
+  capture: 'full' | 'reduced' | 'none';
+  /** Stable student pseudonym; split by it, never by line. */
+  group: string;
+  split: 'train' | 'validation' | 'test';
+  created_at: string;
+  trigger_source: string;
+  question_type: string | null;
+  feedback_language: string | null;
+  prog_language: string | null;
+  prompt_version: string | null;
+  provider: string | null;
+  model: string | null;
+  labels: TrainingLabels;
+}
+
+/** dashboard_training_record: one question as training data. */
+export interface TrainingRecord {
+  metadata: TrainingMetadata;
+  status: {
+    reasons: TrainingReason[];
+    /** Which views the question goes into. */
+    sft: boolean;
+    levels: boolean;
+    kto: boolean;
+    labels_final: boolean;
+    labels_final_at: string;
+  };
+  /** Only for a stored request. */
+  validation: {
+    accepted_pass: number;
+    first_pass_errors: string[];
+    soft_issues: string[];
+    hard_issues: string[];
+    gating_degraded: boolean;
+    finished_cleanly: boolean;
+  } | null;
+  views: {
+    sft: { messages: ChatMessage[] } | null;
+    levels: { level: number; messages: ChatMessage[] }[];
+    kto: { prompt: ChatMessage[]; completion: ChatMessage[]; label: boolean } | null;
+  };
+}
+
+export type TrainingView = 'sft' | 'levels' | 'kto';
+
+/** dashboard_training_export: one object per JSONL line. Each line holds
+ * its training fields plus a metadata object (ids, split, labels). */
+export interface TrainingExport {
+  view: TrainingView;
+  capture: 'full' | 'all';
+  questions: number;
+  records: (Record<string, unknown> & { metadata: TrainingMetadata & { level?: number } })[];
 }

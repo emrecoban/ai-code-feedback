@@ -2,15 +2,15 @@
  "files": [
   {
    "file": "codebook.csv",
-   "bytes": 104710,
+   "bytes": 108423,
    "kind": "codebook",
-   "rows": 397
+   "rows": 411
   },
   {
    "file": "codebook.xlsx",
-   "bytes": 544504,
+   "bytes": 560322,
    "kind": "codebook",
-   "rows": 510
+   "rows": 524
   },
   {
    "file": "synthetic_events_long.csv",
@@ -1376,6 +1376,42 @@
    "item_id": "rate_limits.updated_by"
   },
   {
+   "variable": "training_samples_interaction_id",
+   "item_id": "training_samples.interaction_id"
+  },
+  {
+   "variable": "training_samples_capture_version",
+   "item_id": "training_samples.capture_version"
+  },
+  {
+   "variable": "training_samples_prompt_version",
+   "item_id": "training_samples.prompt_version"
+  },
+  {
+   "variable": "training_samples_generation",
+   "item_id": "training_samples.generation"
+  },
+  {
+   "variable": "training_samples_messages",
+   "item_id": "training_samples.messages"
+  },
+  {
+   "variable": "training_samples_context",
+   "item_id": "training_samples.context"
+  },
+  {
+   "variable": "training_samples_response_text",
+   "item_id": "training_samples.response_text"
+  },
+  {
+   "variable": "training_samples_validation",
+   "item_id": "training_samples.validation"
+  },
+  {
+   "variable": "training_samples_created_at",
+   "item_id": "training_samples.created_at"
+  },
+  {
    "variable": "concept_vocabulary_id",
    "item_id": "concept_vocabulary.id"
   },
@@ -1890,6 +1926,26 @@
   {
    "variable": "function_public_dashboard_student_set_password",
    "item_id": "function.public.dashboard_student_set_password"
+  },
+  {
+   "variable": "function_public_dashboard_training_record",
+   "item_id": "function.public.dashboard_training_record"
+  },
+  {
+   "variable": "function_public_dashboard_training_export",
+   "item_id": "function.public.dashboard_training_export"
+  },
+  {
+   "variable": "function_dashboard_training_record",
+   "item_id": "function.dashboard.training_record"
+  },
+  {
+   "variable": "function_dashboard_json_text",
+   "item_id": "function.dashboard.json_text"
+  },
+  {
+   "variable": "function_dashboard_ladder_text",
+   "item_id": "function.dashboard.ladder_text"
   },
   {
    "variable": "function_dashboard_hash_token",

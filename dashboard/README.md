@@ -11,7 +11,8 @@ Web dashboard for monitoring the data the AI Code Feedback extension collects in
 - *Needs attention*: students matching simple, explainable rules. These are the same error asked 3+ times, "still stuck", needing the fix for 70%+ of 5+ questions, 8+ edits before asking, 2+ "not helpful" ratings, or no activity for 7+ days.
 - Questions over time, how far students went into the hints (L0–L1 hint only, L2 rule, L3 fix), and the latest questions. Click a question to read the whole explanation (L0 · Decode to L3 · Fix), the context, where it was asked from, and what the student did next: when each step was opened, time on screen, going back to the code, the first edit after the fix (how close to the pointed line, how similar to the fix), when the error went away, copying, leaving.
 - *Students*: a collapsible row per student with detail for the period (including a weekly independence trend) and, folded away, the same learning-behaviour breakdown as Insights for that student alone. Admins also get **Change password**, **Reset data** and **Delete student**, each behind a confirmation.
-- *Export*: Excel (students, questions and a daily summary as three sheets) or CSV. Every export is written to the activity log.
+- *Export*: Excel (students, questions and a daily summary as three sheets) or CSV. Admins also get **Fine-tuning data (.jsonl)**: one training example per line, as the whole answer, one example per hint level (L0–L3), or good/bad examples for preference training (KTO). Every export is written to the activity log.
+- *Fine-tuning data* (admins): at the bottom of every question, how that question is represented as training data: whether the request was stored, which views it goes into and why not, the labels derived from what the student did next, and the exact training text, with a button to copy it as a JSONL line. The preview and the export come from the same database function. The format is described on the docs page "Fine-tuning data".
 
 **Insights**
 - Class-wide independence trend: asked for help when offered, hint was enough, and sessions without help, week by week.
@@ -41,7 +42,7 @@ The **Docs** link in the top bar opens the data documentation site (`docs/`) in 
 
 ## Accounts and security
 
-Dashboard accounts are separate from student accounts. They live in the `dashboard` schema, which the REST API does not expose (see `supabase/migrations/0017`–`0023`). The browser only calls the `dashboard_*` RPC functions, and each one checks the session token before touching anything, so the publishable key alone opens nothing.
+Dashboard accounts are separate from student accounts. They live in the `dashboard` schema, which the REST API does not expose (see `supabase/migrations/0017`–`0025`). The browser only calls the `dashboard_*` RPC functions, and each one checks the session token before touching anything, so the publishable key alone opens nothing.
 
 The AI model and the request limits are Edge Function secrets (`AI_MODEL`, `AI_PROVIDER`, `RATE_LIMIT_HOURLY`…), which the database can't read. The `dashboard-config` Edge Function returns them — names and numbers only, never keys or URLs — after checking the same session token. It is deployed with `verify_jwt: false`, because dashboard accounts are not Supabase Auth users.
 

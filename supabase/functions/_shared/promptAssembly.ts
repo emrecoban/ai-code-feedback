@@ -131,6 +131,34 @@ function buildQuestionLine(questionType: string, freeText?: string | null): stri
   return `${questionType}${freeText ? ` -- ${freeText}` : ''}`;
 }
 
+/** [FINE-TUNING-DATA]: every piece of fixed prompt text -- the system
+ * message in each language, the user message layout, and the instruction
+ * for every question type -- with placeholders where per-request values
+ * go. trainingCapture.ts hashes it into the prompt_version stored with each
+ * training sample, so it changes exactly when this file's wording or the
+ * output schema does, without anyone having to remember to bump a number. */
+export function promptTemplateText(schema: Record<string, unknown>): string {
+  const questionTypes = [...Object.keys(QUESTION_INSTRUCTIONS), 'free_text', '{questionType}'];
+  return [
+    ...(['en', 'tr', 'es'] as const).map((language) =>
+      buildSystemMessage({ language, progLanguage: '{progLanguage}' }, schema),
+    ),
+    ...questionTypes.map((questionType) =>
+      buildUserMessage({
+        rollingSummary: '{rollingSummary}',
+        triggerSource: '{triggerSource}',
+        questionType,
+        freeText: '{freeText}',
+        fileName: '{fileName}',
+        focusLine: 0,
+        code: '{code}',
+        diagnostics: [{ line: 0, severity: '{severity}', message: '{message}', source: '{source}', code: '{code}' }],
+        runOutput: '{runOutput}',
+      }),
+    ),
+  ].join('\n\u0000\n');
+}
+
 function languageName(language: string): string {
   return { en: 'English', tr: 'Turkish', es: 'Spanish' }[language] ?? 'English';
 }

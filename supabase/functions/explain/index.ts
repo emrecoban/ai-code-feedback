@@ -14,8 +14,10 @@ import {
 import { buildSystemMessage, buildUserMessage } from '../_shared/promptAssembly.ts';
 import { computeCacheKey, lookupCache, writeCache, normalizeErrorSignature } from '../_shared/cache.ts';
 import { checkRateLimit, recordUsage } from '../_shared/rateLimit.ts';
+import { captureTrainingSample, type TrainingContext } from '../_shared/trainingCapture.ts';
 
 const SUPPORTED_LANGUAGES = ['en', 'tr', 'es'];
+const TEMPERATURE = 0.2;
 const SUPPORTED_TRIGGERS = ['diagnostic', 'runtime', 'selection', 'stuck', 'paste', 'success'];
 // Mirrors TriggerSurface in extension/src/backend/types.ts. Validated
 // rather than trusted, so an unrecognised value is stored as "unknown"
@@ -160,9 +162,18 @@ Deno.serve(async (req: Request) => {
     promptTokens: number;
     completionTokens: number;
     finishedCleanly: boolean;
+    // [FINE-TUNING-DATA]: what this pass was and how it was judged.
+    pass: number;
+    modelUsed: string;
+    maxOutputTokens: number;
+    responseText: string;
+    softIssues: string[];
+    hardIssues: string[];
   } | null = null;
   let gatingDegraded = false;
   let lastErrors: string[] = [];
+  // Why the first pass was rejected, kept for the training sample.
+  let firstPassErrors: string[] = [];
   // Set when a pass ends at the output cap rather than at a natural
   // stop. The retry then asks for more room, because repeating a
   // truncated request at the same size just truncates again -- and for
@@ -175,14 +186,15 @@ Deno.serve(async (req: Request) => {
   // entire reason they're generated together in the first place.
   for (let pass = 0; pass < 2 && !attempt; pass++) {
     const promptTail = pass === 0 ? '' : `\n\n${buildRepairNote(lastErrors)}`;
+    const passMaxOutputTokens = hitOutputCap ? maxOutputTokens * 2 : maxOutputTokens;
     let sendResult;
     try {
       sendResult = await sendWithFailover(providers, {
         system: systemMessage,
         user: `${userMessage}${promptTail}`,
         schema: HINT_LADDER_SCHEMA,
-        maxOutputTokens: hitOutputCap ? maxOutputTokens * 2 : maxOutputTokens,
-        temperature: 0.2,
+        maxOutputTokens: passMaxOutputTokens,
+        temperature: TEMPERATURE,
       });
     } catch (e) {
       const code = e instanceof ProviderError ? e.code : 'provider_error';
@@ -203,6 +215,7 @@ Deno.serve(async (req: Request) => {
       lastErrors = hitOutputCap
         ? ['the previous answer was cut off before it was complete -- answer more briefly and emit only the JSON object']
         : structure.errors;
+      if (pass === 0) firstPassErrors = lastErrors;
       continue;
     }
     const ladder = structure.value!;
@@ -215,6 +228,14 @@ Deno.serve(async (req: Request) => {
     if (!languageMatches(ladder, b.language)) hardIssues.push(`response was not written in ${b.language}`);
     if (!noRollingSummaryLeak(ladder, rollingSummary)) hardIssues.push('response leaked private learner notes');
 
+    const passRecord = {
+      pass: pass + 1,
+      modelUsed: sendResult.response.modelUsed,
+      maxOutputTokens: passMaxOutputTokens,
+      responseText: sendResult.response.text,
+      softIssues,
+    };
+
     if (hardIssues.length === 0) {
       if (softIssues.length > 0) console.warn('Hint ladder soft-validation issues (accepted):', softIssues);
       attempt = {
@@ -223,11 +244,14 @@ Deno.serve(async (req: Request) => {
         promptTokens: sendResult.response.promptTokens,
         completionTokens: sendResult.response.completionTokens,
         finishedCleanly: sendResult.response.finishedCleanly,
+        ...passRecord,
+        hardIssues: [],
       };
       break;
     }
 
     lastErrors = hardIssues;
+    if (pass === 0) firstPassErrors = hardIssues;
     if (pass === 1) {
       // Second failure on a hard (pedagogical-safety) issue: degrade to
       // L0+L1 only rather than answer in the wrong language or leak
@@ -239,6 +263,8 @@ Deno.serve(async (req: Request) => {
         promptTokens: sendResult.response.promptTokens,
         completionTokens: sendResult.response.completionTokens,
         finishedCleanly: sendResult.response.finishedCleanly,
+        ...passRecord,
+        hardIssues,
       };
     }
   }
@@ -276,6 +302,31 @@ Deno.serve(async (req: Request) => {
     ladder: attempt.ladder,
   });
 
+  // [FINE-TUNING-DATA]: what the model was sent and what it said, kept as
+  // training data (migrations/0025). Written after the response; cache hits
+  // are not captured, because their answer was written for another request.
+  captureTrainingSample({
+    interactionId,
+    system: systemMessage,
+    user: userMessage,
+    context: trainingContext(b, rollingSummary),
+    generation: {
+      provider: attempt.providerUsed,
+      model: attempt.modelUsed,
+      temperature: TEMPERATURE,
+      max_output_tokens: attempt.maxOutputTokens,
+    },
+    responseText: attempt.responseText,
+    validation: {
+      accepted_pass: attempt.pass,
+      first_pass_errors: attempt.pass === 1 ? [] : firstPassErrors,
+      soft_issues: attempt.softIssues,
+      hard_issues: attempt.hardIssues,
+      gating_degraded: gatingDegraded,
+      finished_cleanly: attempt.finishedCleanly,
+    },
+  });
+
   await recordUsage(userId, totalTokens);
   await bumpLearnerProfileCounter(admin, userId);
 
@@ -296,6 +347,34 @@ function validateRequest(body: ExplainBody | null): string | null {
 
 function nonNegativeIntOrNull(value: number | null | undefined): number | null {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.round(value) : null;
+}
+
+function triggerSurfaceOrNull(b: ExplainBody): string | null {
+  return SUPPORTED_TRIGGER_SURFACES.includes(b.triggerSurface ?? '') ? b.triggerSurface! : null;
+}
+
+/** [FINE-TUNING-DATA]: the request as fields, sanitised the same way the
+ * interaction row is. */
+function trainingContext(b: ExplainBody, rollingSummary: string): TrainingContext {
+  return {
+    trigger_source: b.triggerSource,
+    trigger_surface: triggerSurfaceOrNull(b),
+    question_type: b.questionType ?? null,
+    free_text: b.freeText ?? null,
+    feedback_language: b.language,
+    prog_language: b.context.progLanguage,
+    file_name: b.context.fileName,
+    focus_line: b.context.focusLine,
+    code_range: b.context.codeRange ?? null,
+    code: b.context.code,
+    diagnostics: b.context.diagnostics,
+    run_output: b.context.runOutput ?? null,
+    help_latency_ms: nonNegativeIntOrNull(b.helpLatencyMs),
+    edits_before_ask: nonNegativeIntOrNull(b.editsBeforeAsk),
+    selection_line_count: nonNegativeIntOrNull(b.selectionLineCount),
+    selection_char_count: nonNegativeIntOrNull(b.selectionCharCount),
+    learner_notes: rollingSummary,
+  };
 }
 
 function buildRepairNote(errors: string[]): string {
@@ -397,7 +476,7 @@ async function recordInteraction(
       // of polluting the column with nonsense.
       help_latency_ms: nonNegativeIntOrNull(b.helpLatencyMs),
       edits_before_ask: nonNegativeIntOrNull(b.editsBeforeAsk),
-      trigger_surface: SUPPORTED_TRIGGER_SURFACES.includes(b.triggerSurface ?? '') ? b.triggerSurface : null,
+      trigger_surface: triggerSurfaceOrNull(b),
       ms_since_previous_same_error: msSincePreviousSameError,
       selection_line_count: nonNegativeIntOrNull(b.selectionLineCount),
       selection_char_count: nonNegativeIntOrNull(b.selectionCharCount),

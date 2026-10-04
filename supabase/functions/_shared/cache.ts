@@ -1,4 +1,5 @@
 import { getAdminClient } from './authClient.ts';
+import { runAfterResponse } from './background.ts';
 
 // base spec §10.4
 export async function computeCacheKey(parts: {
@@ -38,14 +39,6 @@ async function sha256(input: string): Promise<string> {
   return Array.from(new Uint8Array(digest))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
-}
-
-// Supabase's Edge Runtime global: keeps the worker alive until a promise
-// settles, even after the response has been sent. Read off globalThis so
-// the code still runs (without the guarantee) wherever it isn't defined.
-function runAfterResponse(work: PromiseLike<unknown>): void {
-  const settled = Promise.resolve(work).catch((e) => console.error('Background task failed:', e));
-  (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime?.waitUntil(settled);
 }
 
 export async function lookupCache(cacheKey: string): Promise<{ payload: unknown; modelUsed: string } | null> {

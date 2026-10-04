@@ -6,6 +6,7 @@ import { writeExport, type ExportKind } from '../lib/exportData';
 import { useLive } from '../lib/live';
 import type { StudentRow } from '../lib/types';
 import { StudentItem } from './StudentItem';
+import { TrainingExportDialog } from './TrainingExportDialog';
 
 type SortKey = 'active' | 'questions' | 'name';
 
@@ -79,15 +80,17 @@ export function StudentList({ students, expanded, onToggle, onRemoved }: Props) 
   );
 }
 
-/** Exports go through dashboard_export, which records them in the activity log. */
+/** Exports go through dashboard_export (and, for fine-tuning data,
+ * dashboard_training_export), which record them in the activity log. */
 function ExportMenu({ usernames, disabled }: { usernames: Set<string> | null; disabled: boolean }) {
   const { t, lang, f } = useI18n();
-  const { token } = useSession();
+  const { token, isAdmin } = useSession();
   const { range } = useLive();
   const handleError = useApiErrorHandler();
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [trainingOpen, setTrainingOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -142,6 +145,19 @@ function ExportMenu({ usernames, disabled }: { usernames: Set<string> | null; di
           <button type="button" role="menuitem" onClick={() => void run('csv-questions')}>
             <strong>{t('export.csvQuestions')}</strong>
           </button>
+          {isAdmin && (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => {
+                setOpen(false);
+                setTrainingOpen(true);
+              }}
+            >
+              <strong>{t('export.training')}</strong>
+              <span>{t('export.trainingHint')}</span>
+            </button>
+          )}
           <p className="menu-note">{t('export.scope')}</p>
         </div>
       )}
@@ -150,6 +166,7 @@ function ExportMenu({ usernames, disabled }: { usernames: Set<string> | null; di
           {error}
         </p>
       )}
+      {isAdmin && <TrainingExportDialog open={trainingOpen} usernames={usernames} onClose={() => setTrainingOpen(false)} />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // Table reference pages: what each table holds, who writes it and who can read
 // it, in three languages. The columns themselves come from inventory.json.
-// Source: supabase/migrations 0001 to 0024 (read on the commit in inventory.json).
+// Source: supabase/migrations 0001 to 0025 (read on the commit in inventory.json).
 
 import type { T3 } from './terms'
 
@@ -70,6 +70,12 @@ export const tableRefs: Record<string, TableRef> = {
     writer: t('An admin, through the dashboard.', 'Panel aracılığıyla bir yönetici.', 'Una persona administradora, desde el panel.'),
     read: t('Only the server and the dashboard.', 'Yalnızca sunucu ve panel.', 'Solo el servidor y el panel.'),
   },
+  'training-samples': {
+    tables: ['training_samples'],
+    what: t('One row for every answer the model writes, kept as fine-tuning data: the messages exactly as the model received them, the same request as separate fields, the raw answer and the checks it passed. Answers that came from the cache are not kept. The labels are not stored here. They are worked out from what the student did next each time the data is read.', 'Modelin yazdığı her yanıt için ince ayar verisi olarak tutulan bir satır: mesajlar modelin aldığı haliyle, aynı istek ayrı alanlar olarak, ham yanıt ve geçtiği denetimler. Önbellekten gelen yanıtlar tutulmaz. Etiketler burada saklanmaz. Veri her okunduğunda öğrencinin sonrasında yaptıklarından çıkarılır.', 'Una fila por cada respuesta que escribe el modelo, guardada como datos de ajuste fino: los mensajes tal como los recibió el modelo, la misma solicitud en campos separados, la respuesta en bruto y las comprobaciones que pasó. Las respuestas de la caché no se guardan. Las etiquetas no se guardan aquí. Se calculan a partir de lo que hizo el estudiante después cada vez que se leen los datos.'),
+    writer: t('The server function explain, just after it sends the answer.', 'explain sunucu işlevi, yanıtı gönderdikten hemen sonra.', 'La función del servidor explain, justo después de enviar la respuesta.'),
+    read: t('Only admins, through the dashboard (the preview of a question and the fine-tuning export). It holds student code and the private learner notes.', 'Yalnızca yöneticiler, panel üzerinden (bir sorunun önizlemesi ve ince ayar dışa aktarımı). Öğrenci kodunu ve gizli öğrenci notlarını içerir.', 'Solo las personas administradoras, desde el panel (la vista previa de una pregunta y la exportación de ajuste fino). Contiene código de estudiantes y las notas privadas sobre cada estudiante.'),
+  },
   'concept-vocabulary': {
     tables: ['concept_vocabulary'],
     what: t('A reference table from the first version of the schema. No migration fills it, and no code reads or writes it.', 'Şemanın ilk sürümünden kalan bir başvuru tablosu. Hiçbir geçiş onu doldurmaz ve hiçbir kod onu okumaz ya da yazmaz.', 'Una tabla de referencia de la primera versión del esquema. Ninguna migración la llena, y ningún código la lee ni la escribe.'),
@@ -128,6 +134,12 @@ export const functionGroups: { id: string; title: T3; text: T3; ids: string[] }[
     title: t('Changes from the dashboard', 'Panelden yapılan değişiklikler', 'Cambios desde el panel'),
     text: t('Reset or delete a student, set a student password and set the usage limits. Only admins can use them, and every use is written to the activity log.', 'Bir öğrenciyi sıfırlar ya da siler, öğrenci parolası ve kullanım sınırlarını belirler. Yalnızca yöneticiler kullanabilir ve her kullanım etkinlik kaydına yazılır.', 'Restablecen o eliminan a un estudiante, fijan su contraseña y los límites de uso. Solo pueden usarlas las personas administradoras, y cada uso queda en el registro de actividad.'),
     ids: ['public.dashboard_reset_student', 'public.dashboard_delete_student', 'public.dashboard_student_set_password', 'public.dashboard_set_rate_limits'],
+  },
+  {
+    id: 'fine-tuning',
+    title: t('Fine-tuning data', 'İnce ayar verisi', 'Datos de ajuste fino'),
+    text: t('Turn a question into training data and export a period as JSONL. The preview and the export use the same function, so they always agree. Only admins can use them, and every export is written to the activity log.', 'Bir soruyu eğitim verisine dönüştürür ve bir dönemi JSONL olarak dışa aktarır. Önizleme ve dışa aktarma aynı işlevi kullanır, bu yüzden her zaman birbirini tutar. Yalnızca yöneticiler kullanabilir ve her dışa aktarma etkinlik kaydına yazılır.', 'Convierten una pregunta en datos de entrenamiento y exportan un periodo como JSONL. La vista previa y la exportación usan la misma función, así que siempre coinciden. Solo pueden usarlas las personas administradoras, y cada exportación queda en el registro de actividad.'),
+    ids: ['public.dashboard_training_record', 'public.dashboard_training_export', 'dashboard.training_record', 'dashboard.json_text', 'dashboard.ladder_text'],
   },
   {
     id: 'realtime',
