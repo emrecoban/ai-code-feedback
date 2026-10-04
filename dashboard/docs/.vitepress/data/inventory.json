@@ -146,6 +146,14 @@
       "page": "reference/rate-limits"
     },
     {
+      "id": "training_samples",
+      "schema": "public",
+      "what": "One row per newly generated answer: what the model was sent, the request as fields, its raw answer and how it was checked. Fine-tuning data.",
+      "writer": "explain",
+      "rls": "no policies",
+      "page": "reference/training-samples"
+    },
+    {
       "id": "concept_vocabulary",
       "schema": "public",
       "what": "Reference table from the base schema. Never read or written by any code.",
@@ -4402,6 +4410,218 @@
     },
     {
       "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.interaction_id",
+      "name": "Question (training sample)",
+      "category": "technical",
+      "level": "column",
+      "table": "training_samples",
+      "column": "interaction_id",
+      "type": "uuid",
+      "allowed": "interactions.id",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "The question this sample belongs to. Deleting the question or the student deletes the sample.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "training_samples.capture_version",
+      "name": "Capture version",
+      "category": "technical",
+      "level": "column",
+      "table": "training_samples",
+      "column": "capture_version",
+      "type": "smallint",
+      "allowed": "1",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "Shape of the row. Raised when a field is added or changes meaning.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.prompt_version",
+      "name": "Prompt version",
+      "category": "system",
+      "level": "column",
+      "table": "training_samples",
+      "column": "prompt_version",
+      "type": "text",
+      "allowed": "12 hex characters",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "Hash of all fixed prompt text. Changes exactly when the wording or the output schema changes.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.generation",
+      "name": "Model settings",
+      "category": "system",
+      "level": "column",
+      "table": "training_samples",
+      "column": "generation",
+      "type": "jsonb",
+      "allowed": "{provider, model, temperature, max_output_tokens}",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "The provider and the exact model that wrote the answer, with the sampling settings.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.messages",
+      "name": "Messages sent to the model",
+      "category": "asking",
+      "level": "column",
+      "table": "training_samples",
+      "column": "messages",
+      "type": "jsonb",
+      "allowed": "[{role: system|user, content}]",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "The system and user messages exactly as sent on the first pass. Holds the redacted code and the private learner notes.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.context",
+      "name": "Request fields",
+      "category": "asking",
+      "level": "column",
+      "table": "training_samples",
+      "column": "context",
+      "type": "jsonb",
+      "allowed": "{trigger_source, question_type, free_text, feedback_language, prog_language, file_name, focus_line, code_range, code, diagnostics, run_output, help_latency_ms, edits_before_ask, selection_line_count, selection_char_count, learner_notes, ...}",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "The same request as separate fields, for prompt layouts other than the production one.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.response_text",
+      "name": "Raw model answer",
+      "category": "ladder",
+      "level": "column",
+      "table": "training_samples",
+      "column": "response_text",
+      "type": "text",
+      "allowed": "model output",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "The model’s text for the accepted answer, before parsing.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": true,
+      "stage": [
+        "during"
+      ],
+      "issues": [],
+      "id": "training_samples.validation",
+      "name": "Answer checks",
+      "category": "system",
+      "level": "column",
+      "table": "training_samples",
+      "column": "validation",
+      "type": "jsonb",
+      "allowed": "{accepted_pass, first_pass_errors, soft_issues, hard_issues, gating_degraded, finished_cleanly}",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "Which pass was accepted, why an earlier pass was rejected, and the checks the answer failed but was kept despite.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "training_samples.created_at",
+      "name": "Sample stored at",
+      "category": "technical",
+      "level": "column",
+      "table": "training_samples",
+      "column": "created_at",
+      "type": "timestamptz",
+      "allowed": "timestamp",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql",
+        "supabase/functions/_shared/trainingCapture.ts",
+        "supabase/functions/explain/index.ts"
+      ],
+      "collection": "When explain stored the sample, just after the answer was sent.",
+      "page": "reference/training-samples"
+    },
+    {
+      "kind": "raw",
       "status": "unused",
       "research": false,
       "stage": [],
@@ -7358,6 +7578,96 @@
         "supabase/migrations/0024_dashboard_limits_student_password.sql"
       ],
       "collection": "Sets a student's password and ends their sessions (admin, audited).",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.public.dashboard_training_record",
+      "name": "public.dashboard_training_record",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql"
+      ],
+      "collection": "One question as training data, for the preview (admin).",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.public.dashboard_training_export",
+      "name": "public.dashboard_training_export",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql"
+      ],
+      "collection": "The training data of a period as JSONL lines (admin, audited).",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.dashboard.training_record",
+      "name": "dashboard.training_record",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql"
+      ],
+      "collection": "Builds the training record of one question: status, labels and views.",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.dashboard.json_text",
+      "name": "dashboard.json_text",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql"
+      ],
+      "collection": "Writes a JSON object as compact text with its keys in a fixed order.",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.dashboard.ladder_text",
+      "name": "dashboard.ladder_text",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0025_training_samples.sql"
+      ],
+      "collection": "Writes the hint ladder in the order of the output schema.",
       "page": "reference/functions"
     },
     {
