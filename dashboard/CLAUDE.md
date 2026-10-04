@@ -29,6 +29,9 @@ library: charts are hand-rolled SVG in `components/charts/`, and all styling is 
   - `42501` → `ForbiddenError`: a viewer attempted an admin action.
 - **One non-RPC call.** The `dashboard-config` Edge Function returns the AI provider, model and limits, which
   live in Edge Function secrets.
+- **Fine-tuning data.** The question dialog's preview (`TrainingPreview`) and the JSONL export
+  (`TrainingExportDialog`) both take ready-made records from the database (`dashboard_training_record`,
+  `dashboard_training_export`). `lib/trainingData.ts` only serialises them; keep any record logic in the SQL.
 - **Admin gating in the UI** (`useSession().isAdmin`) is cosmetic only. The server enforces roles with
   `dashboard.require_admin`.
 

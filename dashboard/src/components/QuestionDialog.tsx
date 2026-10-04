@@ -5,6 +5,7 @@ import { fetchQuestion } from '../lib/api';
 import { useApiErrorHandler, useSession } from '../lib/auth';
 import { levelKey } from '../lib/labels';
 import type { QuestionDetail } from '../lib/types';
+import { TrainingPreview } from './TrainingPreview';
 
 const OpenQuestionContext = createContext<((id: string) => void) | null>(null);
 
@@ -90,6 +91,7 @@ function QuestionDialog({ id, onClose }: { id: string | null; onClose: () => voi
 }
 
 function QuestionBody({ q }: { q: QuestionDetail }) {
+  const { isAdmin } = useSession();
   const i18n = useI18n();
   const { t, tp, f } = i18n;
   const level = q.max_level_reached;
@@ -228,6 +230,8 @@ function QuestionBody({ q }: { q: QuestionDetail }) {
           </ol>
         </section>
       )}
+
+      {isAdmin && <TrainingPreview questionId={q.id} />}
     </div>
   );
 }

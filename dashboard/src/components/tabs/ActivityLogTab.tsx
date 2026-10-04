@@ -135,6 +135,14 @@ function LogRow({ entry }: { entry: AuditEntry }) {
           : limits(d.hourly, d.daily);
       break;
     }
+    case 'training_export':
+      details = t('logDetail.training', {
+        view: t(d.view === 'levels' ? 'training.view.levels' : d.view === 'kto' ? 'training.view.kto' : 'training.view.sft'),
+        lines: f.number(Number(d.records ?? 0)),
+        from: f.day(String(d.from)),
+        to: f.day(String(d.to)),
+      });
+      break;
     case 'export':
       details = t('logDetail.export', {
         from: f.day(String(d.from)),

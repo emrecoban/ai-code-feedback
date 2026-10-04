@@ -16,6 +16,9 @@ import type {
   SessionInfo,
   StudentDetail,
   StudentRow,
+  TrainingExport,
+  TrainingRecord,
+  TrainingView,
 } from './types';
 
 // The dashboard never signs in to Supabase Auth -- its own session token is
@@ -104,6 +107,26 @@ export const deleteStudent = (token: string, userId: string) =>
 /** Also signs the student out of the extension everywhere. */
 export const setStudentPassword = (token: string, userId: string, password: string) =>
   call<ActionResult>('dashboard_student_set_password', { p_token: token, p_user_id: userId, p_password: password });
+
+// ---------- Fine-tuning data (admins) ----------
+
+export const fetchTrainingRecord = (token: string, id: string) =>
+  call<TrainingRecord>('dashboard_training_record', { p_token: token, p_id: id });
+/** Audited, like every export. */
+export const fetchTrainingExport = (
+  token: string,
+  range: DateRange,
+  view: TrainingView,
+  options: { capture: 'full' | 'all'; finalOnly: boolean; usernames: string[] | null },
+) =>
+  call<TrainingExport>('dashboard_training_export', {
+    p_token: token,
+    ...period(range),
+    p_view: view,
+    p_capture: options.capture,
+    p_final_only: options.finalOnly,
+    p_usernames: options.usernames,
+  });
 
 // ---------- AI request limits (admins) ----------
 

@@ -125,7 +125,7 @@ function toCsv<R>(rows: R[], cols: Col<R>[], t: T, lang: Lang): string {
   return '﻿' + lines.map((l) => l.join(sep)).join('\r\n');
 }
 
-function download(blob: Blob, fileName: string): void {
+export function download(blob: Blob, fileName: string): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
