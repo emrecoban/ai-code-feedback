@@ -357,6 +357,30 @@ function Health({
   );
 }
 
+/** Every value AI_PROVIDER (and AI_FALLBACK_PROVIDER) accepts: the cases of
+ * buildProvider() in supabase/functions/_shared/providers/registry.ts, kept
+ * in step by hand (root CLAUDE.md, duplicated contracts). */
+const PROVIDER_OPTIONS: { id: string; needs?: string }[] = [
+  { id: 'openai' },
+  { id: 'anthropic' },
+  { id: 'gemini' },
+  { id: 'openai_compatible', needs: 'AI_BASE_URL' },
+];
+
+/** The provider settings as they would be written in the secrets: the
+ * accepted values first, then the ones in use. */
+function providerSettingsText(config: AiConfig, t: ReturnType<typeof useI18n>['t']): string {
+  const width = Math.max(...PROVIDER_OPTIONS.map((o) => o.id.length)) + 2;
+  return [
+    `# ${t('health.aiOptions')}`,
+    ...PROVIDER_OPTIONS.map((o) => (o.needs ? `${o.id.padEnd(width)}# ${t('health.aiNeeds', { name: o.needs })}` : o.id)),
+    '',
+    `# ${t('health.aiInUse')}`,
+    `AI_PROVIDER=${config.provider ?? ''}`,
+    ...(config.fallback ? [`AI_FALLBACK_PROVIDER=${config.fallback.provider}`] : []),
+  ].join('\n');
+}
+
 function AiModelCard({ config, error }: { config: AiConfig | null; error: boolean }) {
   const { t } = useI18n();
   return (
@@ -378,6 +402,8 @@ function AiModelCard({ config, error }: { config: AiConfig | null; error: boolea
               },
             ]}
           />
+          <h4>{t('health.aiProviderOptions')}</h4>
+          <pre className="code-block provider-options">{providerSettingsText(config, t)}</pre>
           <p className="chart-note">{t('health.aiNote')}</p>
         </>
       ) : (

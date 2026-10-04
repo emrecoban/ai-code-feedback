@@ -95,6 +95,7 @@ A schema, event or dashboard-metric change also needs `dashboard/docs/.vitepress
 | Contract | Where it lives |
 |---|---|
 | Research event types | `extension/src/backend/researchEvents.ts` ↔ `supabase/functions/log-event/index.ts` (unknown type → 422) |
+| AI provider ids | `buildProvider()` cases in `supabase/functions/_shared/providers/registry.ts` ↔ `PROVIDER_OPTIONS` in `dashboard/src/components/tabs/InsightsTab.tsx` (shown under System health) |
 | Trigger surfaces | `extension/src/backend/types.ts` ↔ `SUPPORTED_TRIGGER_SURFACES` in `supabase/functions/explain/index.ts` |
 | Trigger sources | extension types ↔ explain ↔ `interactions.trigger_source` check ↔ `dashboard/src/lib/types.ts` |
 | `/explain` request/response | `extension/src/backend/types.ts` ↔ `explain/index.ts` + `functions/_shared/hintLadder.ts` |
