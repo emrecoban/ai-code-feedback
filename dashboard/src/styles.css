@@ -1531,6 +1531,39 @@ input:disabled {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* ============ AI pause ============ */
+
+.pause-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(250, 178, 25, 0.5);
+  border-radius: 8px;
+  background: var(--warning-soft);
+  font-weight: 500;
+}
+.pause-banner .warning-icon {
+  margin-right: 0;
+}
+.pause-state {
+  margin-bottom: 6px;
+}
+.pause-card .quote {
+  margin-top: 4px;
+}
+.field textarea {
+  min-height: 72px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  font: inherit;
+  resize: vertical;
+}
+
 /* ============ Limits ============ */
 
 .limit-values {

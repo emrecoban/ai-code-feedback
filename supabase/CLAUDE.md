@@ -42,7 +42,7 @@ with the user before applying a migration or deploying.**
    - `dashboard.require_session`: also 28P01, the user must change their password first.
    - `dashboard.require_admin`: also 42501, a viewer tried an admin action.
 
-`events`, `usage_counters`, `rate_limits`, `training_samples` and every `dashboard.*` table have RLS on and **no policies**. Only
+`events`, `usage_counters`, `rate_limits`, `training_samples`, `ai_pause` and every `dashboard.*` table have RLS on and **no policies**. Only
 the service role or definer functions can reach them.
 
 ## Tables and their writers
@@ -59,10 +59,11 @@ the service role or definer functions can reach them.
 | `usage_counters` | `explain` | hourly buckets for the rate limit |
 | `rate_limits` | `dashboard_set_rate_limits` | single row; overrides the `RATE_LIMIT_*` secrets when present |
 | `training_samples` | `explain` (`_shared/trainingCapture.ts`) | one row per generated answer: messages as sent, request fields, raw answer, checks. Fine-tuning data; labels and training views are derived by `dashboard.training_record()` |
+| `ai_pause` | `dashboard_set_ai_pause` | single row; while `paused` (and before `resume_at`), `explain` and `generate-summary` refuse with 503 `ai_paused` (`_shared/aiPause.ts`) |
 | `dashboard.admins`, `.sessions`, `.audit_log` | `dashboard_*` RPCs | only the SHA-256 of a session token is stored; sessions last 12 h |
 
 Deleting a student means deleting from `auth.users`, which cascades through everything (`dashboard_delete_student`).
-Statement-level triggers on `interactions`, `coding_sessions`, `events` and `profiles` broadcast
+Statement-level triggers on `interactions`, `coding_sessions`, `events`, `profiles` and `ai_pause` broadcast
 `{table}` on the public Realtime channel `dashboard-activity` (0021).
 
 ## Edge Functions
@@ -78,14 +79,16 @@ Statement-level triggers on `interactions`, `coding_sessions`, `events` and `pro
 
 **`explain` pipeline:**
 1. Validate the request (`code` ≤ 8000 chars, `freeText` ≤ 300).
-2. Look up the cache. A hit costs no quota.
-3. Check the rate limit.
-4. Call the LLM (structured output, temperature 0.2).
-5. Validate the structure and run the pedagogical checks, with at most one whole-object repair pass.
-6. If a hard failure (wrong language, or private summary leaked) happens twice, degrade to L0+L1 only and set
+2. If the AI help is paused (`ai_pause`), answer 503 `ai_paused` with the instructor's message or the default
+   in the request's language. This comes before the cache, so a pause stops cached answers too.
+3. Look up the cache. A hit costs no quota.
+4. Check the rate limit.
+5. Call the LLM (structured output, temperature 0.2).
+6. Validate the structure and run the pedagogical checks, with at most one whole-object repair pass.
+7. If a hard failure (wrong language, or private summary leaked) happens twice, degrade to L0+L1 only and set
    `gatingDegraded`.
-7. Write the cache, the interaction and the usage, then bump the `learner_profiles` counter.
-8. After the response, store the training sample (`captureTrainingSample`, best-effort via
+8. Write the cache, the interaction and the usage, then bump the `learner_profiles` counter.
+9. After the response, store the training sample (`captureTrainingSample`, best-effort via
    `_shared/background.ts`). Cache hits are not captured.
 
 **Conventions that keep `explain` working:**
@@ -124,7 +127,7 @@ Statement-level triggers on `interactions`, `coding_sessions`, `events` and `pro
 
 ## Writing a migration
 
-- Use the next free number (`0026`). Start with a header comment giving the reason and the addendum section or
+- Use the next free number (`0027`). Start with a header comment giving the reason and the addendum section or
   feature tag.
 - For a new table, enable RLS in the same migration and add only the policies the client truly needs. Never add
   client insert/update policies on tables that Edge Functions own (`interactions`, `events`, …).

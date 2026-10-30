@@ -2,15 +2,15 @@
  "files": [
   {
    "file": "codebook.csv",
-   "bytes": 108423,
+   "bytes": 110382,
    "kind": "codebook",
-   "rows": 411
+   "rows": 420
   },
   {
    "file": "codebook.xlsx",
-   "bytes": 560322,
+   "bytes": 570111,
    "kind": "codebook",
-   "rows": 524
+   "rows": 533
   },
   {
    "file": "synthetic_events_long.csv",
@@ -1412,6 +1412,30 @@
    "item_id": "training_samples.created_at"
   },
   {
+   "variable": "ai_pause_id",
+   "item_id": "ai_pause.id"
+  },
+  {
+   "variable": "ai_pause_paused",
+   "item_id": "ai_pause.paused"
+  },
+  {
+   "variable": "ai_pause_message",
+   "item_id": "ai_pause.message"
+  },
+  {
+   "variable": "ai_pause_resume_at",
+   "item_id": "ai_pause.resume_at"
+  },
+  {
+   "variable": "ai_pause_updated_at",
+   "item_id": "ai_pause.updated_at"
+  },
+  {
+   "variable": "ai_pause_updated_by",
+   "item_id": "ai_pause.updated_by"
+  },
+  {
    "variable": "concept_vocabulary_id",
    "item_id": "concept_vocabulary.id"
   },
@@ -1946,6 +1970,18 @@
   {
    "variable": "function_dashboard_ladder_text",
    "item_id": "function.dashboard.ladder_text"
+  },
+  {
+   "variable": "function_public_dashboard_ai_pause",
+   "item_id": "function.public.dashboard_ai_pause"
+  },
+  {
+   "variable": "function_public_dashboard_set_ai_pause",
+   "item_id": "function.public.dashboard_set_ai_pause"
+  },
+  {
+   "variable": "function_dashboard_ai_pause_json",
+   "item_id": "function.dashboard.ai_pause_json"
   },
   {
    "variable": "function_dashboard_hash_token",

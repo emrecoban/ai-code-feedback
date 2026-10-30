@@ -4,6 +4,7 @@ import type { DateRange } from './range';
 import type {
   ActionResult,
   AiConfig,
+  AiPauseStatus,
   AuditEntry,
   Engagement,
   ExportData,
@@ -126,6 +127,18 @@ export const fetchTrainingExport = (
     p_capture: options.capture,
     p_final_only: options.finalOnly,
     p_usernames: options.usernames,
+  });
+
+// ---------- Pausing the AI help ----------
+
+export const fetchAiPause = (token: string) => call<AiPauseStatus>('dashboard_ai_pause', { p_token: token });
+/** Admins only, audited. Resuming ignores the message and the time. */
+export const setAiPause = (token: string, paused: boolean, message: string | null, resumeAt: string | null) =>
+  call<ActionResult & { status?: AiPauseStatus }>('dashboard_set_ai_pause', {
+    p_token: token,
+    p_paused: paused,
+    p_message: message,
+    p_resume_at: resumeAt,
   });
 
 // ---------- AI request limits (admins) ----------

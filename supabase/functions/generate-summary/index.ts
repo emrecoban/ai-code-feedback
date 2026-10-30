@@ -2,6 +2,7 @@ import { verifyUser, getAdminClient, UnauthenticatedError } from '../_shared/aut
 import { errorResponse, json, corsHeaders } from '../_shared/http.ts';
 import { resolveProviders, sendWithFailover } from '../_shared/providers/registry.ts';
 import { extractJsonObject } from '../_shared/modelJson.ts';
+import { getAiPause, pausedResponse } from '../_shared/aiPause.ts';
 
 // [USER-STATS]: the narrative band and "Try this one" practice suggestion
 // are both produced by one call so there's no second AI cost. The client
@@ -46,6 +47,11 @@ Deno.serve(async (req: Request) => {
   // student has just made it stale in a way the timer doesn't track.
   const body = (await req.json().catch(() => null)) as { force?: boolean } | null;
   const force = body?.force === true;
+
+  // [AI-PAUSE]: the summary is written by the model too. The extension
+  // swallows this refusal, so the message language does not matter here.
+  const pause = await getAiPause();
+  if (pause.paused) return pausedResponse(pause, 'en');
 
   const admin = getAdminClient();
 

@@ -1,6 +1,6 @@
 // Table reference pages: what each table holds, who writes it and who can read
 // it, in three languages. The columns themselves come from inventory.json.
-// Source: supabase/migrations 0001 to 0025 (read on the commit in inventory.json).
+// Source: supabase/migrations 0001 to 0026 (read on the commit in inventory.json).
 
 import type { T3 } from './terms'
 
@@ -76,6 +76,12 @@ export const tableRefs: Record<string, TableRef> = {
     writer: t('The server function explain, just after it sends the answer.', 'explain sunucu işlevi, yanıtı gönderdikten hemen sonra.', 'La función del servidor explain, justo después de enviar la respuesta.'),
     read: t('Only admins, through the dashboard (the preview of a question and the fine-tuning export). It holds student code and the private learner notes.', 'Yalnızca yöneticiler, panel üzerinden (bir sorunun önizlemesi ve ince ayar dışa aktarımı). Öğrenci kodunu ve gizli öğrenci notlarını içerir.', 'Solo las personas administradoras, desde el panel (la vista previa de una pregunta y la exportación de ajuste fino). Contiene código de estudiantes y las notas privadas sobre cada estudiante.'),
   },
+  'ai-pause': {
+    tables: ['ai_pause'],
+    what: t('At most one row that switches the AI help off for every student, with an optional message and a time when the pause ends by itself. While it is on, the server answers every question with that message instead of calling the model. Sign-in, history and the research data are not affected.', 'Yapay zekâ yardımını tüm öğrenciler için kapatan en fazla bir satır, isteğe bağlı bir mesaj ve duraklatmanın kendiliğinden bittiği zamanla birlikte. Açıkken sunucu her soruya modeli çağırmak yerine bu mesajla yanıt verir. Giriş, geçmiş ve araştırma verisi etkilenmez.', 'Como máximo una fila que desactiva la ayuda de IA para todos los estudiantes, con un mensaje opcional y el momento en que la pausa termina sola. Mientras está activa, el servidor responde a cada pregunta con ese mensaje en lugar de llamar al modelo. El inicio de sesión, el historial y los datos de investigación no cambian.'),
+    writer: t('An admin, through the dashboard.', 'Panel aracılığıyla bir yönetici.', 'Una persona administradora, desde el panel.'),
+    read: t('The server functions explain and generate-summary, and the dashboard.', 'explain ve generate-summary sunucu işlevleri ile panel.', 'Las funciones del servidor explain y generate-summary, y el panel.'),
+  },
   'concept-vocabulary': {
     tables: ['concept_vocabulary'],
     what: t('A reference table from the first version of the schema. No migration fills it, and no code reads or writes it.', 'Şemanın ilk sürümünden kalan bir başvuru tablosu. Hiçbir geçiş onu doldurmaz ve hiçbir kod onu okumaz ya da yazmaz.', 'Una tabla de referencia de la primera versión del esquema. Ninguna migración la llena, y ningún código la lee ni la escribe.'),
@@ -132,8 +138,8 @@ export const functionGroups: { id: string; title: T3; text: T3; ids: string[] }[
   {
     id: 'dashboard-changes',
     title: t('Changes from the dashboard', 'Panelden yapılan değişiklikler', 'Cambios desde el panel'),
-    text: t('Reset or delete a student, set a student password and set the usage limits. Only admins can use them, and every use is written to the activity log.', 'Bir öğrenciyi sıfırlar ya da siler, öğrenci parolası ve kullanım sınırlarını belirler. Yalnızca yöneticiler kullanabilir ve her kullanım etkinlik kaydına yazılır.', 'Restablecen o eliminan a un estudiante, fijan su contraseña y los límites de uso. Solo pueden usarlas las personas administradoras, y cada uso queda en el registro de actividad.'),
-    ids: ['public.dashboard_reset_student', 'public.dashboard_delete_student', 'public.dashboard_student_set_password', 'public.dashboard_set_rate_limits'],
+    text: t('Reset or delete a student, set a student password, set the usage limits and pause the AI help. Only admins can use them, and every use is written to the activity log.', 'Bir öğrenciyi sıfırlar ya da siler, öğrenci parolası ve kullanım sınırlarını belirler, yapay zekâ yardımını duraklatır. Yalnızca yöneticiler kullanabilir ve her kullanım etkinlik kaydına yazılır.', 'Restablecen o eliminan a un estudiante, fijan su contraseña y los límites de uso, y pausan la ayuda de IA. Solo pueden usarlas las personas administradoras, y cada uso queda en el registro de actividad.'),
+    ids: ['public.dashboard_reset_student', 'public.dashboard_delete_student', 'public.dashboard_student_set_password', 'public.dashboard_set_rate_limits', 'public.dashboard_ai_pause', 'public.dashboard_set_ai_pause', 'dashboard.ai_pause_json'],
   },
   {
     id: 'fine-tuning',
