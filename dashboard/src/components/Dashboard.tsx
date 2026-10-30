@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { useI18n } from '../i18n';
 import { useSession } from '../lib/auth';
 import { LiveProvider } from '../lib/live';
+import { PauseBanner } from './AiPause';
 import { DateRangeFilter } from './DateRangeFilter';
 import { Header, type Tab } from './Header';
 import { QuestionProvider } from './QuestionDialog';
@@ -57,6 +58,7 @@ function Shell() {
     <div className="app">
       <Header tab={tab} tabs={tabs} />
       <main className="content">
+        <PauseBanner />
         {(tab === 'overview' || tab === 'insights') && <DateRangeFilter />}
         <Suspense fallback={<p className="empty">{t('common.loading')}</p>}>
           {tab === 'overview' && <OverviewTab />}

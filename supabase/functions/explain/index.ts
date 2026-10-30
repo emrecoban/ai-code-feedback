@@ -15,6 +15,7 @@ import { buildSystemMessage, buildUserMessage } from '../_shared/promptAssembly.
 import { computeCacheKey, lookupCache, writeCache, normalizeErrorSignature } from '../_shared/cache.ts';
 import { checkRateLimit, recordUsage } from '../_shared/rateLimit.ts';
 import { captureTrainingSample, type TrainingContext } from '../_shared/trainingCapture.ts';
+import { getAiPause, pausedResponse } from '../_shared/aiPause.ts';
 
 const SUPPORTED_LANGUAGES = ['en', 'tr', 'es'];
 const TEMPERATURE = 0.2;
@@ -74,6 +75,11 @@ Deno.serve(async (req: Request) => {
   const validationError = validateRequest(body);
   if (validationError) return errorResponse('invalid_request', validationError, 422);
   const b = body!;
+
+  // [AI-PAUSE]: before the cache too, so a pause stops every answer, not
+  // only the ones the model would have written (migrations/0026).
+  const pause = await getAiPause();
+  if (pause.paused) return pausedResponse(pause, b.language);
 
   const admin = getAdminClient();
 

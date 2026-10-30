@@ -6,6 +6,7 @@ import { fetchAiConfig, fetchEngagement, fetchInsights, ForbiddenError, setRateL
 import { useApiErrorHandler, useSession } from '../../lib/auth';
 import { useLive, useLiveQuery } from '../../lib/live';
 import type { AiConfig, Engagement, Insights } from '../../lib/types';
+import { AiPauseCard } from '../AiPause';
 import { Behaviour, Metrics } from '../Behaviour';
 import { ConfirmDialog } from '../ConfirmDialog';
 import { useNotify } from '../Toast';
@@ -345,6 +346,7 @@ function Health({
           )}
         </section>
       </div>
+      <AiPauseCard />
       <div className="chart-grid chart-grid-even">
         <AiModelCard config={ai.data} error={ai.error} />
         <LimitsCard config={ai.data} error={ai.error} onChanged={ai.reload} />

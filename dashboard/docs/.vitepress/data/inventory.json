@@ -154,6 +154,14 @@
       "page": "reference/training-samples"
     },
     {
+      "id": "ai_pause",
+      "schema": "public",
+      "what": "At most one row: whether the AI help is paused for every student, with an optional message and resume time.",
+      "writer": "dashboard_set_ai_pause",
+      "rls": "no policies",
+      "page": "reference/ai-pause"
+    },
+    {
       "id": "concept_vocabulary",
       "schema": "public",
       "what": "Reference table from the base schema. Never read or written by any code.",
@@ -4622,6 +4630,132 @@
     },
     {
       "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.id",
+      "name": "Single-row key",
+      "category": "technical",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "id",
+      "type": "boolean",
+      "allowed": "always true",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "Primary key that allows one row only.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.paused",
+      "name": "AI help paused",
+      "category": "system",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "paused",
+      "type": "boolean",
+      "allowed": "true or false",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "Set by an admin in the dashboard. Ignored once resume_at has passed.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.message",
+      "name": "Message shown to students",
+      "category": "system",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "message",
+      "type": "text",
+      "allowed": "1-300 characters",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "Shown instead of an answer while paused. Empty means the default text in each student’s language.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.resume_at",
+      "name": "Resumes at",
+      "category": "system",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "resume_at",
+      "type": "timestamptz",
+      "allowed": "timestamp in the future when set",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "The pause ends by itself at this time. Empty means until someone resumes it.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.updated_at",
+      "name": "Pause changed at",
+      "category": "technical",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "updated_at",
+      "type": "timestamptz",
+      "allowed": "timestamp",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "Time of the last pause or resume.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "ai_pause.updated_by",
+      "name": "Pause changed by",
+      "category": "technical",
+      "level": "column",
+      "table": "ai_pause",
+      "column": "updated_by",
+      "type": "text",
+      "allowed": "dashboard username",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql",
+        "supabase/functions/_shared/aiPause.ts"
+      ],
+      "collection": "Name of the admin who made the change.",
+      "page": "reference/ai-pause"
+    },
+    {
+      "kind": "raw",
       "status": "unused",
       "research": false,
       "stage": [],
@@ -7668,6 +7802,60 @@
         "supabase/migrations/0025_training_samples.sql"
       ],
       "collection": "Writes the hint ladder in the order of the output schema.",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.public.dashboard_ai_pause",
+      "name": "public.dashboard_ai_pause",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql"
+      ],
+      "collection": "Whether the AI help is paused right now (any dashboard account).",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.public.dashboard_set_ai_pause",
+      "name": "public.dashboard_set_ai_pause",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql"
+      ],
+      "collection": "Pauses or resumes the AI help (admin, audited).",
+      "page": "reference/functions"
+    },
+    {
+      "kind": "raw",
+      "status": "active",
+      "research": false,
+      "stage": [],
+      "issues": [],
+      "id": "function.dashboard.ai_pause_json",
+      "name": "dashboard.ai_pause_json",
+      "category": "technical",
+      "level": "function",
+      "type": "function",
+      "allowed": "",
+      "sources": [
+        "supabase/migrations/0026_ai_pause.sql"
+      ],
+      "collection": "The pause as the dashboard shows it, with a pause past its resume time counted as over.",
       "page": "reference/functions"
     },
     {

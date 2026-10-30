@@ -936,3 +936,28 @@ unless `profiles.consent_status = 'granted'`. Deleting or resetting a
 student deletes the samples with the interactions. Names in comments or
 strings are not removed by the extension's redaction, so exported files
 need review before they leave the research team.
+
+---
+
+## 20. `[AI-PAUSE]`: switching the AI help off from the dashboard
+
+The base spec has no way to stop the AI help short of changing secrets or
+pausing the whole project. Migration 0026 adds `public.ai_pause`, one row
+an admin sets from the dashboard (`dashboard_set_ai_pause`, audited): a
+`paused` flag, an optional message of up to 300 characters and an optional
+`resume_at` after which the pause is over by itself.
+
+`explain` and `generate-summary` read the row on every request
+(`_shared/aiPause.ts`). While it is in force they answer 503 with the code
+`ai_paused` and the instructor's message, or a default in the request's
+language. In `explain` the check comes before the cache, so cached answers
+stop too, and before the rate limit, so a refused question costs no quota.
+A failed read counts as "not paused", so a database hiccup never switches
+the help off. The extension needs no change: it shows any refused request
+as "Request failed: <message>", and swallows a refused summary silently.
+
+What a pause does not do: the extension's buttons stay visible, because
+hiding them would need an extension update, and sign-in, history, activity
+counters and research events go on as usual. The extension still logs each
+refused question as a `request_failed` event (kind `backend`, code
+`ai_paused`), so pauses show in the dashboard's failure counts.

@@ -23,7 +23,7 @@ export const dataTree: { category: string; pages: string[] }[] = [
 /** One page per table (ids, keys and internal timestamps live here). */
 export const referencePages = [
   'profiles', 'consent-log', 'coding-sessions', 'interactions', 'events', 'explanations',
-  'learner-profiles', 'usage-counters', 'rate-limits', 'training-samples', 'concept-vocabulary', 'dashboard-accounts', 'functions',
+  'learner-profiles', 'usage-counters', 'rate-limits', 'training-samples', 'ai-pause', 'concept-vocabulary', 'dashboard-accounts', 'functions',
 ]
 
 export const researchPages = ['research/questions', 'research/linking', 'research/cleaning', 'research/codebook', 'research/fine-tuning']

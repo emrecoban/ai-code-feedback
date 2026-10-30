@@ -1,5 +1,5 @@
 // Shapes returned by the dashboard_* RPC functions
-// (supabase/migrations/0017-0025) and the dashboard-config Edge Function. Timestamps arrive as ISO strings,
+// (supabase/migrations/0017-0026) and the dashboard-config Edge Function. Timestamps arrive as ISO strings,
 // days as yyyy-mm-dd.
 import type { Bucket } from '../i18n/format';
 
@@ -345,6 +345,19 @@ export interface Engagement {
   failures: { kind: string; code: string | null; n: number }[];
   /** Class view only (null for one student). */
   quota: { username: string; hour_requests: number; day_requests: number; day_tokens: number }[] | null;
+}
+
+/** [AI-PAUSE] dashboard_ai_pause (migrations/0026). paused is the state
+ * students get right now: a pause whose resume_at has passed is over, and
+ * auto_resumed says so. */
+export interface AiPauseStatus {
+  paused: boolean;
+  auto_resumed: boolean;
+  /** The instructor's text; null means the default in each student's language. */
+  message: string | null;
+  resume_at: string | null;
+  updated_at: string | null;
+  updated_by: string | null;
 }
 
 /** dashboard-config: settings that live only in Edge Function secrets,

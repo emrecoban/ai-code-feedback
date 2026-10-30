@@ -135,6 +135,14 @@ function LogRow({ entry }: { entry: AuditEntry }) {
           : limits(d.hourly, d.daily);
       break;
     }
+    case 'ai_paused':
+      details = [
+        typeof d.message === 'string' ? `“${d.message}”` : null,
+        typeof d.resume_at === 'string' ? t('logDetail.pauseUntil', { date: f.fullDateTime(d.resume_at) }) : null,
+      ]
+        .filter(Boolean)
+        .join(' · ');
+      break;
     case 'training_export':
       details = t('logDetail.training', {
         view: t(d.view === 'levels' ? 'training.view.levels' : d.view === 'kto' ? 'training.view.kto' : 'training.view.sft'),
